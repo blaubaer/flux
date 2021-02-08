@@ -1047,6 +1047,16 @@ builtin table : (<-tables: [A], columns: C) => [B] where A: Record, B: Record, C
 //         The length of the interval. This defaults to the
 //         every duration.
 builtin window : (<-tables: [A], ?time: string, every: duration, ?period: duration, columns: C) => [B] where A: Record, B: Record, C: Record
+builtin window2 : (
+    <-tables: [{T with _time: time}]
+    ?every: duration,
+    ?period: duration,
+    ?offset: duration,
+    ?createEmpty: bool
+    ) => [{A with
+    _start: time, 
+    _stop: time,
+    _time: time}]
 // null is a sentinel value for fill that will fill
 // in a null value if there were no values for an interval.
 builtin null : A

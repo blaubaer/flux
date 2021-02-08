@@ -76,6 +76,16 @@ builtin tripleExponentialDerivative : (<-tables: [{B with _value: A}], n: int) =
 builtin union : (tables: [[A]]) => [A] where A: Record
 builtin unique : (<-tables: [A], ?column: string) => [A] where A: Record
 builtin window : (<-tables: [A], ?every: duration, ?period: duration, ?offset: duration, ?timeColumn: string, ?startColumn: string, ?stopColumn: string, ?createEmpty: bool) => [B] where A: Record, B: Record
+builtin window2 : (
+    <-tables: [{T with _time: time}]
+    ?every: duration,
+    ?period: duration,
+    ?offset: duration,
+    ?createEmpty: bool
+) => [{A with
+    _start: time,
+    _stop: time,
+    _time: time}]
 builtin yield : (<-tables: [A], ?name: string) => [A] where A: Record
 
 // stream/table index functions

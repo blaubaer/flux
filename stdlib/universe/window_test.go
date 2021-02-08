@@ -101,6 +101,20 @@ func TestFixedWindow_PassThrough(t *testing.T) {
 	})
 }
 
+func TestFixedWindow2_PassThrough(t *testing.T) {
+	w, _ := interval.NewWindow(values.ConvertDurationNsecs(time.Minute), values.ConvertDurationNsecs(time.Minute), values.MakeDuration(0, 0, false))
+	executetest.TransformationPassThroughTestHelper(t, func(d execute.Dataset, c execute.TableBuilderCache) execute.Transformation {
+		fw := universe.NewIntervalFixedWindowTransformation2(
+			d,
+			c,
+			interval.Bounds{},
+			w,
+			false,
+		)
+		return fw
+	})
+}
+
 func newEmptyWindowTable(start values.Time, stop values.Time, cols []flux.ColMeta) *executetest.Table {
 	return &executetest.Table{
 		KeyCols:   []string{"_start", "_stop"},
@@ -908,7 +922,83 @@ func TestFixedWindow_Process(t *testing.T) {
 			sort.Sort(executetest.SortedTables(want))
 
 			if !cmp.Equal(want, got) {
-				t.Errorf("unexpected tables -want/+got\n%s", cmp.Diff(want, got))
+				t.Errorf("window unexpected tables -want/+got\n%s", cmp.Diff(want, got))
+			}
+		})
+	}
+
+	for _, tc := range testCases {
+		tc := tc
+		t.Run(tc.name, func(t *testing.T) {
+			d := executetest.NewDataset(executetest.RandomDatasetID())
+			c := execute.NewTableBuilderCache(executetest.UnlimitedAllocator)
+			c.SetTriggerSpec(plan.DefaultTriggerSpec)
+
+			w, err := interval.NewWindow(tc.every, tc.period, tc.offset)
+			if err != nil {
+				t.Fatalf("unexpected error while creating window: %s", err)
+			}
+			fw2 := universe.NewIntervalFixedWindowTransformation2(
+				d,
+				c,
+				tc.bounds,
+				w,
+				tc.createEmpty,
+			)
+
+			table0 := &executetest.Table{
+				ColMeta: []flux.ColMeta{
+					{Label: "_start", Type: flux.TTime},
+					{Label: "_stop", Type: flux.TTime},
+					{Label: "_time", Type: flux.TTime},
+					tc.valueCol,
+				},
+			}
+
+			for i := 0; i < tc.num; i++ {
+				var v interface{}
+				switch tc.valueCol.Type {
+				case flux.TBool:
+					v = i%2 == 0
+				case flux.TInt:
+					v = int64(i)
+				case flux.TUInt:
+					v = uint64(i)
+				case flux.TFloat:
+					v = float64(i)
+				case flux.TString:
+					v = strconv.Itoa(i)
+				}
+
+				table0.Data = append(table0.Data, []interface{}{
+					tc.bounds.Start(),
+					tc.bounds.Stop(),
+					tc.bounds.Start() + values.Time(time.Duration(i)*10*time.Second).Add(values.MakeDuration(0, 0, false)),
+					v,
+				})
+			}
+
+			parentID := executetest.RandomDatasetID()
+			if err := fw2.Process(parentID, table0); err != nil {
+				t.Fatal(err)
+			}
+
+			got, err := executetest.TablesFromCache(c)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			start := tc.bounds.Start()
+			want := tc.want(start)
+
+			executetest.NormalizeTables(got)
+			executetest.NormalizeTables(want)
+
+			sort.Sort(executetest.SortedTables(got))
+			sort.Sort(executetest.SortedTables(want))
+
+			if !cmp.Equal(want, got) {
+				t.Errorf("window2 unexpected tables -want/+got\n%s", cmp.Diff(want, got))
 			}
 		})
 	}

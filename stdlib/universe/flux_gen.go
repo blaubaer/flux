@@ -22,10 +22,10 @@ var pkgAST = &ast.Package{
 			Loc: &ast.SourceLocation{
 				End: ast.Position{
 					Column: 89,
-					Line:   333,
+					Line:   343,
 				},
 				File:   "universe.flux",
-				Source: "package universe\n\nimport \"system\"\nimport \"date\"\nimport \"math\"\nimport \"strings\"\nimport \"regexp\"\n\n// now is a function option whose default behaviour is to return the current system time\noption now = system.time\n\n// Booleans\nbuiltin true : bool\nbuiltin false : bool\n\n// Transformation functions\nbuiltin chandeMomentumOscillator : (<-tables: [A],  n: int, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin columns : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin count : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin covariance : (<-tables: [A], ?pearsonr: bool, ?valueDst: string, columns: [string]) => [B] where A: Record, B: Record\nbuiltin cumulativeSum : (<-tables: [A], ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin derivative : (<-tables: [A], ?unit: duration, ?nonNegative: bool, ?columns: [string], ?timeColumn: string) => [B] where A: Record, B: Record\nbuiltin die : (msg: string) => A\nbuiltin difference : (<-tables: [T], ?nonNegative: bool, ?columns: [string], ?keepFirst: bool) => [R] where T: Record, R: Record\nbuiltin distinct : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin drop : (<-tables: [A], ?fn: (column: string) => bool, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin duplicate : (<-tables: [A], column: string, as: string) => [B] where A: Record, B: Record\nbuiltin elapsed : (<-tables: [A], ?unit: duration, ?timeColumn: string, ?columnName: string) => [B] where A: Record, B: Record\nbuiltin exponentialMovingAverage : (<-tables: [{ B with _value: A}], n: int) => [{ B with _value: A }] where A: Numeric\nbuiltin fill : (<-tables: [A], ?column: string, ?value: B, ?usePrevious: bool) => [C] where A: Record, C: Record\nbuiltin filter : (<-tables: [A], fn: (r: A) => bool, ?onEmpty: string) => [A] where A: Record\nbuiltin first : ( <-tables: [A], ?column: string) => [A] where A: Record\nbuiltin group : (<-tables: [A], ?mode: string, ?columns: [string]) => [A] where A: Record\nbuiltin histogram : (<-tables: [A], ?column: string, ?upperBoundColumn: string, ?countColumn: string, bins: [float], ?normalize: bool) => [B] where A: Record, B: Record\nbuiltin histogramQuantile : (<-tables: [A], ?quantile: float, ?countColumn: string, ?upperBoundColumn: string, ?valueColumn: string, ?minValue: float) => [B] where A: Record, B: Record\nbuiltin holtWinters : (<-tables: [A], n: int, interval: duration, ?withFit: bool, ?column: string, ?timeColumn: string, ?seasonality: int) => [B] where A: Record, B: Record\nbuiltin hourSelection : (<-tables: [A], start: int, stop: int, ?timeColumn: string) => [A] where A: Record\nbuiltin integral : (<-tables: [A], ?unit: duration, ?timeColumn: string, ?column: string, ?interpolate: string) => [B] where A: Record, B: Record\nbuiltin join : (<-tables: A, ?method: string, ?on: [string]) => [B] where A: Record, B: Record\nbuiltin kaufmansAMA : (<-tables: [A], n: int, ?column: string) => [B] where A: Record, B: Record\nbuiltin keep : (<-tables: [A], ?columns: [string], ?fn: (column: string) => bool) => [B] where A: Record, B: Record\nbuiltin keyValues : (<-tables: [A], ?keyColumns: [string]) => [{C with _key: string , _value: B}] where A: Record, C: Record\nbuiltin keys : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin last : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin limit : (<-tables: [A], n: int, ?offset: int) => [A]\nbuiltin map : (<-tables: [A], fn: (r: A) => B, ?mergeKey: bool) => [B]\nbuiltin max : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin mean : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin min : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin mode : (<-tables: [A], ?column: string) => [{C with _value: B}] where A: Record, C: Record\nbuiltin movingAverage : (<-tables: [{B with _value: A}], n: int) => [{B with _value: float}] where A: Numeric\nbuiltin quantile : (<-tables: [A], ?column: string, q: float, ?compression: float, ?method: string) => [A] where A: Record\nbuiltin pivot : (<-tables: [A], rowKey: [string], columnKey: [string], valueColumn: string) => [B] where A: Record, B: Record\nbuiltin range : (\n    <-tables: [{A with _time: time}],\n    start: B,\n    ?stop: C\n) => [{A with\n    _time:  time,\n    _start: time,\n    _stop:  time}]\nbuiltin reduce : (<-tables: [A], fn: (r: A, accumulator: B) => B, identity: B) => [C] where A: Record, B: Record, C: Record\nbuiltin relativeStrengthIndex : (<-tables: [A], n: int, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin rename : (<-tables: [A], ?fn: (column: string) => string, ?columns: B) => [C] where A: Record, B: Record, C: Record\nbuiltin sample : (<-tables: [A], n: int, ?pos: int, ?column: string) => [A] where A: Record\nbuiltin set : (<-tables: [A], key: string, value: string) => [A] where A: Record\nbuiltin tail : (<-tables: [A], n: int, ?offset: int) => [A]\nbuiltin timeShift : (<-tables: [A], duration: duration, ?columns: [string]) => [A]\nbuiltin skew : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin spread : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin sort : (<-tables: [A], ?columns: [string], ?desc: bool) => [A] where A: Record\nbuiltin stateTracking : (<-tables: [A], fn: (r: A) => bool, ?countColumn: string, ?durationColumn: string, ?durationUnit: duration, ?timeColumn: string) => [B] where A: Record, B: Record\nbuiltin stddev : (<-tables: [A], ?column: string, ?mode: string) => [B] where A: Record, B: Record\nbuiltin sum : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin tripleExponentialDerivative : (<-tables: [{B with _value: A}], n: int) => [{B with _value: float}] where A: Numeric, B: Record\nbuiltin union : (tables: [[A]]) => [A] where A: Record\nbuiltin unique : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin window : (<-tables: [A], ?every: duration, ?period: duration, ?offset: duration, ?timeColumn: string, ?startColumn: string, ?stopColumn: string, ?createEmpty: bool) => [B] where A: Record, B: Record\nbuiltin yield : (<-tables: [A], ?name: string) => [A] where A: Record\n\n// stream/table index functions\nbuiltin tableFind : (<-tables: [A], fn: (key: B) => bool) => [A] where A: Record, B: Record\nbuiltin getColumn : (<-table: [A], column: string) => [B] where A: Record\nbuiltin getRecord : (<-table: [A], idx: int) => A where A: Record\nbuiltin findColumn : (<-tables: [A], fn: (key: B) => bool, column: string) => [C] where A: Record, B: Record\nbuiltin findRecord : (<-tables: [A], fn: (key: B) => bool, idx: int) => A where A: Record, B: Record\n\n// type conversion functions\nbuiltin bool : (v: A) => bool\nbuiltin bytes : (v: A) => bytes\nbuiltin duration : (v: A) => duration\nbuiltin float : (v: A) => float\nbuiltin int : (v: A) => int\nbuiltin string : (v: A) => string\nbuiltin time : (v: A) => time\nbuiltin uint : (v: A) => uint\n\n// contains function\nbuiltin contains : (value: A, set: [A]) => bool where A: Nullable\n\n// other builtins\nbuiltin inf : duration\nbuiltin length : (arr: [A]) => int\nbuiltin linearBins : (start: float, width: float, count: int, ?infinity: bool) => [float]\nbuiltin logarithmicBins : (start: float, factor: float, count: int, ?infinity: bool) => [float]\n\n// sleep is the identity function with the side effect of delaying execution by a specified duration\nbuiltin sleep : (<-v: A, duration: duration) => A\n// die returns a fatal error from within a flux script\nbuiltin die : (msg: string) => A\n\n// Time weighted average where values at the beginning and end of the range are linearly interpolated.\ntimeWeightedAvg = (tables=<-, unit) => tables\n    |> integral(unit: unit, interpolate: \"linear\")\n    |> map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))\n\n// covariance function with automatic join\ncov = (x,y,on,pearsonr=false) =>\n    join(\n        tables:{x:x, y:y},\n        on:on,\n    )\n    |> covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])\n\npearsonr = (x,y,on) => cov(x:x, y:y, on:on, pearsonr:true)\n\n// AggregateWindow applies an aggregate function to fixed windows of time.\n// The procedure is to window the data, perform an aggregate operation,\n// and then undo the windowing to produce an output table for every input table.\naggregateWindow = (every, fn, column=\"_value\", timeSrc=\"_stop\",timeDst=\"_time\", createEmpty=true, tables=<-) =>\n    tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)\n        |> window(every:inf, timeColumn:timeDst)\n\n// Increase returns the total non-negative difference between values in a table.\n// A main usage case is tracking changes in counter values which may wrap over time when they hit\n// a threshold or are reset. In the case of a wrap/reset,\n// we can assume that the absolute delta between two points will be at least their non-negative difference.\nincrease = (tables=<-, columns=[\"_value\"]) =>\n    tables\n        |> difference(nonNegative: true, columns:columns)\n        |> cumulativeSum(columns: columns)\n\n// median returns the 50th percentile.\nmedian = (method=\"estimate_tdigest\", compression=0.0, column=\"_value\", tables=<-) =>\n    tables\n        |> quantile(q:0.5, method: method, compression: compression, column: column)\n\n// stateCount computes the number of consecutive records in a given state.\n// The state is defined via the function fn. For each consecutive point for\n// which the expression evaluates as true, the state count will be incremented\n// When a point evaluates as false, the state count is reset.\n//\n// The state count will be added as an additional column to each record. If the\n// expression evaluates as false, the value will be -1. If the expression\n// generates an error during evaluation, the point is discarded, and does not\n// affect the state count.\nstateCount = (fn, column=\"stateCount\", tables=<-) =>\n    tables\n        |> stateTracking(countColumn:column, fn:fn)\n\n// stateDuration computes the duration of a given state.\n// The state is defined via the function fn. For each consecutive point for\n// which the expression evaluates as true, the state duration will be\n// incremented by the duration between points. When a point evaluates as false,\n// the state duration is reset.\n//\n// The state duration will be added as an additional column to each record. If the\n// expression evaluates as false, the value will be -1. If the expression\n// generates an error during evaluation, the point is discarded, and does not\n// affect the state duration.\n//\n// Note that as the first point in the given state has no previous point, its\n// state duration will be 0.\n//\n// The duration is represented as an integer in the units specified.\nstateDuration = (fn, column=\"stateDuration\", timeColumn=\"_time\", unit=1s, tables=<-) =>\n    tables\n        |> stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)\n\n// _sortLimit is a helper function, which sorts and limits a table.\n_sortLimit = (n, desc, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> sort(columns:columns, desc:desc)\n        |> limit(n:n)\n\n// top sorts a table by columns and keeps only the top n records.\ntop = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:true)\n\n// top sorts a table by columns and keeps only the bottom n records.\nbottom = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:false)\n\n// _highestOrLowest is a helper function, which reduces all groups into a single group by specific tags and a reducer function,\n// then it selects the highest or lowest records based on the column and the _sortLimit function.\n// The default reducer assumes no reducing needs to be performed.\n_highestOrLowest = (n, _sortLimit, reducer, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])\n        |> _sortLimit(n:n, columns:[column])\n\n// highestMax returns the top N records from all groups using the maximum of each group.\nhighestMax = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )\n\n// highestAverage returns the top N records from all groups using the average of each group.\nhighestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )\n\n// highestCurrent returns the top N records from all groups using the last value of each group.\nhighestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )\n\n// lowestMin returns the bottom N records from all groups using the minimum of each group.\nlowestMin = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )\n\n// lowestAverage returns the bottom N records from all groups using the average of each group.\nlowestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )\n\n// lowestCurrent returns the bottom N records from all groups using the last value of each group.\nlowestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )\n\n// timedMovingAverage constructs a simple moving average over windows of 'period' duration\n// eg: A 5 year moving average would be called as such:\n//    movingAverage(1y, 5y)\ntimedMovingAverage = (every, period, column=\"_value\", tables=<-) =>\n    tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")\n        |> window(every: inf)\n\n// Double Exponential Moving Average computes the double exponential moving averages of the `_value` column.\n// eg: A 5 point double exponential moving average would be called as such:\n// from(bucket: \"telegraf/autogen\"):\n//    |> range(start: -7d)\n//    |> doubleEMA(n: 5)\ndoubleEMA = (n, tables=<-) =>\n    tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))\n          |> drop(columns: [\"__ema\"])\n\n\n// Triple Exponential Moving Average computes the triple exponential moving averages of the `_value` column.\n// eg: A 5 point triple exponential moving average would be called as such:\n// from(bucket: \"telegraf/autogen\"):\n//    |> range(start: -7d)\n//    |> tripleEMA(n: 5)\ntripleEMA = (n, tables=<-) =>\n\ttables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))\n\t\t|> drop(columns: [\"__ema1\", \"__ema2\"])\n\n// truncateTimeColumn takes in a time column t and a Duration unit and truncates each value of t to the given unit via map\n// Change from _time to timeColumn once Flux Issue 1122 is resolved\ntruncateTimeColumn = (timeColumn=\"_time\", unit, tables=<-) =>\n    tables\n        |> map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))\n\n// kaufmansER computes Kaufman's Efficiency Ratios of the `_value` column\nkaufmansER = (n, tables=<-) =>\n    tables\n        |> chandeMomentumOscillator(n: n)\n        |> map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))\n\ntoString   = (tables=<-) => tables |> map(fn:(r) => ({r with _value: string(v:r._value)}))\ntoInt      = (tables=<-) => tables |> map(fn:(r) => ({r with _value: int(v:r._value)}))\ntoUInt     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: uint(v:r._value)}))\ntoFloat    = (tables=<-) => tables |> map(fn:(r) => ({r with _value: float(v:r._value)}))\ntoBool     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: bool(v:r._value)}))\ntoTime     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: time(v:r._value)}))",
+				Source: "package universe\n\nimport \"system\"\nimport \"date\"\nimport \"math\"\nimport \"strings\"\nimport \"regexp\"\n\n// now is a function option whose default behaviour is to return the current system time\noption now = system.time\n\n// Booleans\nbuiltin true : bool\nbuiltin false : bool\n\n// Transformation functions\nbuiltin chandeMomentumOscillator : (<-tables: [A],  n: int, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin columns : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin count : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin covariance : (<-tables: [A], ?pearsonr: bool, ?valueDst: string, columns: [string]) => [B] where A: Record, B: Record\nbuiltin cumulativeSum : (<-tables: [A], ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin derivative : (<-tables: [A], ?unit: duration, ?nonNegative: bool, ?columns: [string], ?timeColumn: string) => [B] where A: Record, B: Record\nbuiltin die : (msg: string) => A\nbuiltin difference : (<-tables: [T], ?nonNegative: bool, ?columns: [string], ?keepFirst: bool) => [R] where T: Record, R: Record\nbuiltin distinct : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin drop : (<-tables: [A], ?fn: (column: string) => bool, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin duplicate : (<-tables: [A], column: string, as: string) => [B] where A: Record, B: Record\nbuiltin elapsed : (<-tables: [A], ?unit: duration, ?timeColumn: string, ?columnName: string) => [B] where A: Record, B: Record\nbuiltin exponentialMovingAverage : (<-tables: [{ B with _value: A}], n: int) => [{ B with _value: A }] where A: Numeric\nbuiltin fill : (<-tables: [A], ?column: string, ?value: B, ?usePrevious: bool) => [C] where A: Record, C: Record\nbuiltin filter : (<-tables: [A], fn: (r: A) => bool, ?onEmpty: string) => [A] where A: Record\nbuiltin first : ( <-tables: [A], ?column: string) => [A] where A: Record\nbuiltin group : (<-tables: [A], ?mode: string, ?columns: [string]) => [A] where A: Record\nbuiltin histogram : (<-tables: [A], ?column: string, ?upperBoundColumn: string, ?countColumn: string, bins: [float], ?normalize: bool) => [B] where A: Record, B: Record\nbuiltin histogramQuantile : (<-tables: [A], ?quantile: float, ?countColumn: string, ?upperBoundColumn: string, ?valueColumn: string, ?minValue: float) => [B] where A: Record, B: Record\nbuiltin holtWinters : (<-tables: [A], n: int, interval: duration, ?withFit: bool, ?column: string, ?timeColumn: string, ?seasonality: int) => [B] where A: Record, B: Record\nbuiltin hourSelection : (<-tables: [A], start: int, stop: int, ?timeColumn: string) => [A] where A: Record\nbuiltin integral : (<-tables: [A], ?unit: duration, ?timeColumn: string, ?column: string, ?interpolate: string) => [B] where A: Record, B: Record\nbuiltin join : (<-tables: A, ?method: string, ?on: [string]) => [B] where A: Record, B: Record\nbuiltin kaufmansAMA : (<-tables: [A], n: int, ?column: string) => [B] where A: Record, B: Record\nbuiltin keep : (<-tables: [A], ?columns: [string], ?fn: (column: string) => bool) => [B] where A: Record, B: Record\nbuiltin keyValues : (<-tables: [A], ?keyColumns: [string]) => [{C with _key: string , _value: B}] where A: Record, C: Record\nbuiltin keys : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin last : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin limit : (<-tables: [A], n: int, ?offset: int) => [A]\nbuiltin map : (<-tables: [A], fn: (r: A) => B, ?mergeKey: bool) => [B]\nbuiltin max : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin mean : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin min : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin mode : (<-tables: [A], ?column: string) => [{C with _value: B}] where A: Record, C: Record\nbuiltin movingAverage : (<-tables: [{B with _value: A}], n: int) => [{B with _value: float}] where A: Numeric\nbuiltin quantile : (<-tables: [A], ?column: string, q: float, ?compression: float, ?method: string) => [A] where A: Record\nbuiltin pivot : (<-tables: [A], rowKey: [string], columnKey: [string], valueColumn: string) => [B] where A: Record, B: Record\nbuiltin range : (\n    <-tables: [{A with _time: time}],\n    start: B,\n    ?stop: C\n) => [{A with\n    _time:  time,\n    _start: time,\n    _stop:  time}]\nbuiltin reduce : (<-tables: [A], fn: (r: A, accumulator: B) => B, identity: B) => [C] where A: Record, B: Record, C: Record\nbuiltin relativeStrengthIndex : (<-tables: [A], n: int, ?columns: [string]) => [B] where A: Record, B: Record\nbuiltin rename : (<-tables: [A], ?fn: (column: string) => string, ?columns: B) => [C] where A: Record, B: Record, C: Record\nbuiltin sample : (<-tables: [A], n: int, ?pos: int, ?column: string) => [A] where A: Record\nbuiltin set : (<-tables: [A], key: string, value: string) => [A] where A: Record\nbuiltin tail : (<-tables: [A], n: int, ?offset: int) => [A]\nbuiltin timeShift : (<-tables: [A], duration: duration, ?columns: [string]) => [A]\nbuiltin skew : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin spread : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin sort : (<-tables: [A], ?columns: [string], ?desc: bool) => [A] where A: Record\nbuiltin stateTracking : (<-tables: [A], fn: (r: A) => bool, ?countColumn: string, ?durationColumn: string, ?durationUnit: duration, ?timeColumn: string) => [B] where A: Record, B: Record\nbuiltin stddev : (<-tables: [A], ?column: string, ?mode: string) => [B] where A: Record, B: Record\nbuiltin sum : (<-tables: [A], ?column: string) => [B] where A: Record, B: Record\nbuiltin tripleExponentialDerivative : (<-tables: [{B with _value: A}], n: int) => [{B with _value: float}] where A: Numeric, B: Record\nbuiltin union : (tables: [[A]]) => [A] where A: Record\nbuiltin unique : (<-tables: [A], ?column: string) => [A] where A: Record\nbuiltin window : (<-tables: [A], ?every: duration, ?period: duration, ?offset: duration, ?timeColumn: string, ?startColumn: string, ?stopColumn: string, ?createEmpty: bool) => [B] where A: Record, B: Record\nbuiltin window2 : (\n    <-tables: [{T with _time: time}]\n    ?every: duration,\n    ?period: duration,\n    ?offset: duration,\n    ?createEmpty: bool\n) => [{A with\n    _start: time,\n    _stop: time,\n    _time: time}]\nbuiltin yield : (<-tables: [A], ?name: string) => [A] where A: Record\n\n// stream/table index functions\nbuiltin tableFind : (<-tables: [A], fn: (key: B) => bool) => [A] where A: Record, B: Record\nbuiltin getColumn : (<-table: [A], column: string) => [B] where A: Record\nbuiltin getRecord : (<-table: [A], idx: int) => A where A: Record\nbuiltin findColumn : (<-tables: [A], fn: (key: B) => bool, column: string) => [C] where A: Record, B: Record\nbuiltin findRecord : (<-tables: [A], fn: (key: B) => bool, idx: int) => A where A: Record, B: Record\n\n// type conversion functions\nbuiltin bool : (v: A) => bool\nbuiltin bytes : (v: A) => bytes\nbuiltin duration : (v: A) => duration\nbuiltin float : (v: A) => float\nbuiltin int : (v: A) => int\nbuiltin string : (v: A) => string\nbuiltin time : (v: A) => time\nbuiltin uint : (v: A) => uint\n\n// contains function\nbuiltin contains : (value: A, set: [A]) => bool where A: Nullable\n\n// other builtins\nbuiltin inf : duration\nbuiltin length : (arr: [A]) => int\nbuiltin linearBins : (start: float, width: float, count: int, ?infinity: bool) => [float]\nbuiltin logarithmicBins : (start: float, factor: float, count: int, ?infinity: bool) => [float]\n\n// sleep is the identity function with the side effect of delaying execution by a specified duration\nbuiltin sleep : (<-v: A, duration: duration) => A\n// die returns a fatal error from within a flux script\nbuiltin die : (msg: string) => A\n\n// Time weighted average where values at the beginning and end of the range are linearly interpolated.\ntimeWeightedAvg = (tables=<-, unit) => tables\n    |> integral(unit: unit, interpolate: \"linear\")\n    |> map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))\n\n// covariance function with automatic join\ncov = (x,y,on,pearsonr=false) =>\n    join(\n        tables:{x:x, y:y},\n        on:on,\n    )\n    |> covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])\n\npearsonr = (x,y,on) => cov(x:x, y:y, on:on, pearsonr:true)\n\n// AggregateWindow applies an aggregate function to fixed windows of time.\n// The procedure is to window the data, perform an aggregate operation,\n// and then undo the windowing to produce an output table for every input table.\naggregateWindow = (every, fn, column=\"_value\", timeSrc=\"_stop\",timeDst=\"_time\", createEmpty=true, tables=<-) =>\n    tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)\n        |> window(every:inf, timeColumn:timeDst)\n\n// Increase returns the total non-negative difference between values in a table.\n// A main usage case is tracking changes in counter values which may wrap over time when they hit\n// a threshold or are reset. In the case of a wrap/reset,\n// we can assume that the absolute delta between two points will be at least their non-negative difference.\nincrease = (tables=<-, columns=[\"_value\"]) =>\n    tables\n        |> difference(nonNegative: true, columns:columns)\n        |> cumulativeSum(columns: columns)\n\n// median returns the 50th percentile.\nmedian = (method=\"estimate_tdigest\", compression=0.0, column=\"_value\", tables=<-) =>\n    tables\n        |> quantile(q:0.5, method: method, compression: compression, column: column)\n\n// stateCount computes the number of consecutive records in a given state.\n// The state is defined via the function fn. For each consecutive point for\n// which the expression evaluates as true, the state count will be incremented\n// When a point evaluates as false, the state count is reset.\n//\n// The state count will be added as an additional column to each record. If the\n// expression evaluates as false, the value will be -1. If the expression\n// generates an error during evaluation, the point is discarded, and does not\n// affect the state count.\nstateCount = (fn, column=\"stateCount\", tables=<-) =>\n    tables\n        |> stateTracking(countColumn:column, fn:fn)\n\n// stateDuration computes the duration of a given state.\n// The state is defined via the function fn. For each consecutive point for\n// which the expression evaluates as true, the state duration will be\n// incremented by the duration between points. When a point evaluates as false,\n// the state duration is reset.\n//\n// The state duration will be added as an additional column to each record. If the\n// expression evaluates as false, the value will be -1. If the expression\n// generates an error during evaluation, the point is discarded, and does not\n// affect the state duration.\n//\n// Note that as the first point in the given state has no previous point, its\n// state duration will be 0.\n//\n// The duration is represented as an integer in the units specified.\nstateDuration = (fn, column=\"stateDuration\", timeColumn=\"_time\", unit=1s, tables=<-) =>\n    tables\n        |> stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)\n\n// _sortLimit is a helper function, which sorts and limits a table.\n_sortLimit = (n, desc, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> sort(columns:columns, desc:desc)\n        |> limit(n:n)\n\n// top sorts a table by columns and keeps only the top n records.\ntop = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:true)\n\n// top sorts a table by columns and keeps only the bottom n records.\nbottom = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:false)\n\n// _highestOrLowest is a helper function, which reduces all groups into a single group by specific tags and a reducer function,\n// then it selects the highest or lowest records based on the column and the _sortLimit function.\n// The default reducer assumes no reducing needs to be performed.\n_highestOrLowest = (n, _sortLimit, reducer, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])\n        |> _sortLimit(n:n, columns:[column])\n\n// highestMax returns the top N records from all groups using the maximum of each group.\nhighestMax = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )\n\n// highestAverage returns the top N records from all groups using the average of each group.\nhighestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )\n\n// highestCurrent returns the top N records from all groups using the last value of each group.\nhighestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )\n\n// lowestMin returns the bottom N records from all groups using the minimum of each group.\nlowestMin = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )\n\n// lowestAverage returns the bottom N records from all groups using the average of each group.\nlowestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )\n\n// lowestCurrent returns the bottom N records from all groups using the last value of each group.\nlowestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )\n\n// timedMovingAverage constructs a simple moving average over windows of 'period' duration\n// eg: A 5 year moving average would be called as such:\n//    movingAverage(1y, 5y)\ntimedMovingAverage = (every, period, column=\"_value\", tables=<-) =>\n    tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")\n        |> window(every: inf)\n\n// Double Exponential Moving Average computes the double exponential moving averages of the `_value` column.\n// eg: A 5 point double exponential moving average would be called as such:\n// from(bucket: \"telegraf/autogen\"):\n//    |> range(start: -7d)\n//    |> doubleEMA(n: 5)\ndoubleEMA = (n, tables=<-) =>\n    tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))\n          |> drop(columns: [\"__ema\"])\n\n\n// Triple Exponential Moving Average computes the triple exponential moving averages of the `_value` column.\n// eg: A 5 point triple exponential moving average would be called as such:\n// from(bucket: \"telegraf/autogen\"):\n//    |> range(start: -7d)\n//    |> tripleEMA(n: 5)\ntripleEMA = (n, tables=<-) =>\n\ttables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))\n\t\t|> drop(columns: [\"__ema1\", \"__ema2\"])\n\n// truncateTimeColumn takes in a time column t and a Duration unit and truncates each value of t to the given unit via map\n// Change from _time to timeColumn once Flux Issue 1122 is resolved\ntruncateTimeColumn = (timeColumn=\"_time\", unit, tables=<-) =>\n    tables\n        |> map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))\n\n// kaufmansER computes Kaufman's Efficiency Ratios of the `_value` column\nkaufmansER = (n, tables=<-) =>\n    tables\n        |> chandeMomentumOscillator(n: n)\n        |> map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))\n\ntoString   = (tables=<-) => tables |> map(fn:(r) => ({r with _value: string(v:r._value)}))\ntoInt      = (tables=<-) => tables |> map(fn:(r) => ({r with _value: int(v:r._value)}))\ntoUInt     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: uint(v:r._value)}))\ntoFloat    = (tables=<-) => tables |> map(fn:(r) => ({r with _value: float(v:r._value)}))\ntoBool     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: bool(v:r._value)}))\ntoTime     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: time(v:r._value)}))",
 				Start: ast.Position{
 					Column: 1,
 					Line:   1,
@@ -26321,11 +26321,11 @@ var pkgAST = &ast.Package{
 				Errors: nil,
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
-						Column: 14,
+						Column: 16,
 						Line:   79,
 					},
 					File:   "universe.flux",
-					Source: "builtin yield",
+					Source: "builtin window2",
 					Start: ast.Position{
 						Column: 1,
 						Line:   79,
@@ -26337,14 +26337,781 @@ var pkgAST = &ast.Package{
 					Errors: nil,
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
-							Column: 14,
+							Column: 16,
 							Line:   79,
+						},
+						File:   "universe.flux",
+						Source: "window2",
+						Start: ast.Position{
+							Column: 9,
+							Line:   79,
+						},
+					},
+				},
+				Name: "window2",
+			},
+			Ty: ast.TypeExpression{
+				BaseNode: ast.BaseNode{
+					Errors: nil,
+					Loc: &ast.SourceLocation{
+						End: ast.Position{
+							Column: 18,
+							Line:   88,
+						},
+						File:   "universe.flux",
+						Source: "(\n    <-tables: [{T with _time: time}]\n    ?every: duration,\n    ?period: duration,\n    ?offset: duration,\n    ?createEmpty: bool\n) => [{A with\n    _start: time,\n    _stop: time,\n    _time: time}]",
+						Start: ast.Position{
+							Column: 19,
+							Line:   79,
+						},
+					},
+				},
+				Constraints: []*ast.TypeConstraint{},
+				Ty: &ast.FunctionType{
+					BaseNode: ast.BaseNode{
+						Errors: nil,
+						Loc: &ast.SourceLocation{
+							End: ast.Position{
+								Column: 18,
+								Line:   88,
+							},
+							File:   "universe.flux",
+							Source: "(\n    <-tables: [{T with _time: time}]\n    ?every: duration,\n    ?period: duration,\n    ?offset: duration,\n    ?createEmpty: bool\n) => [{A with\n    _start: time,\n    _stop: time,\n    _time: time}]",
+							Start: ast.Position{
+								Column: 19,
+								Line:   79,
+							},
+						},
+					},
+					Parameters: []*ast.ParameterType{&ast.ParameterType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 37,
+									Line:   80,
+								},
+								File:   "universe.flux",
+								Source: "<-tables: [{T with _time: time}]",
+								Start: ast.Position{
+									Column: 5,
+									Line:   80,
+								},
+							},
+						},
+						Kind: "Pipe",
+						Name: &ast.Identifier{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 13,
+										Line:   80,
+									},
+									File:   "universe.flux",
+									Source: "tables",
+									Start: ast.Position{
+										Column: 7,
+										Line:   80,
+									},
+								},
+							},
+							Name: "tables",
+						},
+						Ty: &ast.ArrayType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 37,
+										Line:   80,
+									},
+									File:   "universe.flux",
+									Source: "[{T with _time: time}]",
+									Start: ast.Position{
+										Column: 15,
+										Line:   80,
+									},
+								},
+							},
+							ElementType: &ast.RecordType{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 36,
+											Line:   80,
+										},
+										File:   "universe.flux",
+										Source: "{T with _time: time}",
+										Start: ast.Position{
+											Column: 16,
+											Line:   80,
+										},
+									},
+								},
+								Properties: []*ast.PropertyType{&ast.PropertyType{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 35,
+												Line:   80,
+											},
+											File:   "universe.flux",
+											Source: "_time: time",
+											Start: ast.Position{
+												Column: 24,
+												Line:   80,
+											},
+										},
+									},
+									Name: &ast.Identifier{
+										BaseNode: ast.BaseNode{
+											Errors: nil,
+											Loc: &ast.SourceLocation{
+												End: ast.Position{
+													Column: 29,
+													Line:   80,
+												},
+												File:   "universe.flux",
+												Source: "_time",
+												Start: ast.Position{
+													Column: 24,
+													Line:   80,
+												},
+											},
+										},
+										Name: "_time",
+									},
+									Ty: &ast.NamedType{
+										BaseNode: ast.BaseNode{
+											Errors: nil,
+											Loc: &ast.SourceLocation{
+												End: ast.Position{
+													Column: 35,
+													Line:   80,
+												},
+												File:   "universe.flux",
+												Source: "time",
+												Start: ast.Position{
+													Column: 31,
+													Line:   80,
+												},
+											},
+										},
+										ID: &ast.Identifier{
+											BaseNode: ast.BaseNode{
+												Errors: nil,
+												Loc: &ast.SourceLocation{
+													End: ast.Position{
+														Column: 35,
+														Line:   80,
+													},
+													File:   "universe.flux",
+													Source: "time",
+													Start: ast.Position{
+														Column: 31,
+														Line:   80,
+													},
+												},
+											},
+											Name: "time",
+										},
+									},
+								}},
+								Tvar: &ast.Identifier{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 18,
+												Line:   80,
+											},
+											File:   "universe.flux",
+											Source: "T",
+											Start: ast.Position{
+												Column: 17,
+												Line:   80,
+											},
+										},
+									},
+									Name: "T",
+								},
+							},
+						},
+					}, &ast.ParameterType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 21,
+									Line:   81,
+								},
+								File:   "universe.flux",
+								Source: "?every: duration",
+								Start: ast.Position{
+									Column: 5,
+									Line:   81,
+								},
+							},
+						},
+						Kind: "Optional",
+						Name: &ast.Identifier{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 11,
+										Line:   81,
+									},
+									File:   "universe.flux",
+									Source: "every",
+									Start: ast.Position{
+										Column: 6,
+										Line:   81,
+									},
+								},
+							},
+							Name: "every",
+						},
+						Ty: &ast.NamedType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 21,
+										Line:   81,
+									},
+									File:   "universe.flux",
+									Source: "duration",
+									Start: ast.Position{
+										Column: 13,
+										Line:   81,
+									},
+								},
+							},
+							ID: &ast.Identifier{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 21,
+											Line:   81,
+										},
+										File:   "universe.flux",
+										Source: "duration",
+										Start: ast.Position{
+											Column: 13,
+											Line:   81,
+										},
+									},
+								},
+								Name: "duration",
+							},
+						},
+					}, &ast.ParameterType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 22,
+									Line:   82,
+								},
+								File:   "universe.flux",
+								Source: "?period: duration",
+								Start: ast.Position{
+									Column: 5,
+									Line:   82,
+								},
+							},
+						},
+						Kind: "Optional",
+						Name: &ast.Identifier{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 12,
+										Line:   82,
+									},
+									File:   "universe.flux",
+									Source: "period",
+									Start: ast.Position{
+										Column: 6,
+										Line:   82,
+									},
+								},
+							},
+							Name: "period",
+						},
+						Ty: &ast.NamedType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 22,
+										Line:   82,
+									},
+									File:   "universe.flux",
+									Source: "duration",
+									Start: ast.Position{
+										Column: 14,
+										Line:   82,
+									},
+								},
+							},
+							ID: &ast.Identifier{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 22,
+											Line:   82,
+										},
+										File:   "universe.flux",
+										Source: "duration",
+										Start: ast.Position{
+											Column: 14,
+											Line:   82,
+										},
+									},
+								},
+								Name: "duration",
+							},
+						},
+					}, &ast.ParameterType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 22,
+									Line:   83,
+								},
+								File:   "universe.flux",
+								Source: "?offset: duration",
+								Start: ast.Position{
+									Column: 5,
+									Line:   83,
+								},
+							},
+						},
+						Kind: "Optional",
+						Name: &ast.Identifier{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 12,
+										Line:   83,
+									},
+									File:   "universe.flux",
+									Source: "offset",
+									Start: ast.Position{
+										Column: 6,
+										Line:   83,
+									},
+								},
+							},
+							Name: "offset",
+						},
+						Ty: &ast.NamedType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 22,
+										Line:   83,
+									},
+									File:   "universe.flux",
+									Source: "duration",
+									Start: ast.Position{
+										Column: 14,
+										Line:   83,
+									},
+								},
+							},
+							ID: &ast.Identifier{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 22,
+											Line:   83,
+										},
+										File:   "universe.flux",
+										Source: "duration",
+										Start: ast.Position{
+											Column: 14,
+											Line:   83,
+										},
+									},
+								},
+								Name: "duration",
+							},
+						},
+					}, &ast.ParameterType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 23,
+									Line:   84,
+								},
+								File:   "universe.flux",
+								Source: "?createEmpty: bool",
+								Start: ast.Position{
+									Column: 5,
+									Line:   84,
+								},
+							},
+						},
+						Kind: "Optional",
+						Name: &ast.Identifier{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 17,
+										Line:   84,
+									},
+									File:   "universe.flux",
+									Source: "createEmpty",
+									Start: ast.Position{
+										Column: 6,
+										Line:   84,
+									},
+								},
+							},
+							Name: "createEmpty",
+						},
+						Ty: &ast.NamedType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 23,
+										Line:   84,
+									},
+									File:   "universe.flux",
+									Source: "bool",
+									Start: ast.Position{
+										Column: 19,
+										Line:   84,
+									},
+								},
+							},
+							ID: &ast.Identifier{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 23,
+											Line:   84,
+										},
+										File:   "universe.flux",
+										Source: "bool",
+										Start: ast.Position{
+											Column: 19,
+											Line:   84,
+										},
+									},
+								},
+								Name: "bool",
+							},
+						},
+					}},
+					Return: &ast.ArrayType{
+						BaseNode: ast.BaseNode{
+							Errors: nil,
+							Loc: &ast.SourceLocation{
+								End: ast.Position{
+									Column: 18,
+									Line:   88,
+								},
+								File:   "universe.flux",
+								Source: "[{A with\n    _start: time,\n    _stop: time,\n    _time: time}]",
+								Start: ast.Position{
+									Column: 6,
+									Line:   85,
+								},
+							},
+						},
+						ElementType: &ast.RecordType{
+							BaseNode: ast.BaseNode{
+								Errors: nil,
+								Loc: &ast.SourceLocation{
+									End: ast.Position{
+										Column: 17,
+										Line:   88,
+									},
+									File:   "universe.flux",
+									Source: "{A with\n    _start: time,\n    _stop: time,\n    _time: time}",
+									Start: ast.Position{
+										Column: 7,
+										Line:   85,
+									},
+								},
+							},
+							Properties: []*ast.PropertyType{&ast.PropertyType{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 17,
+											Line:   86,
+										},
+										File:   "universe.flux",
+										Source: "_start: time",
+										Start: ast.Position{
+											Column: 5,
+											Line:   86,
+										},
+									},
+								},
+								Name: &ast.Identifier{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 11,
+												Line:   86,
+											},
+											File:   "universe.flux",
+											Source: "_start",
+											Start: ast.Position{
+												Column: 5,
+												Line:   86,
+											},
+										},
+									},
+									Name: "_start",
+								},
+								Ty: &ast.NamedType{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 17,
+												Line:   86,
+											},
+											File:   "universe.flux",
+											Source: "time",
+											Start: ast.Position{
+												Column: 13,
+												Line:   86,
+											},
+										},
+									},
+									ID: &ast.Identifier{
+										BaseNode: ast.BaseNode{
+											Errors: nil,
+											Loc: &ast.SourceLocation{
+												End: ast.Position{
+													Column: 17,
+													Line:   86,
+												},
+												File:   "universe.flux",
+												Source: "time",
+												Start: ast.Position{
+													Column: 13,
+													Line:   86,
+												},
+											},
+										},
+										Name: "time",
+									},
+								},
+							}, &ast.PropertyType{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 16,
+											Line:   87,
+										},
+										File:   "universe.flux",
+										Source: "_stop: time",
+										Start: ast.Position{
+											Column: 5,
+											Line:   87,
+										},
+									},
+								},
+								Name: &ast.Identifier{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 10,
+												Line:   87,
+											},
+											File:   "universe.flux",
+											Source: "_stop",
+											Start: ast.Position{
+												Column: 5,
+												Line:   87,
+											},
+										},
+									},
+									Name: "_stop",
+								},
+								Ty: &ast.NamedType{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 16,
+												Line:   87,
+											},
+											File:   "universe.flux",
+											Source: "time",
+											Start: ast.Position{
+												Column: 12,
+												Line:   87,
+											},
+										},
+									},
+									ID: &ast.Identifier{
+										BaseNode: ast.BaseNode{
+											Errors: nil,
+											Loc: &ast.SourceLocation{
+												End: ast.Position{
+													Column: 16,
+													Line:   87,
+												},
+												File:   "universe.flux",
+												Source: "time",
+												Start: ast.Position{
+													Column: 12,
+													Line:   87,
+												},
+											},
+										},
+										Name: "time",
+									},
+								},
+							}, &ast.PropertyType{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 16,
+											Line:   88,
+										},
+										File:   "universe.flux",
+										Source: "_time: time",
+										Start: ast.Position{
+											Column: 5,
+											Line:   88,
+										},
+									},
+								},
+								Name: &ast.Identifier{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 10,
+												Line:   88,
+											},
+											File:   "universe.flux",
+											Source: "_time",
+											Start: ast.Position{
+												Column: 5,
+												Line:   88,
+											},
+										},
+									},
+									Name: "_time",
+								},
+								Ty: &ast.NamedType{
+									BaseNode: ast.BaseNode{
+										Errors: nil,
+										Loc: &ast.SourceLocation{
+											End: ast.Position{
+												Column: 16,
+												Line:   88,
+											},
+											File:   "universe.flux",
+											Source: "time",
+											Start: ast.Position{
+												Column: 12,
+												Line:   88,
+											},
+										},
+									},
+									ID: &ast.Identifier{
+										BaseNode: ast.BaseNode{
+											Errors: nil,
+											Loc: &ast.SourceLocation{
+												End: ast.Position{
+													Column: 16,
+													Line:   88,
+												},
+												File:   "universe.flux",
+												Source: "time",
+												Start: ast.Position{
+													Column: 12,
+													Line:   88,
+												},
+											},
+										},
+										Name: "time",
+									},
+								},
+							}},
+							Tvar: &ast.Identifier{
+								BaseNode: ast.BaseNode{
+									Errors: nil,
+									Loc: &ast.SourceLocation{
+										End: ast.Position{
+											Column: 9,
+											Line:   85,
+										},
+										File:   "universe.flux",
+										Source: "A",
+										Start: ast.Position{
+											Column: 8,
+											Line:   85,
+										},
+									},
+								},
+								Name: "A",
+							},
+						},
+					},
+				},
+			},
+		}, &ast.BuiltinStatement{
+			BaseNode: ast.BaseNode{
+				Errors: nil,
+				Loc: &ast.SourceLocation{
+					End: ast.Position{
+						Column: 14,
+						Line:   89,
+					},
+					File:   "universe.flux",
+					Source: "builtin yield",
+					Start: ast.Position{
+						Column: 1,
+						Line:   89,
+					},
+				},
+			},
+			ID: &ast.Identifier{
+				BaseNode: ast.BaseNode{
+					Errors: nil,
+					Loc: &ast.SourceLocation{
+						End: ast.Position{
+							Column: 14,
+							Line:   89,
 						},
 						File:   "universe.flux",
 						Source: "yield",
 						Start: ast.Position{
 							Column: 9,
-							Line:   79,
+							Line:   89,
 						},
 					},
 				},
@@ -26356,13 +27123,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 70,
-							Line:   79,
+							Line:   89,
 						},
 						File:   "universe.flux",
 						Source: "(<-tables: [A], ?name: string) => [A] where A: Record",
 						Start: ast.Position{
 							Column: 17,
-							Line:   79,
+							Line:   89,
 						},
 					},
 				},
@@ -26372,13 +27139,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 70,
-								Line:   79,
+								Line:   89,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 61,
-								Line:   79,
+								Line:   89,
 							},
 						},
 					},
@@ -26388,13 +27155,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 70,
-									Line:   79,
+									Line:   89,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 64,
-									Line:   79,
+									Line:   89,
 								},
 							},
 						},
@@ -26406,13 +27173,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 62,
-									Line:   79,
+									Line:   89,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 61,
-									Line:   79,
+									Line:   89,
 								},
 							},
 						},
@@ -26425,13 +27192,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 54,
-								Line:   79,
+								Line:   89,
 							},
 							File:   "universe.flux",
 							Source: "(<-tables: [A], ?name: string) => [A]",
 							Start: ast.Position{
 								Column: 17,
-								Line:   79,
+								Line:   89,
 							},
 						},
 					},
@@ -26441,13 +27208,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 31,
-									Line:   79,
+									Line:   89,
 								},
 								File:   "universe.flux",
 								Source: "<-tables: [A]",
 								Start: ast.Position{
 									Column: 18,
-									Line:   79,
+									Line:   89,
 								},
 							},
 						},
@@ -26458,13 +27225,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 26,
-										Line:   79,
+										Line:   89,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 20,
-										Line:   79,
+										Line:   89,
 									},
 								},
 							},
@@ -26476,13 +27243,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   79,
+										Line:   89,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 28,
-										Line:   79,
+										Line:   89,
 									},
 								},
 							},
@@ -26492,13 +27259,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   79,
+											Line:   89,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 29,
-											Line:   79,
+											Line:   89,
 										},
 									},
 								},
@@ -26508,13 +27275,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   79,
+												Line:   89,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 29,
-												Line:   79,
+												Line:   89,
 											},
 										},
 									},
@@ -26528,13 +27295,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 46,
-									Line:   79,
+									Line:   89,
 								},
 								File:   "universe.flux",
 								Source: "?name: string",
 								Start: ast.Position{
 									Column: 33,
-									Line:   79,
+									Line:   89,
 								},
 							},
 						},
@@ -26545,13 +27312,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 38,
-										Line:   79,
+										Line:   89,
 									},
 									File:   "universe.flux",
 									Source: "name",
 									Start: ast.Position{
 										Column: 34,
-										Line:   79,
+										Line:   89,
 									},
 								},
 							},
@@ -26563,13 +27330,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 46,
-										Line:   79,
+										Line:   89,
 									},
 									File:   "universe.flux",
 									Source: "string",
 									Start: ast.Position{
 										Column: 40,
-										Line:   79,
+										Line:   89,
 									},
 								},
 							},
@@ -26579,13 +27346,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 46,
-											Line:   79,
+											Line:   89,
 										},
 										File:   "universe.flux",
 										Source: "string",
 										Start: ast.Position{
 											Column: 40,
-											Line:   79,
+											Line:   89,
 										},
 									},
 								},
@@ -26599,13 +27366,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 54,
-									Line:   79,
+									Line:   89,
 								},
 								File:   "universe.flux",
 								Source: "[A]",
 								Start: ast.Position{
 									Column: 51,
-									Line:   79,
+									Line:   89,
 								},
 							},
 						},
@@ -26615,13 +27382,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 53,
-										Line:   79,
+										Line:   89,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 52,
-										Line:   79,
+										Line:   89,
 									},
 								},
 							},
@@ -26631,13 +27398,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 53,
-											Line:   79,
+											Line:   89,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 52,
-											Line:   79,
+											Line:   89,
 										},
 									},
 								},
@@ -26653,13 +27420,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 18,
-						Line:   82,
+						Line:   92,
 					},
 					File:   "universe.flux",
 					Source: "builtin tableFind",
 					Start: ast.Position{
 						Column: 1,
-						Line:   82,
+						Line:   92,
 					},
 				},
 			},
@@ -26669,13 +27436,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 18,
-							Line:   82,
+							Line:   92,
 						},
 						File:   "universe.flux",
 						Source: "tableFind",
 						Start: ast.Position{
 							Column: 9,
-							Line:   82,
+							Line:   92,
 						},
 					},
 				},
@@ -26687,13 +27454,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 92,
-							Line:   82,
+							Line:   92,
 						},
 						File:   "universe.flux",
 						Source: "(<-tables: [A], fn: (key: B) => bool) => [A] where A: Record, B: Record",
 						Start: ast.Position{
 							Column: 21,
-							Line:   82,
+							Line:   92,
 						},
 					},
 				},
@@ -26703,13 +27470,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 81,
-								Line:   82,
+								Line:   92,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 72,
-								Line:   82,
+								Line:   92,
 							},
 						},
 					},
@@ -26719,13 +27486,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 81,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 75,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26737,13 +27504,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 73,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 72,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26755,13 +27522,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 92,
-								Line:   82,
+								Line:   92,
 							},
 							File:   "universe.flux",
 							Source: "B: Record",
 							Start: ast.Position{
 								Column: 83,
-								Line:   82,
+								Line:   92,
 							},
 						},
 					},
@@ -26771,13 +27538,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 92,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 86,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26789,13 +27556,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 84,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "B",
 								Start: ast.Position{
 									Column: 83,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26808,13 +27575,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 65,
-								Line:   82,
+								Line:   92,
 							},
 							File:   "universe.flux",
 							Source: "(<-tables: [A], fn: (key: B) => bool) => [A]",
 							Start: ast.Position{
 								Column: 21,
-								Line:   82,
+								Line:   92,
 							},
 						},
 					},
@@ -26824,13 +27591,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "<-tables: [A]",
 								Start: ast.Position{
 									Column: 22,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26841,13 +27608,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 30,
-										Line:   82,
+										Line:   92,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 24,
-										Line:   82,
+										Line:   92,
 									},
 								},
 							},
@@ -26859,13 +27626,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   82,
+										Line:   92,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 32,
-										Line:   82,
+										Line:   92,
 									},
 								},
 							},
@@ -26875,13 +27642,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 34,
-											Line:   82,
+											Line:   92,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 33,
-											Line:   82,
+											Line:   92,
 										},
 									},
 								},
@@ -26891,13 +27658,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 34,
-												Line:   82,
+												Line:   92,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 33,
-												Line:   82,
+												Line:   92,
 											},
 										},
 									},
@@ -26911,13 +27678,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 57,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "fn: (key: B) => bool",
 								Start: ast.Position{
 									Column: 37,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -26928,13 +27695,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 39,
-										Line:   82,
+										Line:   92,
 									},
 									File:   "universe.flux",
 									Source: "fn",
 									Start: ast.Position{
 										Column: 37,
-										Line:   82,
+										Line:   92,
 									},
 								},
 							},
@@ -26946,13 +27713,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 57,
-										Line:   82,
+										Line:   92,
 									},
 									File:   "universe.flux",
 									Source: "(key: B) => bool",
 									Start: ast.Position{
 										Column: 41,
-										Line:   82,
+										Line:   92,
 									},
 								},
 							},
@@ -26962,13 +27729,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 48,
-											Line:   82,
+											Line:   92,
 										},
 										File:   "universe.flux",
 										Source: "key: B",
 										Start: ast.Position{
 											Column: 42,
-											Line:   82,
+											Line:   92,
 										},
 									},
 								},
@@ -26979,13 +27746,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   82,
+												Line:   92,
 											},
 											File:   "universe.flux",
 											Source: "key",
 											Start: ast.Position{
 												Column: 42,
-												Line:   82,
+												Line:   92,
 											},
 										},
 									},
@@ -26997,13 +27764,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 48,
-												Line:   82,
+												Line:   92,
 											},
 											File:   "universe.flux",
 											Source: "B",
 											Start: ast.Position{
 												Column: 47,
-												Line:   82,
+												Line:   92,
 											},
 										},
 									},
@@ -27013,13 +27780,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   82,
+													Line:   92,
 												},
 												File:   "universe.flux",
 												Source: "B",
 												Start: ast.Position{
 													Column: 47,
-													Line:   82,
+													Line:   92,
 												},
 											},
 										},
@@ -27033,13 +27800,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 57,
-											Line:   82,
+											Line:   92,
 										},
 										File:   "universe.flux",
 										Source: "bool",
 										Start: ast.Position{
 											Column: 53,
-											Line:   82,
+											Line:   92,
 										},
 									},
 								},
@@ -27049,13 +27816,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 57,
-												Line:   82,
+												Line:   92,
 											},
 											File:   "universe.flux",
 											Source: "bool",
 											Start: ast.Position{
 												Column: 53,
-												Line:   82,
+												Line:   92,
 											},
 										},
 									},
@@ -27070,13 +27837,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 65,
-									Line:   82,
+									Line:   92,
 								},
 								File:   "universe.flux",
 								Source: "[A]",
 								Start: ast.Position{
 									Column: 62,
-									Line:   82,
+									Line:   92,
 								},
 							},
 						},
@@ -27086,13 +27853,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 64,
-										Line:   82,
+										Line:   92,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 63,
-										Line:   82,
+										Line:   92,
 									},
 								},
 							},
@@ -27102,13 +27869,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 64,
-											Line:   82,
+											Line:   92,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 63,
-											Line:   82,
+											Line:   92,
 										},
 									},
 								},
@@ -27124,13 +27891,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 18,
-						Line:   83,
+						Line:   93,
 					},
 					File:   "universe.flux",
 					Source: "builtin getColumn",
 					Start: ast.Position{
 						Column: 1,
-						Line:   83,
+						Line:   93,
 					},
 				},
 			},
@@ -27140,13 +27907,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 18,
-							Line:   83,
+							Line:   93,
 						},
 						File:   "universe.flux",
 						Source: "getColumn",
 						Start: ast.Position{
 							Column: 9,
-							Line:   83,
+							Line:   93,
 						},
 					},
 				},
@@ -27158,13 +27925,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 74,
-							Line:   83,
+							Line:   93,
 						},
 						File:   "universe.flux",
 						Source: "(<-table: [A], column: string) => [B] where A: Record",
 						Start: ast.Position{
 							Column: 21,
-							Line:   83,
+							Line:   93,
 						},
 					},
 				},
@@ -27174,13 +27941,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 74,
-								Line:   83,
+								Line:   93,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 65,
-								Line:   83,
+								Line:   93,
 							},
 						},
 					},
@@ -27190,13 +27957,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 74,
-									Line:   83,
+									Line:   93,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 68,
-									Line:   83,
+									Line:   93,
 								},
 							},
 						},
@@ -27208,13 +27975,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 66,
-									Line:   83,
+									Line:   93,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 65,
-									Line:   83,
+									Line:   93,
 								},
 							},
 						},
@@ -27227,13 +27994,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 58,
-								Line:   83,
+								Line:   93,
 							},
 							File:   "universe.flux",
 							Source: "(<-table: [A], column: string) => [B]",
 							Start: ast.Position{
 								Column: 21,
-								Line:   83,
+								Line:   93,
 							},
 						},
 					},
@@ -27243,13 +28010,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 34,
-									Line:   83,
+									Line:   93,
 								},
 								File:   "universe.flux",
 								Source: "<-table: [A]",
 								Start: ast.Position{
 									Column: 22,
-									Line:   83,
+									Line:   93,
 								},
 							},
 						},
@@ -27260,13 +28027,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   83,
+										Line:   93,
 									},
 									File:   "universe.flux",
 									Source: "table",
 									Start: ast.Position{
 										Column: 24,
-										Line:   83,
+										Line:   93,
 									},
 								},
 							},
@@ -27278,13 +28045,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 34,
-										Line:   83,
+										Line:   93,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 31,
-										Line:   83,
+										Line:   93,
 									},
 								},
 							},
@@ -27294,13 +28061,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 33,
-											Line:   83,
+											Line:   93,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 32,
-											Line:   83,
+											Line:   93,
 										},
 									},
 								},
@@ -27310,13 +28077,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 33,
-												Line:   83,
+												Line:   93,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 32,
-												Line:   83,
+												Line:   93,
 											},
 										},
 									},
@@ -27330,13 +28097,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   83,
+									Line:   93,
 								},
 								File:   "universe.flux",
 								Source: "column: string",
 								Start: ast.Position{
 									Column: 36,
-									Line:   83,
+									Line:   93,
 								},
 							},
 						},
@@ -27347,13 +28114,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   83,
+										Line:   93,
 									},
 									File:   "universe.flux",
 									Source: "column",
 									Start: ast.Position{
 										Column: 36,
-										Line:   83,
+										Line:   93,
 									},
 								},
 							},
@@ -27365,13 +28132,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 50,
-										Line:   83,
+										Line:   93,
 									},
 									File:   "universe.flux",
 									Source: "string",
 									Start: ast.Position{
 										Column: 44,
-										Line:   83,
+										Line:   93,
 									},
 								},
 							},
@@ -27381,13 +28148,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 50,
-											Line:   83,
+											Line:   93,
 										},
 										File:   "universe.flux",
 										Source: "string",
 										Start: ast.Position{
 											Column: 44,
-											Line:   83,
+											Line:   93,
 										},
 									},
 								},
@@ -27401,13 +28168,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   83,
+									Line:   93,
 								},
 								File:   "universe.flux",
 								Source: "[B]",
 								Start: ast.Position{
 									Column: 55,
-									Line:   83,
+									Line:   93,
 								},
 							},
 						},
@@ -27417,13 +28184,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 57,
-										Line:   83,
+										Line:   93,
 									},
 									File:   "universe.flux",
 									Source: "B",
 									Start: ast.Position{
 										Column: 56,
-										Line:   83,
+										Line:   93,
 									},
 								},
 							},
@@ -27433,13 +28200,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 57,
-											Line:   83,
+											Line:   93,
 										},
 										File:   "universe.flux",
 										Source: "B",
 										Start: ast.Position{
 											Column: 56,
-											Line:   83,
+											Line:   93,
 										},
 									},
 								},
@@ -27455,13 +28222,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 18,
-						Line:   84,
+						Line:   94,
 					},
 					File:   "universe.flux",
 					Source: "builtin getRecord",
 					Start: ast.Position{
 						Column: 1,
-						Line:   84,
+						Line:   94,
 					},
 				},
 			},
@@ -27471,13 +28238,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 18,
-							Line:   84,
+							Line:   94,
 						},
 						File:   "universe.flux",
 						Source: "getRecord",
 						Start: ast.Position{
 							Column: 9,
-							Line:   84,
+							Line:   94,
 						},
 					},
 				},
@@ -27489,13 +28256,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 66,
-							Line:   84,
+							Line:   94,
 						},
 						File:   "universe.flux",
 						Source: "(<-table: [A], idx: int) => A where A: Record",
 						Start: ast.Position{
 							Column: 21,
-							Line:   84,
+							Line:   94,
 						},
 					},
 				},
@@ -27505,13 +28272,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 66,
-								Line:   84,
+								Line:   94,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 57,
-								Line:   84,
+								Line:   94,
 							},
 						},
 					},
@@ -27521,13 +28288,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 66,
-									Line:   84,
+									Line:   94,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 60,
-									Line:   84,
+									Line:   94,
 								},
 							},
 						},
@@ -27539,13 +28306,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   84,
+									Line:   94,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 57,
-									Line:   84,
+									Line:   94,
 								},
 							},
 						},
@@ -27558,13 +28325,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 50,
-								Line:   84,
+								Line:   94,
 							},
 							File:   "universe.flux",
 							Source: "(<-table: [A], idx: int) => A",
 							Start: ast.Position{
 								Column: 21,
-								Line:   84,
+								Line:   94,
 							},
 						},
 					},
@@ -27574,13 +28341,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 34,
-									Line:   84,
+									Line:   94,
 								},
 								File:   "universe.flux",
 								Source: "<-table: [A]",
 								Start: ast.Position{
 									Column: 22,
-									Line:   84,
+									Line:   94,
 								},
 							},
 						},
@@ -27591,13 +28358,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   84,
+										Line:   94,
 									},
 									File:   "universe.flux",
 									Source: "table",
 									Start: ast.Position{
 										Column: 24,
-										Line:   84,
+										Line:   94,
 									},
 								},
 							},
@@ -27609,13 +28376,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 34,
-										Line:   84,
+										Line:   94,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 31,
-										Line:   84,
+										Line:   94,
 									},
 								},
 							},
@@ -27625,13 +28392,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 33,
-											Line:   84,
+											Line:   94,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 32,
-											Line:   84,
+											Line:   94,
 										},
 									},
 								},
@@ -27641,13 +28408,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 33,
-												Line:   84,
+												Line:   94,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 32,
-												Line:   84,
+												Line:   94,
 											},
 										},
 									},
@@ -27661,13 +28428,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 44,
-									Line:   84,
+									Line:   94,
 								},
 								File:   "universe.flux",
 								Source: "idx: int",
 								Start: ast.Position{
 									Column: 36,
-									Line:   84,
+									Line:   94,
 								},
 							},
 						},
@@ -27678,13 +28445,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 39,
-										Line:   84,
+										Line:   94,
 									},
 									File:   "universe.flux",
 									Source: "idx",
 									Start: ast.Position{
 										Column: 36,
-										Line:   84,
+										Line:   94,
 									},
 								},
 							},
@@ -27696,13 +28463,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 44,
-										Line:   84,
+										Line:   94,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 41,
-										Line:   84,
+										Line:   94,
 									},
 								},
 							},
@@ -27712,13 +28479,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 44,
-											Line:   84,
+											Line:   94,
 										},
 										File:   "universe.flux",
 										Source: "int",
 										Start: ast.Position{
 											Column: 41,
-											Line:   84,
+											Line:   94,
 										},
 									},
 								},
@@ -27732,13 +28499,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   84,
+									Line:   94,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 49,
-									Line:   84,
+									Line:   94,
 								},
 							},
 						},
@@ -27748,13 +28515,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 50,
-										Line:   84,
+										Line:   94,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 49,
-										Line:   84,
+										Line:   94,
 									},
 								},
 							},
@@ -27769,13 +28536,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 19,
-						Line:   85,
+						Line:   95,
 					},
 					File:   "universe.flux",
 					Source: "builtin findColumn",
 					Start: ast.Position{
 						Column: 1,
-						Line:   85,
+						Line:   95,
 					},
 				},
 			},
@@ -27785,13 +28552,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 19,
-							Line:   85,
+							Line:   95,
 						},
 						File:   "universe.flux",
 						Source: "findColumn",
 						Start: ast.Position{
 							Column: 9,
-							Line:   85,
+							Line:   95,
 						},
 					},
 				},
@@ -27803,13 +28570,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 109,
-							Line:   85,
+							Line:   95,
 						},
 						File:   "universe.flux",
 						Source: "(<-tables: [A], fn: (key: B) => bool, column: string) => [C] where A: Record, B: Record",
 						Start: ast.Position{
 							Column: 22,
-							Line:   85,
+							Line:   95,
 						},
 					},
 				},
@@ -27819,13 +28586,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 98,
-								Line:   85,
+								Line:   95,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 89,
-								Line:   85,
+								Line:   95,
 							},
 						},
 					},
@@ -27835,13 +28602,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 98,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 92,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -27853,13 +28620,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 90,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 89,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -27871,13 +28638,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 109,
-								Line:   85,
+								Line:   95,
 							},
 							File:   "universe.flux",
 							Source: "B: Record",
 							Start: ast.Position{
 								Column: 100,
-								Line:   85,
+								Line:   95,
 							},
 						},
 					},
@@ -27887,13 +28654,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 109,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 103,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -27905,13 +28672,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 101,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "B",
 								Start: ast.Position{
 									Column: 100,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -27924,13 +28691,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 82,
-								Line:   85,
+								Line:   95,
 							},
 							File:   "universe.flux",
 							Source: "(<-tables: [A], fn: (key: B) => bool, column: string) => [C]",
 							Start: ast.Position{
 								Column: 22,
-								Line:   85,
+								Line:   95,
 							},
 						},
 					},
@@ -27940,13 +28707,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "<-tables: [A]",
 								Start: ast.Position{
 									Column: 23,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -27957,13 +28724,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 25,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -27975,13 +28742,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 36,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 33,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -27991,13 +28758,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   85,
+											Line:   95,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 34,
-											Line:   85,
+											Line:   95,
 										},
 									},
 								},
@@ -28007,13 +28774,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   85,
+												Line:   95,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 34,
-												Line:   85,
+												Line:   95,
 											},
 										},
 									},
@@ -28027,13 +28794,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "fn: (key: B) => bool",
 								Start: ast.Position{
 									Column: 38,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -28044,13 +28811,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 40,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "fn",
 									Start: ast.Position{
 										Column: 38,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -28062,13 +28829,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 58,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "(key: B) => bool",
 									Start: ast.Position{
 										Column: 42,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -28078,13 +28845,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 49,
-											Line:   85,
+											Line:   95,
 										},
 										File:   "universe.flux",
 										Source: "key: B",
 										Start: ast.Position{
 											Column: 43,
-											Line:   85,
+											Line:   95,
 										},
 									},
 								},
@@ -28095,13 +28862,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 46,
-												Line:   85,
+												Line:   95,
 											},
 											File:   "universe.flux",
 											Source: "key",
 											Start: ast.Position{
 												Column: 43,
-												Line:   85,
+												Line:   95,
 											},
 										},
 									},
@@ -28113,13 +28880,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 49,
-												Line:   85,
+												Line:   95,
 											},
 											File:   "universe.flux",
 											Source: "B",
 											Start: ast.Position{
 												Column: 48,
-												Line:   85,
+												Line:   95,
 											},
 										},
 									},
@@ -28129,13 +28896,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 49,
-													Line:   85,
+													Line:   95,
 												},
 												File:   "universe.flux",
 												Source: "B",
 												Start: ast.Position{
 													Column: 48,
-													Line:   85,
+													Line:   95,
 												},
 											},
 										},
@@ -28149,13 +28916,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 58,
-											Line:   85,
+											Line:   95,
 										},
 										File:   "universe.flux",
 										Source: "bool",
 										Start: ast.Position{
 											Column: 54,
-											Line:   85,
+											Line:   95,
 										},
 									},
 								},
@@ -28165,13 +28932,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 58,
-												Line:   85,
+												Line:   95,
 											},
 											File:   "universe.flux",
 											Source: "bool",
 											Start: ast.Position{
 												Column: 54,
-												Line:   85,
+												Line:   95,
 											},
 										},
 									},
@@ -28185,13 +28952,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 74,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "column: string",
 								Start: ast.Position{
 									Column: 60,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -28202,13 +28969,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 66,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "column",
 									Start: ast.Position{
 										Column: 60,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -28220,13 +28987,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 74,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "string",
 									Start: ast.Position{
 										Column: 68,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -28236,13 +29003,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 74,
-											Line:   85,
+											Line:   95,
 										},
 										File:   "universe.flux",
 										Source: "string",
 										Start: ast.Position{
 											Column: 68,
-											Line:   85,
+											Line:   95,
 										},
 									},
 								},
@@ -28256,13 +29023,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 82,
-									Line:   85,
+									Line:   95,
 								},
 								File:   "universe.flux",
 								Source: "[C]",
 								Start: ast.Position{
 									Column: 79,
-									Line:   85,
+									Line:   95,
 								},
 							},
 						},
@@ -28272,13 +29039,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 81,
-										Line:   85,
+										Line:   95,
 									},
 									File:   "universe.flux",
 									Source: "C",
 									Start: ast.Position{
 										Column: 80,
-										Line:   85,
+										Line:   95,
 									},
 								},
 							},
@@ -28288,13 +29055,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 81,
-											Line:   85,
+											Line:   95,
 										},
 										File:   "universe.flux",
 										Source: "C",
 										Start: ast.Position{
 											Column: 80,
-											Line:   85,
+											Line:   95,
 										},
 									},
 								},
@@ -28310,13 +29077,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 19,
-						Line:   86,
+						Line:   96,
 					},
 					File:   "universe.flux",
 					Source: "builtin findRecord",
 					Start: ast.Position{
 						Column: 1,
-						Line:   86,
+						Line:   96,
 					},
 				},
 			},
@@ -28326,13 +29093,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 19,
-							Line:   86,
+							Line:   96,
 						},
 						File:   "universe.flux",
 						Source: "findRecord",
 						Start: ast.Position{
 							Column: 9,
-							Line:   86,
+							Line:   96,
 						},
 					},
 				},
@@ -28344,13 +29111,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 101,
-							Line:   86,
+							Line:   96,
 						},
 						File:   "universe.flux",
 						Source: "(<-tables: [A], fn: (key: B) => bool, idx: int) => A where A: Record, B: Record",
 						Start: ast.Position{
 							Column: 22,
-							Line:   86,
+							Line:   96,
 						},
 					},
 				},
@@ -28360,13 +29127,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 90,
-								Line:   86,
+								Line:   96,
 							},
 							File:   "universe.flux",
 							Source: "A: Record",
 							Start: ast.Position{
 								Column: 81,
-								Line:   86,
+								Line:   96,
 							},
 						},
 					},
@@ -28376,13 +29143,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 90,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 84,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28394,13 +29161,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 82,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 81,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28412,13 +29179,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 101,
-								Line:   86,
+								Line:   96,
 							},
 							File:   "universe.flux",
 							Source: "B: Record",
 							Start: ast.Position{
 								Column: 92,
-								Line:   86,
+								Line:   96,
 							},
 						},
 					},
@@ -28428,13 +29195,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 101,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "Record",
 								Start: ast.Position{
 									Column: 95,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28446,13 +29213,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 93,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "B",
 								Start: ast.Position{
 									Column: 92,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28465,13 +29232,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 74,
-								Line:   86,
+								Line:   96,
 							},
 							File:   "universe.flux",
 							Source: "(<-tables: [A], fn: (key: B) => bool, idx: int) => A",
 							Start: ast.Position{
 								Column: 22,
-								Line:   86,
+								Line:   96,
 							},
 						},
 					},
@@ -28481,13 +29248,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "<-tables: [A]",
 								Start: ast.Position{
 									Column: 23,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28498,13 +29265,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 25,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28516,13 +29283,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 36,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 33,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28532,13 +29299,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   86,
+											Line:   96,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 34,
-											Line:   86,
+											Line:   96,
 										},
 									},
 								},
@@ -28548,13 +29315,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   86,
+												Line:   96,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 34,
-												Line:   86,
+												Line:   96,
 											},
 										},
 									},
@@ -28568,13 +29335,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "fn: (key: B) => bool",
 								Start: ast.Position{
 									Column: 38,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28585,13 +29352,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 40,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "fn",
 									Start: ast.Position{
 										Column: 38,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28603,13 +29370,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 58,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "(key: B) => bool",
 									Start: ast.Position{
 										Column: 42,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28619,13 +29386,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 49,
-											Line:   86,
+											Line:   96,
 										},
 										File:   "universe.flux",
 										Source: "key: B",
 										Start: ast.Position{
 											Column: 43,
-											Line:   86,
+											Line:   96,
 										},
 									},
 								},
@@ -28636,13 +29403,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 46,
-												Line:   86,
+												Line:   96,
 											},
 											File:   "universe.flux",
 											Source: "key",
 											Start: ast.Position{
 												Column: 43,
-												Line:   86,
+												Line:   96,
 											},
 										},
 									},
@@ -28654,13 +29421,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 49,
-												Line:   86,
+												Line:   96,
 											},
 											File:   "universe.flux",
 											Source: "B",
 											Start: ast.Position{
 												Column: 48,
-												Line:   86,
+												Line:   96,
 											},
 										},
 									},
@@ -28670,13 +29437,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 49,
-													Line:   86,
+													Line:   96,
 												},
 												File:   "universe.flux",
 												Source: "B",
 												Start: ast.Position{
 													Column: 48,
-													Line:   86,
+													Line:   96,
 												},
 											},
 										},
@@ -28690,13 +29457,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 58,
-											Line:   86,
+											Line:   96,
 										},
 										File:   "universe.flux",
 										Source: "bool",
 										Start: ast.Position{
 											Column: 54,
-											Line:   86,
+											Line:   96,
 										},
 									},
 								},
@@ -28706,13 +29473,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 58,
-												Line:   86,
+												Line:   96,
 											},
 											File:   "universe.flux",
 											Source: "bool",
 											Start: ast.Position{
 												Column: 54,
-												Line:   86,
+												Line:   96,
 											},
 										},
 									},
@@ -28726,13 +29493,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 68,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "idx: int",
 								Start: ast.Position{
 									Column: 60,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28743,13 +29510,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 63,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "idx",
 									Start: ast.Position{
 										Column: 60,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28761,13 +29528,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 68,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 65,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28777,13 +29544,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 68,
-											Line:   86,
+											Line:   96,
 										},
 										File:   "universe.flux",
 										Source: "int",
 										Start: ast.Position{
 											Column: 65,
-											Line:   86,
+											Line:   96,
 										},
 									},
 								},
@@ -28797,13 +29564,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 74,
-									Line:   86,
+									Line:   96,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 73,
-									Line:   86,
+									Line:   96,
 								},
 							},
 						},
@@ -28813,13 +29580,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 74,
-										Line:   86,
+										Line:   96,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 73,
-										Line:   86,
+										Line:   96,
 									},
 								},
 							},
@@ -28834,13 +29601,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 13,
-						Line:   89,
+						Line:   99,
 					},
 					File:   "universe.flux",
 					Source: "builtin bool",
 					Start: ast.Position{
 						Column: 1,
-						Line:   89,
+						Line:   99,
 					},
 				},
 			},
@@ -28850,13 +29617,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 13,
-							Line:   89,
+							Line:   99,
 						},
 						File:   "universe.flux",
 						Source: "bool",
 						Start: ast.Position{
 							Column: 9,
-							Line:   89,
+							Line:   99,
 						},
 					},
 				},
@@ -28868,13 +29635,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 30,
-							Line:   89,
+							Line:   99,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => bool",
 						Start: ast.Position{
 							Column: 16,
-							Line:   89,
+							Line:   99,
 						},
 					},
 				},
@@ -28885,13 +29652,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 30,
-								Line:   89,
+								Line:   99,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => bool",
 							Start: ast.Position{
 								Column: 16,
-								Line:   89,
+								Line:   99,
 							},
 						},
 					},
@@ -28901,13 +29668,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   89,
+									Line:   99,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 17,
-									Line:   89,
+									Line:   99,
 								},
 							},
 						},
@@ -28918,13 +29685,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   89,
+										Line:   99,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 17,
-										Line:   89,
+										Line:   99,
 									},
 								},
 							},
@@ -28936,13 +29703,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   89,
+										Line:   99,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 20,
-										Line:   89,
+										Line:   99,
 									},
 								},
 							},
@@ -28952,13 +29719,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   89,
+											Line:   99,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 20,
-											Line:   89,
+											Line:   99,
 										},
 									},
 								},
@@ -28972,13 +29739,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 30,
-									Line:   89,
+									Line:   99,
 								},
 								File:   "universe.flux",
 								Source: "bool",
 								Start: ast.Position{
 									Column: 26,
-									Line:   89,
+									Line:   99,
 								},
 							},
 						},
@@ -28988,13 +29755,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 30,
-										Line:   89,
+										Line:   99,
 									},
 									File:   "universe.flux",
 									Source: "bool",
 									Start: ast.Position{
 										Column: 26,
-										Line:   89,
+										Line:   99,
 									},
 								},
 							},
@@ -29009,13 +29776,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   90,
+						Line:   100,
 					},
 					File:   "universe.flux",
 					Source: "builtin bytes",
 					Start: ast.Position{
 						Column: 1,
-						Line:   90,
+						Line:   100,
 					},
 				},
 			},
@@ -29025,13 +29792,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   90,
+							Line:   100,
 						},
 						File:   "universe.flux",
 						Source: "bytes",
 						Start: ast.Position{
 							Column: 9,
-							Line:   90,
+							Line:   100,
 						},
 					},
 				},
@@ -29043,13 +29810,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 32,
-							Line:   90,
+							Line:   100,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => bytes",
 						Start: ast.Position{
 							Column: 17,
-							Line:   90,
+							Line:   100,
 						},
 					},
 				},
@@ -29060,13 +29827,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 32,
-								Line:   90,
+								Line:   100,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => bytes",
 							Start: ast.Position{
 								Column: 17,
-								Line:   90,
+								Line:   100,
 							},
 						},
 					},
@@ -29076,13 +29843,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 22,
-									Line:   90,
+									Line:   100,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 18,
-									Line:   90,
+									Line:   100,
 								},
 							},
 						},
@@ -29093,13 +29860,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 19,
-										Line:   90,
+										Line:   100,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 18,
-										Line:   90,
+										Line:   100,
 									},
 								},
 							},
@@ -29111,13 +29878,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   90,
+										Line:   100,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 21,
-										Line:   90,
+										Line:   100,
 									},
 								},
 							},
@@ -29127,13 +29894,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 22,
-											Line:   90,
+											Line:   100,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 21,
-											Line:   90,
+											Line:   100,
 										},
 									},
 								},
@@ -29147,13 +29914,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 32,
-									Line:   90,
+									Line:   100,
 								},
 								File:   "universe.flux",
 								Source: "bytes",
 								Start: ast.Position{
 									Column: 27,
-									Line:   90,
+									Line:   100,
 								},
 							},
 						},
@@ -29163,13 +29930,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 32,
-										Line:   90,
+										Line:   100,
 									},
 									File:   "universe.flux",
 									Source: "bytes",
 									Start: ast.Position{
 										Column: 27,
-										Line:   90,
+										Line:   100,
 									},
 								},
 							},
@@ -29184,13 +29951,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 17,
-						Line:   91,
+						Line:   101,
 					},
 					File:   "universe.flux",
 					Source: "builtin duration",
 					Start: ast.Position{
 						Column: 1,
-						Line:   91,
+						Line:   101,
 					},
 				},
 			},
@@ -29200,13 +29967,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 17,
-							Line:   91,
+							Line:   101,
 						},
 						File:   "universe.flux",
 						Source: "duration",
 						Start: ast.Position{
 							Column: 9,
-							Line:   91,
+							Line:   101,
 						},
 					},
 				},
@@ -29218,13 +29985,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 38,
-							Line:   91,
+							Line:   101,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => duration",
 						Start: ast.Position{
 							Column: 20,
-							Line:   91,
+							Line:   101,
 						},
 					},
 				},
@@ -29235,13 +30002,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 38,
-								Line:   91,
+								Line:   101,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => duration",
 							Start: ast.Position{
 								Column: 20,
-								Line:   91,
+								Line:   101,
 							},
 						},
 					},
@@ -29251,13 +30018,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 25,
-									Line:   91,
+									Line:   101,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 21,
-									Line:   91,
+									Line:   101,
 								},
 							},
 						},
@@ -29268,13 +30035,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   91,
+										Line:   101,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 21,
-										Line:   91,
+										Line:   101,
 									},
 								},
 							},
@@ -29286,13 +30053,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 25,
-										Line:   91,
+										Line:   101,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 24,
-										Line:   91,
+										Line:   101,
 									},
 								},
 							},
@@ -29302,13 +30069,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 25,
-											Line:   91,
+											Line:   101,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 24,
-											Line:   91,
+											Line:   101,
 										},
 									},
 								},
@@ -29322,13 +30089,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 38,
-									Line:   91,
+									Line:   101,
 								},
 								File:   "universe.flux",
 								Source: "duration",
 								Start: ast.Position{
 									Column: 30,
-									Line:   91,
+									Line:   101,
 								},
 							},
 						},
@@ -29338,13 +30105,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 38,
-										Line:   91,
+										Line:   101,
 									},
 									File:   "universe.flux",
 									Source: "duration",
 									Start: ast.Position{
 										Column: 30,
-										Line:   91,
+										Line:   101,
 									},
 								},
 							},
@@ -29359,13 +30126,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   92,
+						Line:   102,
 					},
 					File:   "universe.flux",
 					Source: "builtin float",
 					Start: ast.Position{
 						Column: 1,
-						Line:   92,
+						Line:   102,
 					},
 				},
 			},
@@ -29375,13 +30142,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   92,
+							Line:   102,
 						},
 						File:   "universe.flux",
 						Source: "float",
 						Start: ast.Position{
 							Column: 9,
-							Line:   92,
+							Line:   102,
 						},
 					},
 				},
@@ -29393,13 +30160,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 32,
-							Line:   92,
+							Line:   102,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => float",
 						Start: ast.Position{
 							Column: 17,
-							Line:   92,
+							Line:   102,
 						},
 					},
 				},
@@ -29410,13 +30177,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 32,
-								Line:   92,
+								Line:   102,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => float",
 							Start: ast.Position{
 								Column: 17,
-								Line:   92,
+								Line:   102,
 							},
 						},
 					},
@@ -29426,13 +30193,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 22,
-									Line:   92,
+									Line:   102,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 18,
-									Line:   92,
+									Line:   102,
 								},
 							},
 						},
@@ -29443,13 +30210,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 19,
-										Line:   92,
+										Line:   102,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 18,
-										Line:   92,
+										Line:   102,
 									},
 								},
 							},
@@ -29461,13 +30228,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   92,
+										Line:   102,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 21,
-										Line:   92,
+										Line:   102,
 									},
 								},
 							},
@@ -29477,13 +30244,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 22,
-											Line:   92,
+											Line:   102,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 21,
-											Line:   92,
+											Line:   102,
 										},
 									},
 								},
@@ -29497,13 +30264,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 32,
-									Line:   92,
+									Line:   102,
 								},
 								File:   "universe.flux",
 								Source: "float",
 								Start: ast.Position{
 									Column: 27,
-									Line:   92,
+									Line:   102,
 								},
 							},
 						},
@@ -29513,13 +30280,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 32,
-										Line:   92,
+										Line:   102,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 27,
-										Line:   92,
+										Line:   102,
 									},
 								},
 							},
@@ -29534,13 +30301,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 12,
-						Line:   93,
+						Line:   103,
 					},
 					File:   "universe.flux",
 					Source: "builtin int",
 					Start: ast.Position{
 						Column: 1,
-						Line:   93,
+						Line:   103,
 					},
 				},
 			},
@@ -29550,13 +30317,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 12,
-							Line:   93,
+							Line:   103,
 						},
 						File:   "universe.flux",
 						Source: "int",
 						Start: ast.Position{
 							Column: 9,
-							Line:   93,
+							Line:   103,
 						},
 					},
 				},
@@ -29568,13 +30335,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 28,
-							Line:   93,
+							Line:   103,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => int",
 						Start: ast.Position{
 							Column: 15,
-							Line:   93,
+							Line:   103,
 						},
 					},
 				},
@@ -29585,13 +30352,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 28,
-								Line:   93,
+								Line:   103,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => int",
 							Start: ast.Position{
 								Column: 15,
-								Line:   93,
+								Line:   103,
 							},
 						},
 					},
@@ -29601,13 +30368,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 20,
-									Line:   93,
+									Line:   103,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 16,
-									Line:   93,
+									Line:   103,
 								},
 							},
 						},
@@ -29618,13 +30385,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 17,
-										Line:   93,
+										Line:   103,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 16,
-										Line:   93,
+										Line:   103,
 									},
 								},
 							},
@@ -29636,13 +30403,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 20,
-										Line:   93,
+										Line:   103,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 19,
-										Line:   93,
+										Line:   103,
 									},
 								},
 							},
@@ -29652,13 +30419,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   93,
+											Line:   103,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 19,
-											Line:   93,
+											Line:   103,
 										},
 									},
 								},
@@ -29672,13 +30439,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 28,
-									Line:   93,
+									Line:   103,
 								},
 								File:   "universe.flux",
 								Source: "int",
 								Start: ast.Position{
 									Column: 25,
-									Line:   93,
+									Line:   103,
 								},
 							},
 						},
@@ -29688,13 +30455,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   93,
+										Line:   103,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 25,
-										Line:   93,
+										Line:   103,
 									},
 								},
 							},
@@ -29709,13 +30476,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 15,
-						Line:   94,
+						Line:   104,
 					},
 					File:   "universe.flux",
 					Source: "builtin string",
 					Start: ast.Position{
 						Column: 1,
-						Line:   94,
+						Line:   104,
 					},
 				},
 			},
@@ -29725,13 +30492,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 15,
-							Line:   94,
+							Line:   104,
 						},
 						File:   "universe.flux",
 						Source: "string",
 						Start: ast.Position{
 							Column: 9,
-							Line:   94,
+							Line:   104,
 						},
 					},
 				},
@@ -29743,13 +30510,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 34,
-							Line:   94,
+							Line:   104,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => string",
 						Start: ast.Position{
 							Column: 18,
-							Line:   94,
+							Line:   104,
 						},
 					},
 				},
@@ -29760,13 +30527,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 34,
-								Line:   94,
+								Line:   104,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => string",
 							Start: ast.Position{
 								Column: 18,
-								Line:   94,
+								Line:   104,
 							},
 						},
 					},
@@ -29776,13 +30543,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   94,
+									Line:   104,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 19,
-									Line:   94,
+									Line:   104,
 								},
 							},
 						},
@@ -29793,13 +30560,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 20,
-										Line:   94,
+										Line:   104,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 19,
-										Line:   94,
+										Line:   104,
 									},
 								},
 							},
@@ -29811,13 +30578,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 23,
-										Line:   94,
+										Line:   104,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 22,
-										Line:   94,
+										Line:   104,
 									},
 								},
 							},
@@ -29827,13 +30594,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 23,
-											Line:   94,
+											Line:   104,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 22,
-											Line:   94,
+											Line:   104,
 										},
 									},
 								},
@@ -29847,13 +30614,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 34,
-									Line:   94,
+									Line:   104,
 								},
 								File:   "universe.flux",
 								Source: "string",
 								Start: ast.Position{
 									Column: 28,
-									Line:   94,
+									Line:   104,
 								},
 							},
 						},
@@ -29863,13 +30630,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 34,
-										Line:   94,
+										Line:   104,
 									},
 									File:   "universe.flux",
 									Source: "string",
 									Start: ast.Position{
 										Column: 28,
-										Line:   94,
+										Line:   104,
 									},
 								},
 							},
@@ -29884,13 +30651,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 13,
-						Line:   95,
+						Line:   105,
 					},
 					File:   "universe.flux",
 					Source: "builtin time",
 					Start: ast.Position{
 						Column: 1,
-						Line:   95,
+						Line:   105,
 					},
 				},
 			},
@@ -29900,13 +30667,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 13,
-							Line:   95,
+							Line:   105,
 						},
 						File:   "universe.flux",
 						Source: "time",
 						Start: ast.Position{
 							Column: 9,
-							Line:   95,
+							Line:   105,
 						},
 					},
 				},
@@ -29918,13 +30685,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 30,
-							Line:   95,
+							Line:   105,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => time",
 						Start: ast.Position{
 							Column: 16,
-							Line:   95,
+							Line:   105,
 						},
 					},
 				},
@@ -29935,13 +30702,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 30,
-								Line:   95,
+								Line:   105,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => time",
 							Start: ast.Position{
 								Column: 16,
-								Line:   95,
+								Line:   105,
 							},
 						},
 					},
@@ -29951,13 +30718,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   95,
+									Line:   105,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 17,
-									Line:   95,
+									Line:   105,
 								},
 							},
 						},
@@ -29968,13 +30735,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   95,
+										Line:   105,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 17,
-										Line:   95,
+										Line:   105,
 									},
 								},
 							},
@@ -29986,13 +30753,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   95,
+										Line:   105,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 20,
-										Line:   95,
+										Line:   105,
 									},
 								},
 							},
@@ -30002,13 +30769,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   95,
+											Line:   105,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 20,
-											Line:   95,
+											Line:   105,
 										},
 									},
 								},
@@ -30022,13 +30789,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 30,
-									Line:   95,
+									Line:   105,
 								},
 								File:   "universe.flux",
 								Source: "time",
 								Start: ast.Position{
 									Column: 26,
-									Line:   95,
+									Line:   105,
 								},
 							},
 						},
@@ -30038,13 +30805,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 30,
-										Line:   95,
+										Line:   105,
 									},
 									File:   "universe.flux",
 									Source: "time",
 									Start: ast.Position{
 										Column: 26,
-										Line:   95,
+										Line:   105,
 									},
 								},
 							},
@@ -30059,13 +30826,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 13,
-						Line:   96,
+						Line:   106,
 					},
 					File:   "universe.flux",
 					Source: "builtin uint",
 					Start: ast.Position{
 						Column: 1,
-						Line:   96,
+						Line:   106,
 					},
 				},
 			},
@@ -30075,13 +30842,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 13,
-							Line:   96,
+							Line:   106,
 						},
 						File:   "universe.flux",
 						Source: "uint",
 						Start: ast.Position{
 							Column: 9,
-							Line:   96,
+							Line:   106,
 						},
 					},
 				},
@@ -30093,13 +30860,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 30,
-							Line:   96,
+							Line:   106,
 						},
 						File:   "universe.flux",
 						Source: "(v: A) => uint",
 						Start: ast.Position{
 							Column: 16,
-							Line:   96,
+							Line:   106,
 						},
 					},
 				},
@@ -30110,13 +30877,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 30,
-								Line:   96,
+								Line:   106,
 							},
 							File:   "universe.flux",
 							Source: "(v: A) => uint",
 							Start: ast.Position{
 								Column: 16,
-								Line:   96,
+								Line:   106,
 							},
 						},
 					},
@@ -30126,13 +30893,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   96,
+									Line:   106,
 								},
 								File:   "universe.flux",
 								Source: "v: A",
 								Start: ast.Position{
 									Column: 17,
-									Line:   96,
+									Line:   106,
 								},
 							},
 						},
@@ -30143,13 +30910,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   96,
+										Line:   106,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 17,
-										Line:   96,
+										Line:   106,
 									},
 								},
 							},
@@ -30161,13 +30928,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   96,
+										Line:   106,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 20,
-										Line:   96,
+										Line:   106,
 									},
 								},
 							},
@@ -30177,13 +30944,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   96,
+											Line:   106,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 20,
-											Line:   96,
+											Line:   106,
 										},
 									},
 								},
@@ -30197,13 +30964,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 30,
-									Line:   96,
+									Line:   106,
 								},
 								File:   "universe.flux",
 								Source: "uint",
 								Start: ast.Position{
 									Column: 26,
-									Line:   96,
+									Line:   106,
 								},
 							},
 						},
@@ -30213,13 +30980,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 30,
-										Line:   96,
+										Line:   106,
 									},
 									File:   "universe.flux",
 									Source: "uint",
 									Start: ast.Position{
 										Column: 26,
-										Line:   96,
+										Line:   106,
 									},
 								},
 							},
@@ -30234,13 +31001,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 17,
-						Line:   99,
+						Line:   109,
 					},
 					File:   "universe.flux",
 					Source: "builtin contains",
 					Start: ast.Position{
 						Column: 1,
-						Line:   99,
+						Line:   109,
 					},
 				},
 			},
@@ -30250,13 +31017,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 17,
-							Line:   99,
+							Line:   109,
 						},
 						File:   "universe.flux",
 						Source: "contains",
 						Start: ast.Position{
 							Column: 9,
-							Line:   99,
+							Line:   109,
 						},
 					},
 				},
@@ -30268,13 +31035,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 66,
-							Line:   99,
+							Line:   109,
 						},
 						File:   "universe.flux",
 						Source: "(value: A, set: [A]) => bool where A: Nullable",
 						Start: ast.Position{
 							Column: 20,
-							Line:   99,
+							Line:   109,
 						},
 					},
 				},
@@ -30284,13 +31051,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 66,
-								Line:   99,
+								Line:   109,
 							},
 							File:   "universe.flux",
 							Source: "A: Nullable",
 							Start: ast.Position{
 								Column: 55,
-								Line:   99,
+								Line:   109,
 							},
 						},
 					},
@@ -30300,13 +31067,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 66,
-									Line:   99,
+									Line:   109,
 								},
 								File:   "universe.flux",
 								Source: "Nullable",
 								Start: ast.Position{
 									Column: 58,
-									Line:   99,
+									Line:   109,
 								},
 							},
 						},
@@ -30318,13 +31085,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 56,
-									Line:   99,
+									Line:   109,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 55,
-									Line:   99,
+									Line:   109,
 								},
 							},
 						},
@@ -30337,13 +31104,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 48,
-								Line:   99,
+								Line:   109,
 							},
 							File:   "universe.flux",
 							Source: "(value: A, set: [A]) => bool",
 							Start: ast.Position{
 								Column: 20,
-								Line:   99,
+								Line:   109,
 							},
 						},
 					},
@@ -30353,13 +31120,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 29,
-									Line:   99,
+									Line:   109,
 								},
 								File:   "universe.flux",
 								Source: "value: A",
 								Start: ast.Position{
 									Column: 21,
-									Line:   99,
+									Line:   109,
 								},
 							},
 						},
@@ -30370,13 +31137,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 26,
-										Line:   99,
+										Line:   109,
 									},
 									File:   "universe.flux",
 									Source: "value",
 									Start: ast.Position{
 										Column: 21,
-										Line:   99,
+										Line:   109,
 									},
 								},
 							},
@@ -30388,13 +31155,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   99,
+										Line:   109,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 28,
-										Line:   99,
+										Line:   109,
 									},
 								},
 							},
@@ -30404,13 +31171,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 29,
-											Line:   99,
+											Line:   109,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 28,
-											Line:   99,
+											Line:   109,
 										},
 									},
 								},
@@ -30423,13 +31190,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 39,
-									Line:   99,
+									Line:   109,
 								},
 								File:   "universe.flux",
 								Source: "set: [A]",
 								Start: ast.Position{
 									Column: 31,
-									Line:   99,
+									Line:   109,
 								},
 							},
 						},
@@ -30440,13 +31207,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 34,
-										Line:   99,
+										Line:   109,
 									},
 									File:   "universe.flux",
 									Source: "set",
 									Start: ast.Position{
 										Column: 31,
-										Line:   99,
+										Line:   109,
 									},
 								},
 							},
@@ -30458,13 +31225,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 39,
-										Line:   99,
+										Line:   109,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 36,
-										Line:   99,
+										Line:   109,
 									},
 								},
 							},
@@ -30474,13 +31241,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 38,
-											Line:   99,
+											Line:   109,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 37,
-											Line:   99,
+											Line:   109,
 										},
 									},
 								},
@@ -30490,13 +31257,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 38,
-												Line:   99,
+												Line:   109,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 37,
-												Line:   99,
+												Line:   109,
 											},
 										},
 									},
@@ -30511,13 +31278,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 48,
-									Line:   99,
+									Line:   109,
 								},
 								File:   "universe.flux",
 								Source: "bool",
 								Start: ast.Position{
 									Column: 44,
-									Line:   99,
+									Line:   109,
 								},
 							},
 						},
@@ -30527,13 +31294,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 48,
-										Line:   99,
+										Line:   109,
 									},
 									File:   "universe.flux",
 									Source: "bool",
 									Start: ast.Position{
 										Column: 44,
-										Line:   99,
+										Line:   109,
 									},
 								},
 							},
@@ -30548,13 +31315,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 12,
-						Line:   102,
+						Line:   112,
 					},
 					File:   "universe.flux",
 					Source: "builtin inf",
 					Start: ast.Position{
 						Column: 1,
-						Line:   102,
+						Line:   112,
 					},
 				},
 			},
@@ -30564,13 +31331,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 12,
-							Line:   102,
+							Line:   112,
 						},
 						File:   "universe.flux",
 						Source: "inf",
 						Start: ast.Position{
 							Column: 9,
-							Line:   102,
+							Line:   112,
 						},
 					},
 				},
@@ -30582,13 +31349,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 23,
-							Line:   102,
+							Line:   112,
 						},
 						File:   "universe.flux",
 						Source: "duration",
 						Start: ast.Position{
 							Column: 15,
-							Line:   102,
+							Line:   112,
 						},
 					},
 				},
@@ -30599,13 +31366,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 23,
-								Line:   102,
+								Line:   112,
 							},
 							File:   "universe.flux",
 							Source: "duration",
 							Start: ast.Position{
 								Column: 15,
-								Line:   102,
+								Line:   112,
 							},
 						},
 					},
@@ -30615,13 +31382,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   102,
+									Line:   112,
 								},
 								File:   "universe.flux",
 								Source: "duration",
 								Start: ast.Position{
 									Column: 15,
-									Line:   102,
+									Line:   112,
 								},
 							},
 						},
@@ -30635,13 +31402,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 15,
-						Line:   103,
+						Line:   113,
 					},
 					File:   "universe.flux",
 					Source: "builtin length",
 					Start: ast.Position{
 						Column: 1,
-						Line:   103,
+						Line:   113,
 					},
 				},
 			},
@@ -30651,13 +31418,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 15,
-							Line:   103,
+							Line:   113,
 						},
 						File:   "universe.flux",
 						Source: "length",
 						Start: ast.Position{
 							Column: 9,
-							Line:   103,
+							Line:   113,
 						},
 					},
 				},
@@ -30669,13 +31436,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 35,
-							Line:   103,
+							Line:   113,
 						},
 						File:   "universe.flux",
 						Source: "(arr: [A]) => int",
 						Start: ast.Position{
 							Column: 18,
-							Line:   103,
+							Line:   113,
 						},
 					},
 				},
@@ -30686,13 +31453,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 35,
-								Line:   103,
+								Line:   113,
 							},
 							File:   "universe.flux",
 							Source: "(arr: [A]) => int",
 							Start: ast.Position{
 								Column: 18,
-								Line:   103,
+								Line:   113,
 							},
 						},
 					},
@@ -30702,13 +31469,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 27,
-									Line:   103,
+									Line:   113,
 								},
 								File:   "universe.flux",
 								Source: "arr: [A]",
 								Start: ast.Position{
 									Column: 19,
-									Line:   103,
+									Line:   113,
 								},
 							},
 						},
@@ -30719,13 +31486,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   103,
+										Line:   113,
 									},
 									File:   "universe.flux",
 									Source: "arr",
 									Start: ast.Position{
 										Column: 19,
-										Line:   103,
+										Line:   113,
 									},
 								},
 							},
@@ -30737,13 +31504,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 27,
-										Line:   103,
+										Line:   113,
 									},
 									File:   "universe.flux",
 									Source: "[A]",
 									Start: ast.Position{
 										Column: 24,
-										Line:   103,
+										Line:   113,
 									},
 								},
 							},
@@ -30753,13 +31520,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   103,
+											Line:   113,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 25,
-											Line:   103,
+											Line:   113,
 										},
 									},
 								},
@@ -30769,13 +31536,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   103,
+												Line:   113,
 											},
 											File:   "universe.flux",
 											Source: "A",
 											Start: ast.Position{
 												Column: 25,
-												Line:   103,
+												Line:   113,
 											},
 										},
 									},
@@ -30790,13 +31557,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   103,
+									Line:   113,
 								},
 								File:   "universe.flux",
 								Source: "int",
 								Start: ast.Position{
 									Column: 32,
-									Line:   103,
+									Line:   113,
 								},
 							},
 						},
@@ -30806,13 +31573,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   103,
+										Line:   113,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 32,
-										Line:   103,
+										Line:   113,
 									},
 								},
 							},
@@ -30827,13 +31594,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 19,
-						Line:   104,
+						Line:   114,
 					},
 					File:   "universe.flux",
 					Source: "builtin linearBins",
 					Start: ast.Position{
 						Column: 1,
-						Line:   104,
+						Line:   114,
 					},
 				},
 			},
@@ -30843,13 +31610,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 19,
-							Line:   104,
+							Line:   114,
 						},
 						File:   "universe.flux",
 						Source: "linearBins",
 						Start: ast.Position{
 							Column: 9,
-							Line:   104,
+							Line:   114,
 						},
 					},
 				},
@@ -30861,13 +31628,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 90,
-							Line:   104,
+							Line:   114,
 						},
 						File:   "universe.flux",
 						Source: "(start: float, width: float, count: int, ?infinity: bool) => [float]",
 						Start: ast.Position{
 							Column: 22,
-							Line:   104,
+							Line:   114,
 						},
 					},
 				},
@@ -30878,13 +31645,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 90,
-								Line:   104,
+								Line:   114,
 							},
 							File:   "universe.flux",
 							Source: "(start: float, width: float, count: int, ?infinity: bool) => [float]",
 							Start: ast.Position{
 								Column: 22,
-								Line:   104,
+								Line:   114,
 							},
 						},
 					},
@@ -30894,13 +31661,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   104,
+									Line:   114,
 								},
 								File:   "universe.flux",
 								Source: "start: float",
 								Start: ast.Position{
 									Column: 23,
-									Line:   104,
+									Line:   114,
 								},
 							},
 						},
@@ -30911,13 +31678,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "start",
 									Start: ast.Position{
 										Column: 23,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -30929,13 +31696,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 30,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -30945,13 +31712,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   104,
+											Line:   114,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 30,
-											Line:   104,
+											Line:   114,
 										},
 									},
 								},
@@ -30964,13 +31731,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 49,
-									Line:   104,
+									Line:   114,
 								},
 								File:   "universe.flux",
 								Source: "width: float",
 								Start: ast.Position{
 									Column: 37,
-									Line:   104,
+									Line:   114,
 								},
 							},
 						},
@@ -30981,13 +31748,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "width",
 									Start: ast.Position{
 										Column: 37,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -30999,13 +31766,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 49,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 44,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31015,13 +31782,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 49,
-											Line:   104,
+											Line:   114,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 44,
-											Line:   104,
+											Line:   114,
 										},
 									},
 								},
@@ -31034,13 +31801,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 61,
-									Line:   104,
+									Line:   114,
 								},
 								File:   "universe.flux",
 								Source: "count: int",
 								Start: ast.Position{
 									Column: 51,
-									Line:   104,
+									Line:   114,
 								},
 							},
 						},
@@ -31051,13 +31818,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 56,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "count",
 									Start: ast.Position{
 										Column: 51,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31069,13 +31836,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 61,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 58,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31085,13 +31852,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 61,
-											Line:   104,
+											Line:   114,
 										},
 										File:   "universe.flux",
 										Source: "int",
 										Start: ast.Position{
 											Column: 58,
-											Line:   104,
+											Line:   114,
 										},
 									},
 								},
@@ -31104,13 +31871,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 78,
-									Line:   104,
+									Line:   114,
 								},
 								File:   "universe.flux",
 								Source: "?infinity: bool",
 								Start: ast.Position{
 									Column: 63,
-									Line:   104,
+									Line:   114,
 								},
 							},
 						},
@@ -31121,13 +31888,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 72,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "infinity",
 									Start: ast.Position{
 										Column: 64,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31139,13 +31906,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 78,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "bool",
 									Start: ast.Position{
 										Column: 74,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31155,13 +31922,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 78,
-											Line:   104,
+											Line:   114,
 										},
 										File:   "universe.flux",
 										Source: "bool",
 										Start: ast.Position{
 											Column: 74,
-											Line:   104,
+											Line:   114,
 										},
 									},
 								},
@@ -31175,13 +31942,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 90,
-									Line:   104,
+									Line:   114,
 								},
 								File:   "universe.flux",
 								Source: "[float]",
 								Start: ast.Position{
 									Column: 83,
-									Line:   104,
+									Line:   114,
 								},
 							},
 						},
@@ -31191,13 +31958,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 89,
-										Line:   104,
+										Line:   114,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 84,
-										Line:   104,
+										Line:   114,
 									},
 								},
 							},
@@ -31207,13 +31974,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 89,
-											Line:   104,
+											Line:   114,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 84,
-											Line:   104,
+											Line:   114,
 										},
 									},
 								},
@@ -31229,13 +31996,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 24,
-						Line:   105,
+						Line:   115,
 					},
 					File:   "universe.flux",
 					Source: "builtin logarithmicBins",
 					Start: ast.Position{
 						Column: 1,
-						Line:   105,
+						Line:   115,
 					},
 				},
 			},
@@ -31245,13 +32012,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 24,
-							Line:   105,
+							Line:   115,
 						},
 						File:   "universe.flux",
 						Source: "logarithmicBins",
 						Start: ast.Position{
 							Column: 9,
-							Line:   105,
+							Line:   115,
 						},
 					},
 				},
@@ -31263,13 +32030,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 96,
-							Line:   105,
+							Line:   115,
 						},
 						File:   "universe.flux",
 						Source: "(start: float, factor: float, count: int, ?infinity: bool) => [float]",
 						Start: ast.Position{
 							Column: 27,
-							Line:   105,
+							Line:   115,
 						},
 					},
 				},
@@ -31280,13 +32047,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 96,
-								Line:   105,
+								Line:   115,
 							},
 							File:   "universe.flux",
 							Source: "(start: float, factor: float, count: int, ?infinity: bool) => [float]",
 							Start: ast.Position{
 								Column: 27,
-								Line:   105,
+								Line:   115,
 							},
 						},
 					},
@@ -31296,13 +32063,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 40,
-									Line:   105,
+									Line:   115,
 								},
 								File:   "universe.flux",
 								Source: "start: float",
 								Start: ast.Position{
 									Column: 28,
-									Line:   105,
+									Line:   115,
 								},
 							},
 						},
@@ -31313,13 +32080,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 33,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "start",
 									Start: ast.Position{
 										Column: 28,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31331,13 +32098,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 40,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 35,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31347,13 +32114,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 40,
-											Line:   105,
+											Line:   115,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 35,
-											Line:   105,
+											Line:   115,
 										},
 									},
 								},
@@ -31366,13 +32133,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 55,
-									Line:   105,
+									Line:   115,
 								},
 								File:   "universe.flux",
 								Source: "factor: float",
 								Start: ast.Position{
 									Column: 42,
-									Line:   105,
+									Line:   115,
 								},
 							},
 						},
@@ -31383,13 +32150,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 48,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "factor",
 									Start: ast.Position{
 										Column: 42,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31401,13 +32168,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 55,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 50,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31417,13 +32184,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 55,
-											Line:   105,
+											Line:   115,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 50,
-											Line:   105,
+											Line:   115,
 										},
 									},
 								},
@@ -31436,13 +32203,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 67,
-									Line:   105,
+									Line:   115,
 								},
 								File:   "universe.flux",
 								Source: "count: int",
 								Start: ast.Position{
 									Column: 57,
-									Line:   105,
+									Line:   115,
 								},
 							},
 						},
@@ -31453,13 +32220,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 62,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "count",
 									Start: ast.Position{
 										Column: 57,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31471,13 +32238,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 67,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "int",
 									Start: ast.Position{
 										Column: 64,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31487,13 +32254,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 67,
-											Line:   105,
+											Line:   115,
 										},
 										File:   "universe.flux",
 										Source: "int",
 										Start: ast.Position{
 											Column: 64,
-											Line:   105,
+											Line:   115,
 										},
 									},
 								},
@@ -31506,13 +32273,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 84,
-									Line:   105,
+									Line:   115,
 								},
 								File:   "universe.flux",
 								Source: "?infinity: bool",
 								Start: ast.Position{
 									Column: 69,
-									Line:   105,
+									Line:   115,
 								},
 							},
 						},
@@ -31523,13 +32290,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 78,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "infinity",
 									Start: ast.Position{
 										Column: 70,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31541,13 +32308,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 84,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "bool",
 									Start: ast.Position{
 										Column: 80,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31557,13 +32324,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 84,
-											Line:   105,
+											Line:   115,
 										},
 										File:   "universe.flux",
 										Source: "bool",
 										Start: ast.Position{
 											Column: 80,
-											Line:   105,
+											Line:   115,
 										},
 									},
 								},
@@ -31577,13 +32344,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 96,
-									Line:   105,
+									Line:   115,
 								},
 								File:   "universe.flux",
 								Source: "[float]",
 								Start: ast.Position{
 									Column: 89,
-									Line:   105,
+									Line:   115,
 								},
 							},
 						},
@@ -31593,13 +32360,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 95,
-										Line:   105,
+										Line:   115,
 									},
 									File:   "universe.flux",
 									Source: "float",
 									Start: ast.Position{
 										Column: 90,
-										Line:   105,
+										Line:   115,
 									},
 								},
 							},
@@ -31609,13 +32376,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 95,
-											Line:   105,
+											Line:   115,
 										},
 										File:   "universe.flux",
 										Source: "float",
 										Start: ast.Position{
 											Column: 90,
-											Line:   105,
+											Line:   115,
 										},
 									},
 								},
@@ -31631,13 +32398,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   108,
+						Line:   118,
 					},
 					File:   "universe.flux",
 					Source: "builtin sleep",
 					Start: ast.Position{
 						Column: 1,
-						Line:   108,
+						Line:   118,
 					},
 				},
 			},
@@ -31647,13 +32414,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   108,
+							Line:   118,
 						},
 						File:   "universe.flux",
 						Source: "sleep",
 						Start: ast.Position{
 							Column: 9,
-							Line:   108,
+							Line:   118,
 						},
 					},
 				},
@@ -31665,13 +32432,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 50,
-							Line:   108,
+							Line:   118,
 						},
 						File:   "universe.flux",
 						Source: "(<-v: A, duration: duration) => A",
 						Start: ast.Position{
 							Column: 17,
-							Line:   108,
+							Line:   118,
 						},
 					},
 				},
@@ -31682,13 +32449,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 50,
-								Line:   108,
+								Line:   118,
 							},
 							File:   "universe.flux",
 							Source: "(<-v: A, duration: duration) => A",
 							Start: ast.Position{
 								Column: 17,
-								Line:   108,
+								Line:   118,
 							},
 						},
 					},
@@ -31698,13 +32465,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 24,
-									Line:   108,
+									Line:   118,
 								},
 								File:   "universe.flux",
 								Source: "<-v: A",
 								Start: ast.Position{
 									Column: 18,
-									Line:   108,
+									Line:   118,
 								},
 							},
 						},
@@ -31715,13 +32482,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   108,
+										Line:   118,
 									},
 									File:   "universe.flux",
 									Source: "v",
 									Start: ast.Position{
 										Column: 20,
-										Line:   108,
+										Line:   118,
 									},
 								},
 							},
@@ -31733,13 +32500,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 24,
-										Line:   108,
+										Line:   118,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 23,
-										Line:   108,
+										Line:   118,
 									},
 								},
 							},
@@ -31749,13 +32516,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 24,
-											Line:   108,
+											Line:   118,
 										},
 										File:   "universe.flux",
 										Source: "A",
 										Start: ast.Position{
 											Column: 23,
-											Line:   108,
+											Line:   118,
 										},
 									},
 								},
@@ -31768,13 +32535,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 44,
-									Line:   108,
+									Line:   118,
 								},
 								File:   "universe.flux",
 								Source: "duration: duration",
 								Start: ast.Position{
 									Column: 26,
-									Line:   108,
+									Line:   118,
 								},
 							},
 						},
@@ -31785,13 +32552,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 34,
-										Line:   108,
+										Line:   118,
 									},
 									File:   "universe.flux",
 									Source: "duration",
 									Start: ast.Position{
 										Column: 26,
-										Line:   108,
+										Line:   118,
 									},
 								},
 							},
@@ -31803,13 +32570,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 44,
-										Line:   108,
+										Line:   118,
 									},
 									File:   "universe.flux",
 									Source: "duration",
 									Start: ast.Position{
 										Column: 36,
-										Line:   108,
+										Line:   118,
 									},
 								},
 							},
@@ -31819,13 +32586,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 44,
-											Line:   108,
+											Line:   118,
 										},
 										File:   "universe.flux",
 										Source: "duration",
 										Start: ast.Position{
 											Column: 36,
-											Line:   108,
+											Line:   118,
 										},
 									},
 								},
@@ -31839,13 +32606,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   108,
+									Line:   118,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 49,
-									Line:   108,
+									Line:   118,
 								},
 							},
 						},
@@ -31855,13 +32622,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 50,
-										Line:   108,
+										Line:   118,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 49,
-										Line:   108,
+										Line:   118,
 									},
 								},
 							},
@@ -31876,13 +32643,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 12,
-						Line:   110,
+						Line:   120,
 					},
 					File:   "universe.flux",
 					Source: "builtin die",
 					Start: ast.Position{
 						Column: 1,
-						Line:   110,
+						Line:   120,
 					},
 				},
 			},
@@ -31892,13 +32659,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 12,
-							Line:   110,
+							Line:   120,
 						},
 						File:   "universe.flux",
 						Source: "die",
 						Start: ast.Position{
 							Column: 9,
-							Line:   110,
+							Line:   120,
 						},
 					},
 				},
@@ -31910,13 +32677,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 33,
-							Line:   110,
+							Line:   120,
 						},
 						File:   "universe.flux",
 						Source: "(msg: string) => A",
 						Start: ast.Position{
 							Column: 15,
-							Line:   110,
+							Line:   120,
 						},
 					},
 				},
@@ -31927,13 +32694,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 33,
-								Line:   110,
+								Line:   120,
 							},
 							File:   "universe.flux",
 							Source: "(msg: string) => A",
 							Start: ast.Position{
 								Column: 15,
-								Line:   110,
+								Line:   120,
 							},
 						},
 					},
@@ -31943,13 +32710,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 27,
-									Line:   110,
+									Line:   120,
 								},
 								File:   "universe.flux",
 								Source: "msg: string",
 								Start: ast.Position{
 									Column: 16,
-									Line:   110,
+									Line:   120,
 								},
 							},
 						},
@@ -31960,13 +32727,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 19,
-										Line:   110,
+										Line:   120,
 									},
 									File:   "universe.flux",
 									Source: "msg",
 									Start: ast.Position{
 										Column: 16,
-										Line:   110,
+										Line:   120,
 									},
 								},
 							},
@@ -31978,13 +32745,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 27,
-										Line:   110,
+										Line:   120,
 									},
 									File:   "universe.flux",
 									Source: "string",
 									Start: ast.Position{
 										Column: 21,
-										Line:   110,
+										Line:   120,
 									},
 								},
 							},
@@ -31994,13 +32761,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 27,
-											Line:   110,
+											Line:   120,
 										},
 										File:   "universe.flux",
 										Source: "string",
 										Start: ast.Position{
 											Column: 21,
-											Line:   110,
+											Line:   120,
 										},
 									},
 								},
@@ -32014,13 +32781,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 33,
-									Line:   110,
+									Line:   120,
 								},
 								File:   "universe.flux",
 								Source: "A",
 								Start: ast.Position{
 									Column: 32,
-									Line:   110,
+									Line:   120,
 								},
 							},
 						},
@@ -32030,13 +32797,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 33,
-										Line:   110,
+										Line:   120,
 									},
 									File:   "universe.flux",
 									Source: "A",
 									Start: ast.Position{
 										Column: 32,
-										Line:   110,
+										Line:   120,
 									},
 								},
 							},
@@ -32051,13 +32818,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 128,
-						Line:   115,
+						Line:   125,
 					},
 					File:   "universe.flux",
 					Source: "timeWeightedAvg = (tables=<-, unit) => tables\n    |> integral(unit: unit, interpolate: \"linear\")\n    |> map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   113,
+						Line:   123,
 					},
 				},
 			},
@@ -32067,13 +32834,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 16,
-							Line:   113,
+							Line:   123,
 						},
 						File:   "universe.flux",
 						Source: "timeWeightedAvg",
 						Start: ast.Position{
 							Column: 1,
-							Line:   113,
+							Line:   123,
 						},
 					},
 				},
@@ -32085,13 +32852,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 128,
-							Line:   115,
+							Line:   125,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-, unit) => tables\n    |> integral(unit: unit, interpolate: \"linear\")\n    |> map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))",
 						Start: ast.Position{
 							Column: 19,
-							Line:   113,
+							Line:   123,
 						},
 					},
 				},
@@ -32103,13 +32870,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 46,
-										Line:   113,
+										Line:   123,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 40,
-										Line:   113,
+										Line:   123,
 									},
 								},
 							},
@@ -32120,13 +32887,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 51,
-									Line:   114,
+									Line:   124,
 								},
 								File:   "universe.flux",
 								Source: "tables\n    |> integral(unit: unit, interpolate: \"linear\")",
 								Start: ast.Position{
 									Column: 40,
-									Line:   113,
+									Line:   123,
 								},
 							},
 						},
@@ -32137,13 +32904,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 50,
-											Line:   114,
+											Line:   124,
 										},
 										File:   "universe.flux",
 										Source: "unit: unit, interpolate: \"linear\"",
 										Start: ast.Position{
 											Column: 17,
-											Line:   114,
+											Line:   124,
 										},
 									},
 								},
@@ -32153,13 +32920,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   114,
+												Line:   124,
 											},
 											File:   "universe.flux",
 											Source: "unit: unit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   114,
+												Line:   124,
 											},
 										},
 									},
@@ -32169,13 +32936,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 21,
-													Line:   114,
+													Line:   124,
 												},
 												File:   "universe.flux",
 												Source: "unit",
 												Start: ast.Position{
 													Column: 17,
-													Line:   114,
+													Line:   124,
 												},
 											},
 										},
@@ -32187,13 +32954,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 27,
-													Line:   114,
+													Line:   124,
 												},
 												File:   "universe.flux",
 												Source: "unit",
 												Start: ast.Position{
 													Column: 23,
-													Line:   114,
+													Line:   124,
 												},
 											},
 										},
@@ -32205,13 +32972,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 50,
-												Line:   114,
+												Line:   124,
 											},
 											File:   "universe.flux",
 											Source: "interpolate: \"linear\"",
 											Start: ast.Position{
 												Column: 29,
-												Line:   114,
+												Line:   124,
 											},
 										},
 									},
@@ -32221,13 +32988,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 40,
-													Line:   114,
+													Line:   124,
 												},
 												File:   "universe.flux",
 												Source: "interpolate",
 												Start: ast.Position{
 													Column: 29,
-													Line:   114,
+													Line:   124,
 												},
 											},
 										},
@@ -32239,13 +33006,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 50,
-													Line:   114,
+													Line:   124,
 												},
 												File:   "universe.flux",
 												Source: "\"linear\"",
 												Start: ast.Position{
 													Column: 42,
-													Line:   114,
+													Line:   124,
 												},
 											},
 										},
@@ -32259,13 +33026,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 51,
-										Line:   114,
+										Line:   124,
 									},
 									File:   "universe.flux",
 									Source: "integral(unit: unit, interpolate: \"linear\")",
 									Start: ast.Position{
 										Column: 8,
-										Line:   114,
+										Line:   124,
 									},
 								},
 							},
@@ -32275,13 +33042,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 16,
-											Line:   114,
+											Line:   124,
 										},
 										File:   "universe.flux",
 										Source: "integral",
 										Start: ast.Position{
 											Column: 8,
-											Line:   114,
+											Line:   124,
 										},
 									},
 								},
@@ -32294,13 +33061,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 128,
-								Line:   115,
+								Line:   125,
 							},
 							File:   "universe.flux",
 							Source: "tables\n    |> integral(unit: unit, interpolate: \"linear\")\n    |> map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))",
 							Start: ast.Position{
 								Column: 40,
-								Line:   113,
+								Line:   123,
 							},
 						},
 					},
@@ -32311,13 +33078,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 127,
-										Line:   115,
+										Line:   125,
 									},
 									File:   "universe.flux",
 									Source: "fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) })",
 									Start: ast.Position{
 										Column: 12,
-										Line:   115,
+										Line:   125,
 									},
 								},
 							},
@@ -32327,13 +33094,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 127,
-											Line:   115,
+											Line:   125,
 										},
 										File:   "universe.flux",
 										Source: "fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) })",
 										Start: ast.Position{
 											Column: 12,
-											Line:   115,
+											Line:   125,
 										},
 									},
 								},
@@ -32343,13 +33110,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 14,
-												Line:   115,
+												Line:   125,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 12,
-												Line:   115,
+												Line:   125,
 											},
 										},
 									},
@@ -32361,13 +33128,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 127,
-												Line:   115,
+												Line:   125,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) })",
 											Start: ast.Position{
 												Column: 16,
-												Line:   115,
+												Line:   125,
 											},
 										},
 									},
@@ -32377,13 +33144,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 127,
-													Line:   115,
+													Line:   125,
 												},
 												File:   "universe.flux",
 												Source: "({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) })",
 												Start: ast.Position{
 													Column: 23,
-													Line:   115,
+													Line:   125,
 												},
 											},
 										},
@@ -32393,13 +33160,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 126,
-														Line:   115,
+														Line:   125,
 													},
 													File:   "universe.flux",
 													Source: "{ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }",
 													Start: ast.Position{
 														Column: 24,
-														Line:   115,
+														Line:   125,
 													},
 												},
 											},
@@ -32409,13 +33176,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 124,
-															Line:   115,
+															Line:   125,
 														},
 														File:   "universe.flux",
 														Source: "_value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start))",
 														Start: ast.Position{
 															Column: 33,
-															Line:   115,
+															Line:   125,
 														},
 													},
 												},
@@ -32425,13 +33192,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 39,
-																Line:   115,
+																Line:   125,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 33,
-																Line:   115,
+																Line:   125,
 															},
 														},
 													},
@@ -32443,13 +33210,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 124,
-																Line:   115,
+																Line:   125,
 															},
 															File:   "universe.flux",
 															Source: "(r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start))",
 															Start: ast.Position{
 																Column: 41,
-																Line:   115,
+																Line:   125,
 															},
 														},
 													},
@@ -32459,13 +33226,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 77,
-																	Line:   115,
+																	Line:   125,
 																},
 																File:   "universe.flux",
 																Source: "(r._value * float(v: uint(v: unit)))",
 																Start: ast.Position{
 																	Column: 41,
-																	Line:   115,
+																	Line:   125,
 																},
 															},
 														},
@@ -32475,13 +33242,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 76,
-																		Line:   115,
+																		Line:   125,
 																	},
 																	File:   "universe.flux",
 																	Source: "r._value * float(v: uint(v: unit))",
 																	Start: ast.Position{
 																		Column: 42,
-																		Line:   115,
+																		Line:   125,
 																	},
 																},
 															},
@@ -32491,13 +33258,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 50,
-																			Line:   115,
+																			Line:   125,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 42,
-																			Line:   115,
+																			Line:   125,
 																		},
 																	},
 																},
@@ -32507,13 +33274,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 43,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 42,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32525,13 +33292,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 50,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 44,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32546,13 +33313,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 75,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "v: uint(v: unit)",
 																			Start: ast.Position{
 																				Column: 59,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32562,13 +33329,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 75,
-																					Line:   115,
+																					Line:   125,
 																				},
 																				File:   "universe.flux",
 																				Source: "v: uint(v: unit)",
 																				Start: ast.Position{
 																					Column: 59,
-																					Line:   115,
+																					Line:   125,
 																				},
 																			},
 																		},
@@ -32578,13 +33345,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 60,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "v",
 																					Start: ast.Position{
 																						Column: 59,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -32597,13 +33364,13 @@ var pkgAST = &ast.Package{
 																					Loc: &ast.SourceLocation{
 																						End: ast.Position{
 																							Column: 74,
-																							Line:   115,
+																							Line:   125,
 																						},
 																						File:   "universe.flux",
 																						Source: "v: unit",
 																						Start: ast.Position{
 																							Column: 67,
-																							Line:   115,
+																							Line:   125,
 																						},
 																					},
 																				},
@@ -32613,13 +33380,13 @@ var pkgAST = &ast.Package{
 																						Loc: &ast.SourceLocation{
 																							End: ast.Position{
 																								Column: 74,
-																								Line:   115,
+																								Line:   125,
 																							},
 																							File:   "universe.flux",
 																							Source: "v: unit",
 																							Start: ast.Position{
 																								Column: 67,
-																								Line:   115,
+																								Line:   125,
 																							},
 																						},
 																					},
@@ -32629,13 +33396,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 68,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "v",
 																								Start: ast.Position{
 																									Column: 67,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -32647,13 +33414,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 74,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "unit",
 																								Start: ast.Position{
 																									Column: 70,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -32667,13 +33434,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 75,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "uint(v: unit)",
 																					Start: ast.Position{
 																						Column: 62,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -32683,13 +33450,13 @@ var pkgAST = &ast.Package{
 																					Loc: &ast.SourceLocation{
 																						End: ast.Position{
 																							Column: 66,
-																							Line:   115,
+																							Line:   125,
 																						},
 																						File:   "universe.flux",
 																						Source: "uint",
 																						Start: ast.Position{
 																							Column: 62,
-																							Line:   115,
+																							Line:   125,
 																						},
 																					},
 																				},
@@ -32704,13 +33471,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 76,
-																			Line:   115,
+																			Line:   125,
 																		},
 																		File:   "universe.flux",
 																		Source: "float(v: uint(v: unit))",
 																		Start: ast.Position{
 																			Column: 53,
-																			Line:   115,
+																			Line:   125,
 																		},
 																	},
 																},
@@ -32720,13 +33487,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 58,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "float",
 																			Start: ast.Position{
 																				Column: 53,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32743,13 +33510,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 123,
-																		Line:   115,
+																		Line:   125,
 																	},
 																	File:   "universe.flux",
 																	Source: "v: int(v: r._stop) - int(v: r._start)",
 																	Start: ast.Position{
 																		Column: 86,
-																		Line:   115,
+																		Line:   125,
 																	},
 																},
 															},
@@ -32759,13 +33526,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 123,
-																			Line:   115,
+																			Line:   125,
 																		},
 																		File:   "universe.flux",
 																		Source: "v: int(v: r._stop) - int(v: r._start)",
 																		Start: ast.Position{
 																			Column: 86,
-																			Line:   115,
+																			Line:   125,
 																		},
 																	},
 																},
@@ -32775,13 +33542,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 87,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "v",
 																			Start: ast.Position{
 																				Column: 86,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32793,13 +33560,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 123,
-																				Line:   115,
+																				Line:   125,
 																			},
 																			File:   "universe.flux",
 																			Source: "int(v: r._stop) - int(v: r._start)",
 																			Start: ast.Position{
 																				Column: 89,
-																				Line:   115,
+																				Line:   125,
 																			},
 																		},
 																	},
@@ -32810,13 +33577,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 103,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "v: r._stop",
 																					Start: ast.Position{
 																						Column: 93,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -32826,13 +33593,13 @@ var pkgAST = &ast.Package{
 																					Loc: &ast.SourceLocation{
 																						End: ast.Position{
 																							Column: 103,
-																							Line:   115,
+																							Line:   125,
 																						},
 																						File:   "universe.flux",
 																						Source: "v: r._stop",
 																						Start: ast.Position{
 																							Column: 93,
-																							Line:   115,
+																							Line:   125,
 																						},
 																					},
 																				},
@@ -32842,13 +33609,13 @@ var pkgAST = &ast.Package{
 																						Loc: &ast.SourceLocation{
 																							End: ast.Position{
 																								Column: 94,
-																								Line:   115,
+																								Line:   125,
 																							},
 																							File:   "universe.flux",
 																							Source: "v",
 																							Start: ast.Position{
 																								Column: 93,
-																								Line:   115,
+																								Line:   125,
 																							},
 																						},
 																					},
@@ -32860,13 +33627,13 @@ var pkgAST = &ast.Package{
 																						Loc: &ast.SourceLocation{
 																							End: ast.Position{
 																								Column: 103,
-																								Line:   115,
+																								Line:   125,
 																							},
 																							File:   "universe.flux",
 																							Source: "r._stop",
 																							Start: ast.Position{
 																								Column: 96,
-																								Line:   115,
+																								Line:   125,
 																							},
 																						},
 																					},
@@ -32876,13 +33643,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 97,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "r",
 																								Start: ast.Position{
 																									Column: 96,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -32894,13 +33661,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 103,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "_stop",
 																								Start: ast.Position{
 																									Column: 98,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -32915,13 +33682,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 104,
-																					Line:   115,
+																					Line:   125,
 																				},
 																				File:   "universe.flux",
 																				Source: "int(v: r._stop)",
 																				Start: ast.Position{
 																					Column: 89,
-																					Line:   115,
+																					Line:   125,
 																				},
 																			},
 																		},
@@ -32931,13 +33698,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 92,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "int",
 																					Start: ast.Position{
 																						Column: 89,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -32952,13 +33719,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 122,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "v: r._start",
 																					Start: ast.Position{
 																						Column: 111,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -32968,13 +33735,13 @@ var pkgAST = &ast.Package{
 																					Loc: &ast.SourceLocation{
 																						End: ast.Position{
 																							Column: 122,
-																							Line:   115,
+																							Line:   125,
 																						},
 																						File:   "universe.flux",
 																						Source: "v: r._start",
 																						Start: ast.Position{
 																							Column: 111,
-																							Line:   115,
+																							Line:   125,
 																						},
 																					},
 																				},
@@ -32984,13 +33751,13 @@ var pkgAST = &ast.Package{
 																						Loc: &ast.SourceLocation{
 																							End: ast.Position{
 																								Column: 112,
-																								Line:   115,
+																								Line:   125,
 																							},
 																							File:   "universe.flux",
 																							Source: "v",
 																							Start: ast.Position{
 																								Column: 111,
-																								Line:   115,
+																								Line:   125,
 																							},
 																						},
 																					},
@@ -33002,13 +33769,13 @@ var pkgAST = &ast.Package{
 																						Loc: &ast.SourceLocation{
 																							End: ast.Position{
 																								Column: 122,
-																								Line:   115,
+																								Line:   125,
 																							},
 																							File:   "universe.flux",
 																							Source: "r._start",
 																							Start: ast.Position{
 																								Column: 114,
-																								Line:   115,
+																								Line:   125,
 																							},
 																						},
 																					},
@@ -33018,13 +33785,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 115,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "r",
 																								Start: ast.Position{
 																									Column: 114,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -33036,13 +33803,13 @@ var pkgAST = &ast.Package{
 																							Loc: &ast.SourceLocation{
 																								End: ast.Position{
 																									Column: 122,
-																									Line:   115,
+																									Line:   125,
 																								},
 																								File:   "universe.flux",
 																								Source: "_start",
 																								Start: ast.Position{
 																									Column: 116,
-																									Line:   115,
+																									Line:   125,
 																								},
 																							},
 																						},
@@ -33057,13 +33824,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 123,
-																					Line:   115,
+																					Line:   125,
 																				},
 																				File:   "universe.flux",
 																				Source: "int(v: r._start)",
 																				Start: ast.Position{
 																					Column: 107,
-																					Line:   115,
+																					Line:   125,
 																				},
 																			},
 																		},
@@ -33073,13 +33840,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 110,
-																						Line:   115,
+																						Line:   125,
 																					},
 																					File:   "universe.flux",
 																					Source: "int",
 																					Start: ast.Position{
 																						Column: 107,
-																						Line:   115,
+																						Line:   125,
 																					},
 																				},
 																			},
@@ -33095,13 +33862,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 124,
-																	Line:   115,
+																	Line:   125,
 																},
 																File:   "universe.flux",
 																Source: "float(v: int(v: r._stop) - int(v: r._start))",
 																Start: ast.Position{
 																	Column: 80,
-																	Line:   115,
+																	Line:   125,
 																},
 															},
 														},
@@ -33111,13 +33878,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 85,
-																		Line:   115,
+																		Line:   125,
 																	},
 																	File:   "universe.flux",
 																	Source: "float",
 																	Start: ast.Position{
 																		Column: 80,
-																		Line:   115,
+																		Line:   125,
 																	},
 																},
 															},
@@ -33132,13 +33899,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 27,
-															Line:   115,
+															Line:   125,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 26,
-															Line:   115,
+															Line:   125,
 														},
 													},
 												},
@@ -33152,13 +33919,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 18,
-													Line:   115,
+													Line:   125,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 17,
-													Line:   115,
+													Line:   125,
 												},
 											},
 										},
@@ -33168,13 +33935,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 18,
-														Line:   115,
+														Line:   125,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 17,
-														Line:   115,
+														Line:   125,
 													},
 												},
 											},
@@ -33191,13 +33958,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 128,
-									Line:   115,
+									Line:   125,
 								},
 								File:   "universe.flux",
 								Source: "map(fn: (r) => ({ r with _value: (r._value * float(v: uint(v: unit))) / float(v: int(v: r._stop) - int(v: r._start)) }))",
 								Start: ast.Position{
 									Column: 8,
-									Line:   115,
+									Line:   125,
 								},
 							},
 						},
@@ -33207,13 +33974,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 11,
-										Line:   115,
+										Line:   125,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 8,
-										Line:   115,
+										Line:   125,
 									},
 								},
 							},
@@ -33227,13 +33994,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 29,
-								Line:   113,
+								Line:   123,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 20,
-								Line:   113,
+								Line:   123,
 							},
 						},
 					},
@@ -33243,13 +34010,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 26,
-									Line:   113,
+									Line:   123,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 20,
-									Line:   113,
+									Line:   123,
 								},
 							},
 						},
@@ -33260,13 +34027,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 29,
-								Line:   113,
+								Line:   123,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 27,
-								Line:   113,
+								Line:   123,
 							},
 						},
 					}},
@@ -33276,13 +34043,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 35,
-								Line:   113,
+								Line:   123,
 							},
 							File:   "universe.flux",
 							Source: "unit",
 							Start: ast.Position{
 								Column: 31,
-								Line:   113,
+								Line:   123,
 							},
 						},
 					},
@@ -33292,13 +34059,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   113,
+									Line:   123,
 								},
 								File:   "universe.flux",
 								Source: "unit",
 								Start: ast.Position{
 									Column: 31,
-									Line:   113,
+									Line:   123,
 								},
 							},
 						},
@@ -33313,13 +34080,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 70,
-						Line:   123,
+						Line:   133,
 					},
 					File:   "universe.flux",
 					Source: "cov = (x,y,on,pearsonr=false) =>\n    join(\n        tables:{x:x, y:y},\n        on:on,\n    )\n    |> covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])",
 					Start: ast.Position{
 						Column: 1,
-						Line:   118,
+						Line:   128,
 					},
 				},
 			},
@@ -33329,13 +34096,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 4,
-							Line:   118,
+							Line:   128,
 						},
 						File:   "universe.flux",
 						Source: "cov",
 						Start: ast.Position{
 							Column: 1,
-							Line:   118,
+							Line:   128,
 						},
 					},
 				},
@@ -33347,13 +34114,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 70,
-							Line:   123,
+							Line:   133,
 						},
 						File:   "universe.flux",
 						Source: "(x,y,on,pearsonr=false) =>\n    join(\n        tables:{x:x, y:y},\n        on:on,\n    )\n    |> covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])",
 						Start: ast.Position{
 							Column: 7,
-							Line:   118,
+							Line:   128,
 						},
 					},
 				},
@@ -33365,13 +34132,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 14,
-										Line:   121,
+										Line:   131,
 									},
 									File:   "universe.flux",
 									Source: "tables:{x:x, y:y},\n        on:on",
 									Start: ast.Position{
 										Column: 9,
-										Line:   120,
+										Line:   130,
 									},
 								},
 							},
@@ -33381,13 +34148,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   120,
+											Line:   130,
 										},
 										File:   "universe.flux",
 										Source: "tables:{x:x, y:y}",
 										Start: ast.Position{
 											Column: 9,
-											Line:   120,
+											Line:   130,
 										},
 									},
 								},
@@ -33397,13 +34164,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 15,
-												Line:   120,
+												Line:   130,
 											},
 											File:   "universe.flux",
 											Source: "tables",
 											Start: ast.Position{
 												Column: 9,
-												Line:   120,
+												Line:   130,
 											},
 										},
 									},
@@ -33415,13 +34182,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   120,
+												Line:   130,
 											},
 											File:   "universe.flux",
 											Source: "{x:x, y:y}",
 											Start: ast.Position{
 												Column: 16,
-												Line:   120,
+												Line:   130,
 											},
 										},
 									},
@@ -33431,13 +34198,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 20,
-													Line:   120,
+													Line:   130,
 												},
 												File:   "universe.flux",
 												Source: "x:x",
 												Start: ast.Position{
 													Column: 17,
-													Line:   120,
+													Line:   130,
 												},
 											},
 										},
@@ -33447,13 +34214,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 18,
-														Line:   120,
+														Line:   130,
 													},
 													File:   "universe.flux",
 													Source: "x",
 													Start: ast.Position{
 														Column: 17,
-														Line:   120,
+														Line:   130,
 													},
 												},
 											},
@@ -33465,13 +34232,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 20,
-														Line:   120,
+														Line:   130,
 													},
 													File:   "universe.flux",
 													Source: "x",
 													Start: ast.Position{
 														Column: 19,
-														Line:   120,
+														Line:   130,
 													},
 												},
 											},
@@ -33483,13 +34250,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 25,
-													Line:   120,
+													Line:   130,
 												},
 												File:   "universe.flux",
 												Source: "y:y",
 												Start: ast.Position{
 													Column: 22,
-													Line:   120,
+													Line:   130,
 												},
 											},
 										},
@@ -33499,13 +34266,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 23,
-														Line:   120,
+														Line:   130,
 													},
 													File:   "universe.flux",
 													Source: "y",
 													Start: ast.Position{
 														Column: 22,
-														Line:   120,
+														Line:   130,
 													},
 												},
 											},
@@ -33517,13 +34284,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 25,
-														Line:   120,
+														Line:   130,
 													},
 													File:   "universe.flux",
 													Source: "y",
 													Start: ast.Position{
 														Column: 24,
-														Line:   120,
+														Line:   130,
 													},
 												},
 											},
@@ -33538,13 +34305,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 14,
-											Line:   121,
+											Line:   131,
 										},
 										File:   "universe.flux",
 										Source: "on:on",
 										Start: ast.Position{
 											Column: 9,
-											Line:   121,
+											Line:   131,
 										},
 									},
 								},
@@ -33554,13 +34321,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 11,
-												Line:   121,
+												Line:   131,
 											},
 											File:   "universe.flux",
 											Source: "on",
 											Start: ast.Position{
 												Column: 9,
-												Line:   121,
+												Line:   131,
 											},
 										},
 									},
@@ -33572,13 +34339,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 14,
-												Line:   121,
+												Line:   131,
 											},
 											File:   "universe.flux",
 											Source: "on",
 											Start: ast.Position{
 												Column: 12,
-												Line:   121,
+												Line:   131,
 											},
 										},
 									},
@@ -33592,13 +34359,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 6,
-									Line:   122,
+									Line:   132,
 								},
 								File:   "universe.flux",
 								Source: "join(\n        tables:{x:x, y:y},\n        on:on,\n    )",
 								Start: ast.Position{
 									Column: 5,
-									Line:   119,
+									Line:   129,
 								},
 							},
 						},
@@ -33608,13 +34375,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 9,
-										Line:   119,
+										Line:   129,
 									},
 									File:   "universe.flux",
 									Source: "join",
 									Start: ast.Position{
 										Column: 5,
-										Line:   119,
+										Line:   129,
 									},
 								},
 							},
@@ -33626,13 +34393,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 70,
-								Line:   123,
+								Line:   133,
 							},
 							File:   "universe.flux",
 							Source: "join(\n        tables:{x:x, y:y},\n        on:on,\n    )\n    |> covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])",
 							Start: ast.Position{
 								Column: 5,
-								Line:   119,
+								Line:   129,
 							},
 						},
 					},
@@ -33643,13 +34410,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 69,
-										Line:   123,
+										Line:   133,
 									},
 									File:   "universe.flux",
 									Source: "pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"]",
 									Start: ast.Position{
 										Column: 19,
-										Line:   123,
+										Line:   133,
 									},
 								},
 							},
@@ -33659,13 +34426,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 36,
-											Line:   123,
+											Line:   133,
 										},
 										File:   "universe.flux",
 										Source: "pearsonr:pearsonr",
 										Start: ast.Position{
 											Column: 19,
-											Line:   123,
+											Line:   133,
 										},
 									},
 								},
@@ -33675,13 +34442,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   123,
+												Line:   133,
 											},
 											File:   "universe.flux",
 											Source: "pearsonr",
 											Start: ast.Position{
 												Column: 19,
-												Line:   123,
+												Line:   133,
 											},
 										},
 									},
@@ -33693,13 +34460,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 36,
-												Line:   123,
+												Line:   133,
 											},
 											File:   "universe.flux",
 											Source: "pearsonr",
 											Start: ast.Position{
 												Column: 28,
-												Line:   123,
+												Line:   133,
 											},
 										},
 									},
@@ -33711,13 +34478,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 69,
-											Line:   123,
+											Line:   133,
 										},
 										File:   "universe.flux",
 										Source: "columns:[\"_value_x\",\"_value_y\"]",
 										Start: ast.Position{
 											Column: 38,
-											Line:   123,
+											Line:   133,
 										},
 									},
 								},
@@ -33727,13 +34494,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   123,
+												Line:   133,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 38,
-												Line:   123,
+												Line:   133,
 											},
 										},
 									},
@@ -33745,13 +34512,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 69,
-												Line:   123,
+												Line:   133,
 											},
 											File:   "universe.flux",
 											Source: "[\"_value_x\",\"_value_y\"]",
 											Start: ast.Position{
 												Column: 46,
-												Line:   123,
+												Line:   133,
 											},
 										},
 									},
@@ -33761,13 +34528,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 57,
-													Line:   123,
+													Line:   133,
 												},
 												File:   "universe.flux",
 												Source: "\"_value_x\"",
 												Start: ast.Position{
 													Column: 47,
-													Line:   123,
+													Line:   133,
 												},
 											},
 										},
@@ -33778,13 +34545,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 68,
-													Line:   123,
+													Line:   133,
 												},
 												File:   "universe.flux",
 												Source: "\"_value_y\"",
 												Start: ast.Position{
 													Column: 58,
-													Line:   123,
+													Line:   133,
 												},
 											},
 										},
@@ -33799,13 +34566,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 70,
-									Line:   123,
+									Line:   133,
 								},
 								File:   "universe.flux",
 								Source: "covariance(pearsonr:pearsonr, columns:[\"_value_x\",\"_value_y\"])",
 								Start: ast.Position{
 									Column: 8,
-									Line:   123,
+									Line:   133,
 								},
 							},
 						},
@@ -33815,13 +34582,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   123,
+										Line:   133,
 									},
 									File:   "universe.flux",
 									Source: "covariance",
 									Start: ast.Position{
 										Column: 8,
-										Line:   123,
+										Line:   133,
 									},
 								},
 							},
@@ -33835,13 +34602,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 9,
-								Line:   118,
+								Line:   128,
 							},
 							File:   "universe.flux",
 							Source: "x",
 							Start: ast.Position{
 								Column: 8,
-								Line:   118,
+								Line:   128,
 							},
 						},
 					},
@@ -33851,13 +34618,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 9,
-									Line:   118,
+									Line:   128,
 								},
 								File:   "universe.flux",
 								Source: "x",
 								Start: ast.Position{
 									Column: 8,
-									Line:   118,
+									Line:   128,
 								},
 							},
 						},
@@ -33870,13 +34637,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 11,
-								Line:   118,
+								Line:   128,
 							},
 							File:   "universe.flux",
 							Source: "y",
 							Start: ast.Position{
 								Column: 10,
-								Line:   118,
+								Line:   128,
 							},
 						},
 					},
@@ -33886,13 +34653,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   118,
+									Line:   128,
 								},
 								File:   "universe.flux",
 								Source: "y",
 								Start: ast.Position{
 									Column: 10,
-									Line:   118,
+									Line:   128,
 								},
 							},
 						},
@@ -33905,13 +34672,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   118,
+								Line:   128,
 							},
 							File:   "universe.flux",
 							Source: "on",
 							Start: ast.Position{
 								Column: 12,
-								Line:   118,
+								Line:   128,
 							},
 						},
 					},
@@ -33921,13 +34688,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   118,
+									Line:   128,
 								},
 								File:   "universe.flux",
 								Source: "on",
 								Start: ast.Position{
 									Column: 12,
-									Line:   118,
+									Line:   128,
 								},
 							},
 						},
@@ -33940,13 +34707,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 29,
-								Line:   118,
+								Line:   128,
 							},
 							File:   "universe.flux",
 							Source: "pearsonr=false",
 							Start: ast.Position{
 								Column: 15,
-								Line:   118,
+								Line:   128,
 							},
 						},
 					},
@@ -33956,13 +34723,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   118,
+									Line:   128,
 								},
 								File:   "universe.flux",
 								Source: "pearsonr",
 								Start: ast.Position{
 									Column: 15,
-									Line:   118,
+									Line:   128,
 								},
 							},
 						},
@@ -33974,13 +34741,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 29,
-									Line:   118,
+									Line:   128,
 								},
 								File:   "universe.flux",
 								Source: "false",
 								Start: ast.Position{
 									Column: 24,
-									Line:   118,
+									Line:   128,
 								},
 							},
 						},
@@ -33994,13 +34761,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 59,
-						Line:   125,
+						Line:   135,
 					},
 					File:   "universe.flux",
 					Source: "pearsonr = (x,y,on) => cov(x:x, y:y, on:on, pearsonr:true)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   125,
+						Line:   135,
 					},
 				},
 			},
@@ -34010,13 +34777,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 9,
-							Line:   125,
+							Line:   135,
 						},
 						File:   "universe.flux",
 						Source: "pearsonr",
 						Start: ast.Position{
 							Column: 1,
-							Line:   125,
+							Line:   135,
 						},
 					},
 				},
@@ -34028,13 +34795,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 59,
-							Line:   125,
+							Line:   135,
 						},
 						File:   "universe.flux",
 						Source: "(x,y,on) => cov(x:x, y:y, on:on, pearsonr:true)",
 						Start: ast.Position{
 							Column: 12,
-							Line:   125,
+							Line:   135,
 						},
 					},
 				},
@@ -34045,13 +34812,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   125,
+									Line:   135,
 								},
 								File:   "universe.flux",
 								Source: "x:x, y:y, on:on, pearsonr:true",
 								Start: ast.Position{
 									Column: 28,
-									Line:   125,
+									Line:   135,
 								},
 							},
 						},
@@ -34061,13 +34828,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   125,
+										Line:   135,
 									},
 									File:   "universe.flux",
 									Source: "x:x",
 									Start: ast.Position{
 										Column: 28,
-										Line:   125,
+										Line:   135,
 									},
 								},
 							},
@@ -34077,13 +34844,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 29,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "x",
 										Start: ast.Position{
 											Column: 28,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34095,13 +34862,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 31,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "x",
 										Start: ast.Position{
 											Column: 30,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34113,13 +34880,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 36,
-										Line:   125,
+										Line:   135,
 									},
 									File:   "universe.flux",
 									Source: "y:y",
 									Start: ast.Position{
 										Column: 33,
-										Line:   125,
+										Line:   135,
 									},
 								},
 							},
@@ -34129,13 +34896,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 34,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "y",
 										Start: ast.Position{
 											Column: 33,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34147,13 +34914,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 36,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "y",
 										Start: ast.Position{
 											Column: 35,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34165,13 +34932,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 43,
-										Line:   125,
+										Line:   135,
 									},
 									File:   "universe.flux",
 									Source: "on:on",
 									Start: ast.Position{
 										Column: 38,
-										Line:   125,
+										Line:   135,
 									},
 								},
 							},
@@ -34181,13 +34948,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 40,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "on",
 										Start: ast.Position{
 											Column: 38,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34199,13 +34966,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 43,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "on",
 										Start: ast.Position{
 											Column: 41,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34217,13 +34984,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 58,
-										Line:   125,
+										Line:   135,
 									},
 									File:   "universe.flux",
 									Source: "pearsonr:true",
 									Start: ast.Position{
 										Column: 45,
-										Line:   125,
+										Line:   135,
 									},
 								},
 							},
@@ -34233,13 +35000,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 53,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "pearsonr",
 										Start: ast.Position{
 											Column: 45,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34251,13 +35018,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 58,
-											Line:   125,
+											Line:   135,
 										},
 										File:   "universe.flux",
 										Source: "true",
 										Start: ast.Position{
 											Column: 54,
-											Line:   125,
+											Line:   135,
 										},
 									},
 								},
@@ -34271,13 +35038,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 59,
-								Line:   125,
+								Line:   135,
 							},
 							File:   "universe.flux",
 							Source: "cov(x:x, y:y, on:on, pearsonr:true)",
 							Start: ast.Position{
 								Column: 24,
-								Line:   125,
+								Line:   135,
 							},
 						},
 					},
@@ -34287,13 +35054,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 27,
-									Line:   125,
+									Line:   135,
 								},
 								File:   "universe.flux",
 								Source: "cov",
 								Start: ast.Position{
 									Column: 24,
-									Line:   125,
+									Line:   135,
 								},
 							},
 						},
@@ -34306,13 +35073,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   125,
+								Line:   135,
 							},
 							File:   "universe.flux",
 							Source: "x",
 							Start: ast.Position{
 								Column: 13,
-								Line:   125,
+								Line:   135,
 							},
 						},
 					},
@@ -34322,13 +35089,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   125,
+									Line:   135,
 								},
 								File:   "universe.flux",
 								Source: "x",
 								Start: ast.Position{
 									Column: 13,
-									Line:   125,
+									Line:   135,
 								},
 							},
 						},
@@ -34341,13 +35108,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 16,
-								Line:   125,
+								Line:   135,
 							},
 							File:   "universe.flux",
 							Source: "y",
 							Start: ast.Position{
 								Column: 15,
-								Line:   125,
+								Line:   135,
 							},
 						},
 					},
@@ -34357,13 +35124,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 16,
-									Line:   125,
+									Line:   135,
 								},
 								File:   "universe.flux",
 								Source: "y",
 								Start: ast.Position{
 									Column: 15,
-									Line:   125,
+									Line:   135,
 								},
 							},
 						},
@@ -34376,13 +35143,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 19,
-								Line:   125,
+								Line:   135,
 							},
 							File:   "universe.flux",
 							Source: "on",
 							Start: ast.Position{
 								Column: 17,
-								Line:   125,
+								Line:   135,
 							},
 						},
 					},
@@ -34392,13 +35159,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 19,
-									Line:   125,
+									Line:   135,
 								},
 								File:   "universe.flux",
 								Source: "on",
 								Start: ast.Position{
 									Column: 17,
-									Line:   125,
+									Line:   135,
 								},
 							},
 						},
@@ -34413,13 +35180,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 49,
-						Line:   135,
+						Line:   145,
 					},
 					File:   "universe.flux",
 					Source: "aggregateWindow = (every, fn, column=\"_value\", timeSrc=\"_stop\",timeDst=\"_time\", createEmpty=true, tables=<-) =>\n    tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)\n        |> window(every:inf, timeColumn:timeDst)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   130,
+						Line:   140,
 					},
 				},
 			},
@@ -34429,13 +35196,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 16,
-							Line:   130,
+							Line:   140,
 						},
 						File:   "universe.flux",
 						Source: "aggregateWindow",
 						Start: ast.Position{
 							Column: 1,
-							Line:   130,
+							Line:   140,
 						},
 					},
 				},
@@ -34447,13 +35214,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 49,
-							Line:   135,
+							Line:   145,
 						},
 						File:   "universe.flux",
 						Source: "(every, fn, column=\"_value\", timeSrc=\"_stop\",timeDst=\"_time\", createEmpty=true, tables=<-) =>\n    tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)\n        |> window(every:inf, timeColumn:timeDst)",
 						Start: ast.Position{
 							Column: 19,
-							Line:   130,
+							Line:   140,
 						},
 					},
 				},
@@ -34467,13 +35234,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 11,
-												Line:   131,
+												Line:   141,
 											},
 											File:   "universe.flux",
 											Source: "tables",
 											Start: ast.Position{
 												Column: 5,
-												Line:   131,
+												Line:   141,
 											},
 										},
 									},
@@ -34484,13 +35251,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 57,
-											Line:   132,
+											Line:   142,
 										},
 										File:   "universe.flux",
 										Source: "tables\n        |> window(every:every, createEmpty: createEmpty)",
 										Start: ast.Position{
 											Column: 5,
-											Line:   131,
+											Line:   141,
 										},
 									},
 								},
@@ -34501,13 +35268,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 56,
-													Line:   132,
+													Line:   142,
 												},
 												File:   "universe.flux",
 												Source: "every:every, createEmpty: createEmpty",
 												Start: ast.Position{
 													Column: 19,
-													Line:   132,
+													Line:   142,
 												},
 											},
 										},
@@ -34517,13 +35284,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 30,
-														Line:   132,
+														Line:   142,
 													},
 													File:   "universe.flux",
 													Source: "every:every",
 													Start: ast.Position{
 														Column: 19,
-														Line:   132,
+														Line:   142,
 													},
 												},
 											},
@@ -34533,13 +35300,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 24,
-															Line:   132,
+															Line:   142,
 														},
 														File:   "universe.flux",
 														Source: "every",
 														Start: ast.Position{
 															Column: 19,
-															Line:   132,
+															Line:   142,
 														},
 													},
 												},
@@ -34551,13 +35318,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 30,
-															Line:   132,
+															Line:   142,
 														},
 														File:   "universe.flux",
 														Source: "every",
 														Start: ast.Position{
 															Column: 25,
-															Line:   132,
+															Line:   142,
 														},
 													},
 												},
@@ -34569,13 +35336,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 56,
-														Line:   132,
+														Line:   142,
 													},
 													File:   "universe.flux",
 													Source: "createEmpty: createEmpty",
 													Start: ast.Position{
 														Column: 32,
-														Line:   132,
+														Line:   142,
 													},
 												},
 											},
@@ -34585,13 +35352,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 43,
-															Line:   132,
+															Line:   142,
 														},
 														File:   "universe.flux",
 														Source: "createEmpty",
 														Start: ast.Position{
 															Column: 32,
-															Line:   132,
+															Line:   142,
 														},
 													},
 												},
@@ -34603,13 +35370,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   132,
+															Line:   142,
 														},
 														File:   "universe.flux",
 														Source: "createEmpty",
 														Start: ast.Position{
 															Column: 45,
-															Line:   132,
+															Line:   142,
 														},
 													},
 												},
@@ -34623,13 +35390,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 57,
-												Line:   132,
+												Line:   142,
 											},
 											File:   "universe.flux",
 											Source: "window(every:every, createEmpty: createEmpty)",
 											Start: ast.Position{
 												Column: 12,
-												Line:   132,
+												Line:   142,
 											},
 										},
 									},
@@ -34639,13 +35406,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 18,
-													Line:   132,
+													Line:   142,
 												},
 												File:   "universe.flux",
 												Source: "window",
 												Start: ast.Position{
 													Column: 12,
-													Line:   132,
+													Line:   142,
 												},
 											},
 										},
@@ -34658,13 +35425,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   133,
+										Line:   143,
 									},
 									File:   "universe.flux",
 									Source: "tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)",
 									Start: ast.Position{
 										Column: 5,
-										Line:   131,
+										Line:   141,
 									},
 								},
 							},
@@ -34675,13 +35442,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 28,
-												Line:   133,
+												Line:   143,
 											},
 											File:   "universe.flux",
 											Source: "column:column",
 											Start: ast.Position{
 												Column: 15,
-												Line:   133,
+												Line:   143,
 											},
 										},
 									},
@@ -34691,13 +35458,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 28,
-													Line:   133,
+													Line:   143,
 												},
 												File:   "universe.flux",
 												Source: "column:column",
 												Start: ast.Position{
 													Column: 15,
-													Line:   133,
+													Line:   143,
 												},
 											},
 										},
@@ -34707,13 +35474,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 21,
-														Line:   133,
+														Line:   143,
 													},
 													File:   "universe.flux",
 													Source: "column",
 													Start: ast.Position{
 														Column: 15,
-														Line:   133,
+														Line:   143,
 													},
 												},
 											},
@@ -34725,13 +35492,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 28,
-														Line:   133,
+														Line:   143,
 													},
 													File:   "universe.flux",
 													Source: "column",
 													Start: ast.Position{
 														Column: 22,
-														Line:   133,
+														Line:   143,
 													},
 												},
 											},
@@ -34745,13 +35512,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 29,
-											Line:   133,
+											Line:   143,
 										},
 										File:   "universe.flux",
 										Source: "fn(column:column)",
 										Start: ast.Position{
 											Column: 12,
-											Line:   133,
+											Line:   143,
 										},
 									},
 								},
@@ -34761,13 +35528,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 14,
-												Line:   133,
+												Line:   143,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 12,
-												Line:   133,
+												Line:   143,
 											},
 										},
 									},
@@ -34780,13 +35547,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 48,
-									Line:   134,
+									Line:   144,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)",
 								Start: ast.Position{
 									Column: 5,
-									Line:   131,
+									Line:   141,
 								},
 							},
 						},
@@ -34797,13 +35564,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 47,
-											Line:   134,
+											Line:   144,
 										},
 										File:   "universe.flux",
 										Source: "column:timeSrc,as:timeDst",
 										Start: ast.Position{
 											Column: 22,
-											Line:   134,
+											Line:   144,
 										},
 									},
 								},
@@ -34813,13 +35580,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 36,
-												Line:   134,
+												Line:   144,
 											},
 											File:   "universe.flux",
 											Source: "column:timeSrc",
 											Start: ast.Position{
 												Column: 22,
-												Line:   134,
+												Line:   144,
 											},
 										},
 									},
@@ -34829,13 +35596,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 28,
-													Line:   134,
+													Line:   144,
 												},
 												File:   "universe.flux",
 												Source: "column",
 												Start: ast.Position{
 													Column: 22,
-													Line:   134,
+													Line:   144,
 												},
 											},
 										},
@@ -34847,13 +35614,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   134,
+													Line:   144,
 												},
 												File:   "universe.flux",
 												Source: "timeSrc",
 												Start: ast.Position{
 													Column: 29,
-													Line:   134,
+													Line:   144,
 												},
 											},
 										},
@@ -34865,13 +35632,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 47,
-												Line:   134,
+												Line:   144,
 											},
 											File:   "universe.flux",
 											Source: "as:timeDst",
 											Start: ast.Position{
 												Column: 37,
-												Line:   134,
+												Line:   144,
 											},
 										},
 									},
@@ -34881,13 +35648,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 39,
-													Line:   134,
+													Line:   144,
 												},
 												File:   "universe.flux",
 												Source: "as",
 												Start: ast.Position{
 													Column: 37,
-													Line:   134,
+													Line:   144,
 												},
 											},
 										},
@@ -34899,13 +35666,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 47,
-													Line:   134,
+													Line:   144,
 												},
 												File:   "universe.flux",
 												Source: "timeDst",
 												Start: ast.Position{
 													Column: 40,
-													Line:   134,
+													Line:   144,
 												},
 											},
 										},
@@ -34919,13 +35686,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 48,
-										Line:   134,
+										Line:   144,
 									},
 									File:   "universe.flux",
 									Source: "duplicate(column:timeSrc,as:timeDst)",
 									Start: ast.Position{
 										Column: 12,
-										Line:   134,
+										Line:   144,
 									},
 								},
 							},
@@ -34935,13 +35702,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   134,
+											Line:   144,
 										},
 										File:   "universe.flux",
 										Source: "duplicate",
 										Start: ast.Position{
 											Column: 12,
-											Line:   134,
+											Line:   144,
 										},
 									},
 								},
@@ -34954,13 +35721,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 49,
-								Line:   135,
+								Line:   145,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> window(every:every, createEmpty: createEmpty)\n        |> fn(column:column)\n        |> duplicate(column:timeSrc,as:timeDst)\n        |> window(every:inf, timeColumn:timeDst)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   131,
+								Line:   141,
 							},
 						},
 					},
@@ -34971,13 +35738,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 48,
-										Line:   135,
+										Line:   145,
 									},
 									File:   "universe.flux",
 									Source: "every:inf, timeColumn:timeDst",
 									Start: ast.Position{
 										Column: 19,
-										Line:   135,
+										Line:   145,
 									},
 								},
 							},
@@ -34987,13 +35754,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 28,
-											Line:   135,
+											Line:   145,
 										},
 										File:   "universe.flux",
 										Source: "every:inf",
 										Start: ast.Position{
 											Column: 19,
-											Line:   135,
+											Line:   145,
 										},
 									},
 								},
@@ -35003,13 +35770,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   135,
+												Line:   145,
 											},
 											File:   "universe.flux",
 											Source: "every",
 											Start: ast.Position{
 												Column: 19,
-												Line:   135,
+												Line:   145,
 											},
 										},
 									},
@@ -35021,13 +35788,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 28,
-												Line:   135,
+												Line:   145,
 											},
 											File:   "universe.flux",
 											Source: "inf",
 											Start: ast.Position{
 												Column: 25,
-												Line:   135,
+												Line:   145,
 											},
 										},
 									},
@@ -35039,13 +35806,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 48,
-											Line:   135,
+											Line:   145,
 										},
 										File:   "universe.flux",
 										Source: "timeColumn:timeDst",
 										Start: ast.Position{
 											Column: 30,
-											Line:   135,
+											Line:   145,
 										},
 									},
 								},
@@ -35055,13 +35822,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 40,
-												Line:   135,
+												Line:   145,
 											},
 											File:   "universe.flux",
 											Source: "timeColumn",
 											Start: ast.Position{
 												Column: 30,
-												Line:   135,
+												Line:   145,
 											},
 										},
 									},
@@ -35073,13 +35840,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 48,
-												Line:   135,
+												Line:   145,
 											},
 											File:   "universe.flux",
 											Source: "timeDst",
 											Start: ast.Position{
 												Column: 41,
-												Line:   135,
+												Line:   145,
 											},
 										},
 									},
@@ -35093,13 +35860,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 49,
-									Line:   135,
+									Line:   145,
 								},
 								File:   "universe.flux",
 								Source: "window(every:inf, timeColumn:timeDst)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   135,
+									Line:   145,
 								},
 							},
 						},
@@ -35109,13 +35876,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   135,
+										Line:   145,
 									},
 									File:   "universe.flux",
 									Source: "window",
 									Start: ast.Position{
 										Column: 12,
-										Line:   135,
+										Line:   145,
 									},
 								},
 							},
@@ -35129,13 +35896,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 25,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "every",
 							Start: ast.Position{
 								Column: 20,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35145,13 +35912,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 25,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "every",
 								Start: ast.Position{
 									Column: 20,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35164,13 +35931,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 29,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "fn",
 							Start: ast.Position{
 								Column: 27,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35180,13 +35947,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 29,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "fn",
 								Start: ast.Position{
 									Column: 27,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35199,13 +35966,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 46,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 31,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35215,13 +35982,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 37,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 31,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35233,13 +36000,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 46,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 38,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35251,13 +36018,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 63,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "timeSrc=\"_stop\"",
 							Start: ast.Position{
 								Column: 48,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35267,13 +36034,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 55,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "timeSrc",
 								Start: ast.Position{
 									Column: 48,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35285,13 +36052,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 63,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "\"_stop\"",
 								Start: ast.Position{
 									Column: 56,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35303,13 +36070,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 79,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "timeDst=\"_time\"",
 							Start: ast.Position{
 								Column: 64,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35319,13 +36086,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 71,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "timeDst",
 								Start: ast.Position{
 									Column: 64,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35337,13 +36104,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 79,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "\"_time\"",
 								Start: ast.Position{
 									Column: 72,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35355,13 +36122,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 97,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "createEmpty=true",
 							Start: ast.Position{
 								Column: 81,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35371,13 +36138,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 92,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "createEmpty",
 								Start: ast.Position{
 									Column: 81,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35389,13 +36156,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 97,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "true",
 								Start: ast.Position{
 									Column: 93,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35407,13 +36174,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 108,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 99,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					},
@@ -35423,13 +36190,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 105,
-									Line:   130,
+									Line:   140,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 99,
-									Line:   130,
+									Line:   140,
 								},
 							},
 						},
@@ -35440,13 +36207,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 108,
-								Line:   130,
+								Line:   140,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 106,
-								Line:   130,
+								Line:   140,
 							},
 						},
 					}},
@@ -35458,13 +36225,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 43,
-						Line:   144,
+						Line:   154,
 					},
 					File:   "universe.flux",
 					Source: "increase = (tables=<-, columns=[\"_value\"]) =>\n    tables\n        |> difference(nonNegative: true, columns:columns)\n        |> cumulativeSum(columns: columns)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   141,
+						Line:   151,
 					},
 				},
 			},
@@ -35474,13 +36241,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 9,
-							Line:   141,
+							Line:   151,
 						},
 						File:   "universe.flux",
 						Source: "increase",
 						Start: ast.Position{
 							Column: 1,
-							Line:   141,
+							Line:   151,
 						},
 					},
 				},
@@ -35492,13 +36259,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 43,
-							Line:   144,
+							Line:   154,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-, columns=[\"_value\"]) =>\n    tables\n        |> difference(nonNegative: true, columns:columns)\n        |> cumulativeSum(columns: columns)",
 						Start: ast.Position{
 							Column: 12,
-							Line:   141,
+							Line:   151,
 						},
 					},
 				},
@@ -35510,13 +36277,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 11,
-										Line:   142,
+										Line:   152,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 5,
-										Line:   142,
+										Line:   152,
 									},
 								},
 							},
@@ -35527,13 +36294,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   143,
+									Line:   153,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> difference(nonNegative: true, columns:columns)",
 								Start: ast.Position{
 									Column: 5,
-									Line:   142,
+									Line:   152,
 								},
 							},
 						},
@@ -35544,13 +36311,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 57,
-											Line:   143,
+											Line:   153,
 										},
 										File:   "universe.flux",
 										Source: "nonNegative: true, columns:columns",
 										Start: ast.Position{
 											Column: 23,
-											Line:   143,
+											Line:   153,
 										},
 									},
 								},
@@ -35560,13 +36327,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 40,
-												Line:   143,
+												Line:   153,
 											},
 											File:   "universe.flux",
 											Source: "nonNegative: true",
 											Start: ast.Position{
 												Column: 23,
-												Line:   143,
+												Line:   153,
 											},
 										},
 									},
@@ -35576,13 +36343,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 34,
-													Line:   143,
+													Line:   153,
 												},
 												File:   "universe.flux",
 												Source: "nonNegative",
 												Start: ast.Position{
 													Column: 23,
-													Line:   143,
+													Line:   153,
 												},
 											},
 										},
@@ -35594,13 +36361,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 40,
-													Line:   143,
+													Line:   153,
 												},
 												File:   "universe.flux",
 												Source: "true",
 												Start: ast.Position{
 													Column: 36,
-													Line:   143,
+													Line:   153,
 												},
 											},
 										},
@@ -35612,13 +36379,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 57,
-												Line:   143,
+												Line:   153,
 											},
 											File:   "universe.flux",
 											Source: "columns:columns",
 											Start: ast.Position{
 												Column: 42,
-												Line:   143,
+												Line:   153,
 											},
 										},
 									},
@@ -35628,13 +36395,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 49,
-													Line:   143,
+													Line:   153,
 												},
 												File:   "universe.flux",
 												Source: "columns",
 												Start: ast.Position{
 													Column: 42,
-													Line:   143,
+													Line:   153,
 												},
 											},
 										},
@@ -35646,13 +36413,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 57,
-													Line:   143,
+													Line:   153,
 												},
 												File:   "universe.flux",
 												Source: "columns",
 												Start: ast.Position{
 													Column: 50,
-													Line:   143,
+													Line:   153,
 												},
 											},
 										},
@@ -35666,13 +36433,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 58,
-										Line:   143,
+										Line:   153,
 									},
 									File:   "universe.flux",
 									Source: "difference(nonNegative: true, columns:columns)",
 									Start: ast.Position{
 										Column: 12,
-										Line:   143,
+										Line:   153,
 									},
 								},
 							},
@@ -35682,13 +36449,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 22,
-											Line:   143,
+											Line:   153,
 										},
 										File:   "universe.flux",
 										Source: "difference",
 										Start: ast.Position{
 											Column: 12,
-											Line:   143,
+											Line:   153,
 										},
 									},
 								},
@@ -35701,13 +36468,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 43,
-								Line:   144,
+								Line:   154,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> difference(nonNegative: true, columns:columns)\n        |> cumulativeSum(columns: columns)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   142,
+								Line:   152,
 							},
 						},
 					},
@@ -35718,13 +36485,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   144,
+										Line:   154,
 									},
 									File:   "universe.flux",
 									Source: "columns: columns",
 									Start: ast.Position{
 										Column: 26,
-										Line:   144,
+										Line:   154,
 									},
 								},
 							},
@@ -35734,13 +36501,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   144,
+											Line:   154,
 										},
 										File:   "universe.flux",
 										Source: "columns: columns",
 										Start: ast.Position{
 											Column: 26,
-											Line:   144,
+											Line:   154,
 										},
 									},
 								},
@@ -35750,13 +36517,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 33,
-												Line:   144,
+												Line:   154,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 26,
-												Line:   144,
+												Line:   154,
 											},
 										},
 									},
@@ -35768,13 +36535,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   144,
+												Line:   154,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 35,
-												Line:   144,
+												Line:   154,
 											},
 										},
 									},
@@ -35788,13 +36555,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 43,
-									Line:   144,
+									Line:   154,
 								},
 								File:   "universe.flux",
 								Source: "cumulativeSum(columns: columns)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   144,
+									Line:   154,
 								},
 							},
 						},
@@ -35804,13 +36571,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 25,
-										Line:   144,
+										Line:   154,
 									},
 									File:   "universe.flux",
 									Source: "cumulativeSum",
 									Start: ast.Position{
 										Column: 12,
-										Line:   144,
+										Line:   154,
 									},
 								},
 							},
@@ -35824,13 +36591,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 22,
-								Line:   141,
+								Line:   151,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 13,
-								Line:   141,
+								Line:   151,
 							},
 						},
 					},
@@ -35840,13 +36607,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 19,
-									Line:   141,
+									Line:   151,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 13,
-									Line:   141,
+									Line:   151,
 								},
 							},
 						},
@@ -35857,13 +36624,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 22,
-								Line:   141,
+								Line:   151,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 20,
-								Line:   141,
+								Line:   151,
 							},
 						},
 					}},
@@ -35873,13 +36640,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 42,
-								Line:   141,
+								Line:   151,
 							},
 							File:   "universe.flux",
 							Source: "columns=[\"_value\"]",
 							Start: ast.Position{
 								Column: 24,
-								Line:   141,
+								Line:   151,
 							},
 						},
 					},
@@ -35889,13 +36656,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 31,
-									Line:   141,
+									Line:   151,
 								},
 								File:   "universe.flux",
 								Source: "columns",
 								Start: ast.Position{
 									Column: 24,
-									Line:   141,
+									Line:   151,
 								},
 							},
 						},
@@ -35907,13 +36674,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 42,
-									Line:   141,
+									Line:   151,
 								},
 								File:   "universe.flux",
 								Source: "[\"_value\"]",
 								Start: ast.Position{
 									Column: 32,
-									Line:   141,
+									Line:   151,
 								},
 							},
 						},
@@ -35923,13 +36690,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 41,
-										Line:   141,
+										Line:   151,
 									},
 									File:   "universe.flux",
 									Source: "\"_value\"",
 									Start: ast.Position{
 										Column: 33,
-										Line:   141,
+										Line:   151,
 									},
 								},
 							},
@@ -35944,13 +36711,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 85,
-						Line:   149,
+						Line:   159,
 					},
 					File:   "universe.flux",
 					Source: "median = (method=\"estimate_tdigest\", compression=0.0, column=\"_value\", tables=<-) =>\n    tables\n        |> quantile(q:0.5, method: method, compression: compression, column: column)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   147,
+						Line:   157,
 					},
 				},
 			},
@@ -35960,13 +36727,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 7,
-							Line:   147,
+							Line:   157,
 						},
 						File:   "universe.flux",
 						Source: "median",
 						Start: ast.Position{
 							Column: 1,
-							Line:   147,
+							Line:   157,
 						},
 					},
 				},
@@ -35978,13 +36745,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 85,
-							Line:   149,
+							Line:   159,
 						},
 						File:   "universe.flux",
 						Source: "(method=\"estimate_tdigest\", compression=0.0, column=\"_value\", tables=<-) =>\n    tables\n        |> quantile(q:0.5, method: method, compression: compression, column: column)",
 						Start: ast.Position{
 							Column: 10,
-							Line:   147,
+							Line:   157,
 						},
 					},
 				},
@@ -35995,13 +36762,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   148,
+									Line:   158,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   148,
+									Line:   158,
 								},
 							},
 						},
@@ -36012,13 +36779,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 85,
-								Line:   149,
+								Line:   159,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> quantile(q:0.5, method: method, compression: compression, column: column)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   148,
+								Line:   158,
 							},
 						},
 					},
@@ -36029,13 +36796,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 84,
-										Line:   149,
+										Line:   159,
 									},
 									File:   "universe.flux",
 									Source: "q:0.5, method: method, compression: compression, column: column",
 									Start: ast.Position{
 										Column: 21,
-										Line:   149,
+										Line:   159,
 									},
 								},
 							},
@@ -36045,13 +36812,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   149,
+											Line:   159,
 										},
 										File:   "universe.flux",
 										Source: "q:0.5",
 										Start: ast.Position{
 											Column: 21,
-											Line:   149,
+											Line:   159,
 										},
 									},
 								},
@@ -36061,13 +36828,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 22,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "q",
 											Start: ast.Position{
 												Column: 21,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36079,13 +36846,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "0.5",
 											Start: ast.Position{
 												Column: 23,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36097,13 +36864,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   149,
+											Line:   159,
 										},
 										File:   "universe.flux",
 										Source: "method: method",
 										Start: ast.Position{
 											Column: 28,
-											Line:   149,
+											Line:   159,
 										},
 									},
 								},
@@ -36113,13 +36880,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 34,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "method",
 											Start: ast.Position{
 												Column: 28,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36131,13 +36898,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "method",
 											Start: ast.Position{
 												Column: 36,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36149,13 +36916,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 68,
-											Line:   149,
+											Line:   159,
 										},
 										File:   "universe.flux",
 										Source: "compression: compression",
 										Start: ast.Position{
 											Column: 44,
-											Line:   149,
+											Line:   159,
 										},
 									},
 								},
@@ -36165,13 +36932,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 55,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "compression",
 											Start: ast.Position{
 												Column: 44,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36183,13 +36950,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 68,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "compression",
 											Start: ast.Position{
 												Column: 57,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36201,13 +36968,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 84,
-											Line:   149,
+											Line:   159,
 										},
 										File:   "universe.flux",
 										Source: "column: column",
 										Start: ast.Position{
 											Column: 70,
-											Line:   149,
+											Line:   159,
 										},
 									},
 								},
@@ -36217,13 +36984,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 76,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 70,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36235,13 +37002,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 84,
-												Line:   149,
+												Line:   159,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 78,
-												Line:   149,
+												Line:   159,
 											},
 										},
 									},
@@ -36255,13 +37022,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 85,
-									Line:   149,
+									Line:   159,
 								},
 								File:   "universe.flux",
 								Source: "quantile(q:0.5, method: method, compression: compression, column: column)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   149,
+									Line:   159,
 								},
 							},
 						},
@@ -36271,13 +37038,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 20,
-										Line:   149,
+										Line:   159,
 									},
 									File:   "universe.flux",
 									Source: "quantile",
 									Start: ast.Position{
 										Column: 12,
-										Line:   149,
+										Line:   159,
 									},
 								},
 							},
@@ -36291,13 +37058,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 36,
-								Line:   147,
+								Line:   157,
 							},
 							File:   "universe.flux",
 							Source: "method=\"estimate_tdigest\"",
 							Start: ast.Position{
 								Column: 11,
-								Line:   147,
+								Line:   157,
 							},
 						},
 					},
@@ -36307,13 +37074,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 17,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "method",
 								Start: ast.Position{
 									Column: 11,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36325,13 +37092,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "\"estimate_tdigest\"",
 								Start: ast.Position{
 									Column: 18,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36343,13 +37110,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   147,
+								Line:   157,
 							},
 							File:   "universe.flux",
 							Source: "compression=0.0",
 							Start: ast.Position{
 								Column: 38,
-								Line:   147,
+								Line:   157,
 							},
 						},
 					},
@@ -36359,13 +37126,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 49,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "compression",
 								Start: ast.Position{
 									Column: 38,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36377,13 +37144,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 53,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "0.0",
 								Start: ast.Position{
 									Column: 50,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36395,13 +37162,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 70,
-								Line:   147,
+								Line:   157,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 55,
-								Line:   147,
+								Line:   157,
 							},
 						},
 					},
@@ -36411,13 +37178,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 61,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 55,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36429,13 +37196,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 70,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 62,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36447,13 +37214,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 81,
-								Line:   147,
+								Line:   157,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 72,
-								Line:   147,
+								Line:   157,
 							},
 						},
 					},
@@ -36463,13 +37230,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 78,
-									Line:   147,
+									Line:   157,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 72,
-									Line:   147,
+									Line:   157,
 								},
 							},
 						},
@@ -36480,13 +37247,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 81,
-								Line:   147,
+								Line:   157,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 79,
-								Line:   147,
+								Line:   157,
 							},
 						},
 					}},
@@ -36498,13 +37265,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 52,
-						Line:   162,
+						Line:   172,
 					},
 					File:   "universe.flux",
 					Source: "stateCount = (fn, column=\"stateCount\", tables=<-) =>\n    tables\n        |> stateTracking(countColumn:column, fn:fn)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   160,
+						Line:   170,
 					},
 				},
 			},
@@ -36514,13 +37281,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 11,
-							Line:   160,
+							Line:   170,
 						},
 						File:   "universe.flux",
 						Source: "stateCount",
 						Start: ast.Position{
 							Column: 1,
-							Line:   160,
+							Line:   170,
 						},
 					},
 				},
@@ -36532,13 +37299,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 52,
-							Line:   162,
+							Line:   172,
 						},
 						File:   "universe.flux",
 						Source: "(fn, column=\"stateCount\", tables=<-) =>\n    tables\n        |> stateTracking(countColumn:column, fn:fn)",
 						Start: ast.Position{
 							Column: 14,
-							Line:   160,
+							Line:   170,
 						},
 					},
 				},
@@ -36549,13 +37316,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   161,
+									Line:   171,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   161,
+									Line:   171,
 								},
 							},
 						},
@@ -36566,13 +37333,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 52,
-								Line:   162,
+								Line:   172,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> stateTracking(countColumn:column, fn:fn)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   161,
+								Line:   171,
 							},
 						},
 					},
@@ -36583,13 +37350,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 51,
-										Line:   162,
+										Line:   172,
 									},
 									File:   "universe.flux",
 									Source: "countColumn:column, fn:fn",
 									Start: ast.Position{
 										Column: 26,
-										Line:   162,
+										Line:   172,
 									},
 								},
 							},
@@ -36599,13 +37366,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 44,
-											Line:   162,
+											Line:   172,
 										},
 										File:   "universe.flux",
 										Source: "countColumn:column",
 										Start: ast.Position{
 											Column: 26,
-											Line:   162,
+											Line:   172,
 										},
 									},
 								},
@@ -36615,13 +37382,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 37,
-												Line:   162,
+												Line:   172,
 											},
 											File:   "universe.flux",
 											Source: "countColumn",
 											Start: ast.Position{
 												Column: 26,
-												Line:   162,
+												Line:   172,
 											},
 										},
 									},
@@ -36633,13 +37400,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 44,
-												Line:   162,
+												Line:   172,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 38,
-												Line:   162,
+												Line:   172,
 											},
 										},
 									},
@@ -36651,13 +37418,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 51,
-											Line:   162,
+											Line:   172,
 										},
 										File:   "universe.flux",
 										Source: "fn:fn",
 										Start: ast.Position{
 											Column: 46,
-											Line:   162,
+											Line:   172,
 										},
 									},
 								},
@@ -36667,13 +37434,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 48,
-												Line:   162,
+												Line:   172,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 46,
-												Line:   162,
+												Line:   172,
 											},
 										},
 									},
@@ -36685,13 +37452,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 51,
-												Line:   162,
+												Line:   172,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 49,
-												Line:   162,
+												Line:   172,
 											},
 										},
 									},
@@ -36705,13 +37472,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 52,
-									Line:   162,
+									Line:   172,
 								},
 								File:   "universe.flux",
 								Source: "stateTracking(countColumn:column, fn:fn)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   162,
+									Line:   172,
 								},
 							},
 						},
@@ -36721,13 +37488,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 25,
-										Line:   162,
+										Line:   172,
 									},
 									File:   "universe.flux",
 									Source: "stateTracking",
 									Start: ast.Position{
 										Column: 12,
-										Line:   162,
+										Line:   172,
 									},
 								},
 							},
@@ -36741,13 +37508,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 17,
-								Line:   160,
+								Line:   170,
 							},
 							File:   "universe.flux",
 							Source: "fn",
 							Start: ast.Position{
 								Column: 15,
-								Line:   160,
+								Line:   170,
 							},
 						},
 					},
@@ -36757,13 +37524,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 17,
-									Line:   160,
+									Line:   170,
 								},
 								File:   "universe.flux",
 								Source: "fn",
 								Start: ast.Position{
 									Column: 15,
-									Line:   160,
+									Line:   170,
 								},
 							},
 						},
@@ -36776,13 +37543,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 38,
-								Line:   160,
+								Line:   170,
 							},
 							File:   "universe.flux",
 							Source: "column=\"stateCount\"",
 							Start: ast.Position{
 								Column: 19,
-								Line:   160,
+								Line:   170,
 							},
 						},
 					},
@@ -36792,13 +37559,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 25,
-									Line:   160,
+									Line:   170,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 19,
-									Line:   160,
+									Line:   170,
 								},
 							},
 						},
@@ -36810,13 +37577,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 38,
-									Line:   160,
+									Line:   170,
 								},
 								File:   "universe.flux",
 								Source: "\"stateCount\"",
 								Start: ast.Position{
 									Column: 26,
-									Line:   160,
+									Line:   170,
 								},
 							},
 						},
@@ -36828,13 +37595,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 49,
-								Line:   160,
+								Line:   170,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 40,
-								Line:   160,
+								Line:   170,
 							},
 						},
 					},
@@ -36844,13 +37611,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 46,
-									Line:   160,
+									Line:   170,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 40,
-									Line:   160,
+									Line:   170,
 								},
 							},
 						},
@@ -36861,13 +37628,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 49,
-								Line:   160,
+								Line:   170,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 47,
-								Line:   160,
+								Line:   170,
 							},
 						},
 					}},
@@ -36879,13 +37646,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 97,
-						Line:   181,
+						Line:   191,
 					},
 					File:   "universe.flux",
 					Source: "stateDuration = (fn, column=\"stateDuration\", timeColumn=\"_time\", unit=1s, tables=<-) =>\n    tables\n        |> stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   179,
+						Line:   189,
 					},
 				},
 			},
@@ -36895,13 +37662,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   179,
+							Line:   189,
 						},
 						File:   "universe.flux",
 						Source: "stateDuration",
 						Start: ast.Position{
 							Column: 1,
-							Line:   179,
+							Line:   189,
 						},
 					},
 				},
@@ -36913,13 +37680,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 97,
-							Line:   181,
+							Line:   191,
 						},
 						File:   "universe.flux",
 						Source: "(fn, column=\"stateDuration\", timeColumn=\"_time\", unit=1s, tables=<-) =>\n    tables\n        |> stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)",
 						Start: ast.Position{
 							Column: 17,
-							Line:   179,
+							Line:   189,
 						},
 					},
 				},
@@ -36930,13 +37697,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   180,
+									Line:   190,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   180,
+									Line:   190,
 								},
 							},
 						},
@@ -36947,13 +37714,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 97,
-								Line:   181,
+								Line:   191,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   180,
+								Line:   190,
 							},
 						},
 					},
@@ -36964,13 +37731,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 96,
-										Line:   181,
+										Line:   191,
 									},
 									File:   "universe.flux",
 									Source: "durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit",
 									Start: ast.Position{
 										Column: 26,
-										Line:   181,
+										Line:   191,
 									},
 								},
 							},
@@ -36980,13 +37747,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 47,
-											Line:   181,
+											Line:   191,
 										},
 										File:   "universe.flux",
 										Source: "durationColumn:column",
 										Start: ast.Position{
 											Column: 26,
-											Line:   181,
+											Line:   191,
 										},
 									},
 								},
@@ -36996,13 +37763,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 40,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "durationColumn",
 											Start: ast.Position{
 												Column: 26,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37014,13 +37781,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 47,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 41,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37032,13 +37799,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   181,
+											Line:   191,
 										},
 										File:   "universe.flux",
 										Source: "timeColumn:timeColumn",
 										Start: ast.Position{
 											Column: 49,
-											Line:   181,
+											Line:   191,
 										},
 									},
 								},
@@ -37048,13 +37815,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 59,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "timeColumn",
 											Start: ast.Position{
 												Column: 49,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37066,13 +37833,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "timeColumn",
 											Start: ast.Position{
 												Column: 60,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37084,13 +37851,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 77,
-											Line:   181,
+											Line:   191,
 										},
 										File:   "universe.flux",
 										Source: "fn:fn",
 										Start: ast.Position{
 											Column: 72,
-											Line:   181,
+											Line:   191,
 										},
 									},
 								},
@@ -37100,13 +37867,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 74,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 72,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37118,13 +37885,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 77,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 75,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37136,13 +37903,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 96,
-											Line:   181,
+											Line:   191,
 										},
 										File:   "universe.flux",
 										Source: "durationUnit:unit",
 										Start: ast.Position{
 											Column: 79,
-											Line:   181,
+											Line:   191,
 										},
 									},
 								},
@@ -37152,13 +37919,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 91,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "durationUnit",
 											Start: ast.Position{
 												Column: 79,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37170,13 +37937,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 96,
-												Line:   181,
+												Line:   191,
 											},
 											File:   "universe.flux",
 											Source: "unit",
 											Start: ast.Position{
 												Column: 92,
-												Line:   181,
+												Line:   191,
 											},
 										},
 									},
@@ -37190,13 +37957,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 97,
-									Line:   181,
+									Line:   191,
 								},
 								File:   "universe.flux",
 								Source: "stateTracking(durationColumn:column, timeColumn:timeColumn, fn:fn, durationUnit:unit)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   181,
+									Line:   191,
 								},
 							},
 						},
@@ -37206,13 +37973,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 25,
-										Line:   181,
+										Line:   191,
 									},
 									File:   "universe.flux",
 									Source: "stateTracking",
 									Start: ast.Position{
 										Column: 12,
-										Line:   181,
+										Line:   191,
 									},
 								},
 							},
@@ -37226,13 +37993,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 20,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "fn",
 							Start: ast.Position{
 								Column: 18,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					},
@@ -37242,13 +38009,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 20,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "fn",
 								Start: ast.Position{
 									Column: 18,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37261,13 +38028,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 44,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "column=\"stateDuration\"",
 							Start: ast.Position{
 								Column: 22,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					},
@@ -37277,13 +38044,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 28,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 22,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37295,13 +38062,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 44,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "\"stateDuration\"",
 								Start: ast.Position{
 									Column: 29,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37313,13 +38080,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "timeColumn=\"_time\"",
 							Start: ast.Position{
 								Column: 46,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					},
@@ -37329,13 +38096,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 56,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "timeColumn",
 								Start: ast.Position{
 									Column: 46,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37347,13 +38114,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 64,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "\"_time\"",
 								Start: ast.Position{
 									Column: 57,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37365,13 +38132,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 73,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "unit=1s",
 							Start: ast.Position{
 								Column: 66,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					},
@@ -37381,13 +38148,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 70,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "unit",
 								Start: ast.Position{
 									Column: 66,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37399,13 +38166,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 73,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "1s",
 								Start: ast.Position{
 									Column: 71,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37420,13 +38187,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 84,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 75,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					},
@@ -37436,13 +38203,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 81,
-									Line:   179,
+									Line:   189,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 75,
-									Line:   179,
+									Line:   189,
 								},
 							},
 						},
@@ -37453,13 +38220,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 84,
-								Line:   179,
+								Line:   189,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 82,
-								Line:   179,
+								Line:   189,
 							},
 						},
 					}},
@@ -37471,13 +38238,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 22,
-						Line:   187,
+						Line:   197,
 					},
 					File:   "universe.flux",
 					Source: "_sortLimit = (n, desc, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> sort(columns:columns, desc:desc)\n        |> limit(n:n)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   184,
+						Line:   194,
 					},
 				},
 			},
@@ -37487,13 +38254,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 11,
-							Line:   184,
+							Line:   194,
 						},
 						File:   "universe.flux",
 						Source: "_sortLimit",
 						Start: ast.Position{
 							Column: 1,
-							Line:   184,
+							Line:   194,
 						},
 					},
 				},
@@ -37505,13 +38272,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 22,
-							Line:   187,
+							Line:   197,
 						},
 						File:   "universe.flux",
 						Source: "(n, desc, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> sort(columns:columns, desc:desc)\n        |> limit(n:n)",
 						Start: ast.Position{
 							Column: 14,
-							Line:   184,
+							Line:   194,
 						},
 					},
 				},
@@ -37523,13 +38290,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 11,
-										Line:   185,
+										Line:   195,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 5,
-										Line:   185,
+										Line:   195,
 									},
 								},
 							},
@@ -37540,13 +38307,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 44,
-									Line:   186,
+									Line:   196,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> sort(columns:columns, desc:desc)",
 								Start: ast.Position{
 									Column: 5,
-									Line:   185,
+									Line:   195,
 								},
 							},
 						},
@@ -37557,13 +38324,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 43,
-											Line:   186,
+											Line:   196,
 										},
 										File:   "universe.flux",
 										Source: "columns:columns, desc:desc",
 										Start: ast.Position{
 											Column: 17,
-											Line:   186,
+											Line:   196,
 										},
 									},
 								},
@@ -37573,13 +38340,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 32,
-												Line:   186,
+												Line:   196,
 											},
 											File:   "universe.flux",
 											Source: "columns:columns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   186,
+												Line:   196,
 											},
 										},
 									},
@@ -37589,13 +38356,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 24,
-													Line:   186,
+													Line:   196,
 												},
 												File:   "universe.flux",
 												Source: "columns",
 												Start: ast.Position{
 													Column: 17,
-													Line:   186,
+													Line:   196,
 												},
 											},
 										},
@@ -37607,13 +38374,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 32,
-													Line:   186,
+													Line:   196,
 												},
 												File:   "universe.flux",
 												Source: "columns",
 												Start: ast.Position{
 													Column: 25,
-													Line:   186,
+													Line:   196,
 												},
 											},
 										},
@@ -37625,13 +38392,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 43,
-												Line:   186,
+												Line:   196,
 											},
 											File:   "universe.flux",
 											Source: "desc:desc",
 											Start: ast.Position{
 												Column: 34,
-												Line:   186,
+												Line:   196,
 											},
 										},
 									},
@@ -37641,13 +38408,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 38,
-													Line:   186,
+													Line:   196,
 												},
 												File:   "universe.flux",
 												Source: "desc",
 												Start: ast.Position{
 													Column: 34,
-													Line:   186,
+													Line:   196,
 												},
 											},
 										},
@@ -37659,13 +38426,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 43,
-													Line:   186,
+													Line:   196,
 												},
 												File:   "universe.flux",
 												Source: "desc",
 												Start: ast.Position{
 													Column: 39,
-													Line:   186,
+													Line:   196,
 												},
 											},
 										},
@@ -37679,13 +38446,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 44,
-										Line:   186,
+										Line:   196,
 									},
 									File:   "universe.flux",
 									Source: "sort(columns:columns, desc:desc)",
 									Start: ast.Position{
 										Column: 12,
-										Line:   186,
+										Line:   196,
 									},
 								},
 							},
@@ -37695,13 +38462,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 16,
-											Line:   186,
+											Line:   196,
 										},
 										File:   "universe.flux",
 										Source: "sort",
 										Start: ast.Position{
 											Column: 12,
-											Line:   186,
+											Line:   196,
 										},
 									},
 								},
@@ -37714,13 +38481,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 22,
-								Line:   187,
+								Line:   197,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> sort(columns:columns, desc:desc)\n        |> limit(n:n)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   185,
+								Line:   195,
 							},
 						},
 					},
@@ -37731,13 +38498,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   187,
+										Line:   197,
 									},
 									File:   "universe.flux",
 									Source: "n:n",
 									Start: ast.Position{
 										Column: 18,
-										Line:   187,
+										Line:   197,
 									},
 								},
 							},
@@ -37747,13 +38514,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   187,
+											Line:   197,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 18,
-											Line:   187,
+											Line:   197,
 										},
 									},
 								},
@@ -37763,13 +38530,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 19,
-												Line:   187,
+												Line:   197,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 18,
-												Line:   187,
+												Line:   197,
 											},
 										},
 									},
@@ -37781,13 +38548,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 21,
-												Line:   187,
+												Line:   197,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 20,
-												Line:   187,
+												Line:   197,
 											},
 										},
 									},
@@ -37801,13 +38568,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 22,
-									Line:   187,
+									Line:   197,
 								},
 								File:   "universe.flux",
 								Source: "limit(n:n)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   187,
+									Line:   197,
 								},
 							},
 						},
@@ -37817,13 +38584,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 17,
-										Line:   187,
+										Line:   197,
 									},
 									File:   "universe.flux",
 									Source: "limit",
 									Start: ast.Position{
 										Column: 12,
-										Line:   187,
+										Line:   197,
 									},
 								},
 							},
@@ -37837,13 +38604,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 16,
-								Line:   184,
+								Line:   194,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 15,
-								Line:   184,
+								Line:   194,
 							},
 						},
 					},
@@ -37853,13 +38620,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 16,
-									Line:   184,
+									Line:   194,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 15,
-									Line:   184,
+									Line:   194,
 								},
 							},
 						},
@@ -37872,13 +38639,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 22,
-								Line:   184,
+								Line:   194,
 							},
 							File:   "universe.flux",
 							Source: "desc",
 							Start: ast.Position{
 								Column: 18,
-								Line:   184,
+								Line:   194,
 							},
 						},
 					},
@@ -37888,13 +38655,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 22,
-									Line:   184,
+									Line:   194,
 								},
 								File:   "universe.flux",
 								Source: "desc",
 								Start: ast.Position{
 									Column: 18,
-									Line:   184,
+									Line:   194,
 								},
 							},
 						},
@@ -37907,13 +38674,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 42,
-								Line:   184,
+								Line:   194,
 							},
 							File:   "universe.flux",
 							Source: "columns=[\"_value\"]",
 							Start: ast.Position{
 								Column: 24,
-								Line:   184,
+								Line:   194,
 							},
 						},
 					},
@@ -37923,13 +38690,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 31,
-									Line:   184,
+									Line:   194,
 								},
 								File:   "universe.flux",
 								Source: "columns",
 								Start: ast.Position{
 									Column: 24,
-									Line:   184,
+									Line:   194,
 								},
 							},
 						},
@@ -37941,13 +38708,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 42,
-									Line:   184,
+									Line:   194,
 								},
 								File:   "universe.flux",
 								Source: "[\"_value\"]",
 								Start: ast.Position{
 									Column: 32,
-									Line:   184,
+									Line:   194,
 								},
 							},
 						},
@@ -37957,13 +38724,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 41,
-										Line:   184,
+										Line:   194,
 									},
 									File:   "universe.flux",
 									Source: "\"_value\"",
 									Start: ast.Position{
 										Column: 33,
-										Line:   184,
+										Line:   194,
 									},
 								},
 							},
@@ -37976,13 +38743,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   184,
+								Line:   194,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 44,
-								Line:   184,
+								Line:   194,
 							},
 						},
 					},
@@ -37992,13 +38759,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   184,
+									Line:   194,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 44,
-									Line:   184,
+									Line:   194,
 								},
 							},
 						},
@@ -38009,13 +38776,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   184,
+								Line:   194,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 51,
-								Line:   184,
+								Line:   194,
 							},
 						},
 					}},
@@ -38027,13 +38794,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 55,
-						Line:   192,
+						Line:   202,
 					},
 					File:   "universe.flux",
 					Source: "top = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:true)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   190,
+						Line:   200,
 					},
 				},
 			},
@@ -38043,13 +38810,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 4,
-							Line:   190,
+							Line:   200,
 						},
 						File:   "universe.flux",
 						Source: "top",
 						Start: ast.Position{
 							Column: 1,
-							Line:   190,
+							Line:   200,
 						},
 					},
 				},
@@ -38061,13 +38828,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 55,
-							Line:   192,
+							Line:   202,
 						},
 						File:   "universe.flux",
 						Source: "(n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:true)",
 						Start: ast.Position{
 							Column: 7,
-							Line:   190,
+							Line:   200,
 						},
 					},
 				},
@@ -38078,13 +38845,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   191,
+									Line:   201,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   191,
+									Line:   201,
 								},
 							},
 						},
@@ -38095,13 +38862,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 55,
-								Line:   192,
+								Line:   202,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _sortLimit(n:n, columns:columns, desc:true)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   191,
+								Line:   201,
 							},
 						},
 					},
@@ -38112,13 +38879,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 54,
-										Line:   192,
+										Line:   202,
 									},
 									File:   "universe.flux",
 									Source: "n:n, columns:columns, desc:true",
 									Start: ast.Position{
 										Column: 23,
-										Line:   192,
+										Line:   202,
 									},
 								},
 							},
@@ -38128,13 +38895,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   192,
+											Line:   202,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 23,
-											Line:   192,
+											Line:   202,
 										},
 									},
 								},
@@ -38144,13 +38911,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 23,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38162,13 +38929,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 25,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38180,13 +38947,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 43,
-											Line:   192,
+											Line:   202,
 										},
 										File:   "universe.flux",
 										Source: "columns:columns",
 										Start: ast.Position{
 											Column: 28,
-											Line:   192,
+											Line:   202,
 										},
 									},
 								},
@@ -38196,13 +38963,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 28,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38214,13 +38981,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 43,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 36,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38232,13 +38999,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 54,
-											Line:   192,
+											Line:   202,
 										},
 										File:   "universe.flux",
 										Source: "desc:true",
 										Start: ast.Position{
 											Column: 45,
-											Line:   192,
+											Line:   202,
 										},
 									},
 								},
@@ -38248,13 +39015,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 49,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "desc",
 											Start: ast.Position{
 												Column: 45,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38266,13 +39033,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 54,
-												Line:   192,
+												Line:   202,
 											},
 											File:   "universe.flux",
 											Source: "true",
 											Start: ast.Position{
 												Column: 50,
-												Line:   192,
+												Line:   202,
 											},
 										},
 									},
@@ -38286,13 +39053,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 55,
-									Line:   192,
+									Line:   202,
 								},
 								File:   "universe.flux",
 								Source: "_sortLimit(n:n, columns:columns, desc:true)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   192,
+									Line:   202,
 								},
 							},
 						},
@@ -38302,13 +39069,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   192,
+										Line:   202,
 									},
 									File:   "universe.flux",
 									Source: "_sortLimit",
 									Start: ast.Position{
 										Column: 12,
-										Line:   192,
+										Line:   202,
 									},
 								},
 							},
@@ -38322,13 +39089,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 9,
-								Line:   190,
+								Line:   200,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 8,
-								Line:   190,
+								Line:   200,
 							},
 						},
 					},
@@ -38338,13 +39105,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 9,
-									Line:   190,
+									Line:   200,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 8,
-									Line:   190,
+									Line:   200,
 								},
 							},
 						},
@@ -38357,13 +39124,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 29,
-								Line:   190,
+								Line:   200,
 							},
 							File:   "universe.flux",
 							Source: "columns=[\"_value\"]",
 							Start: ast.Position{
 								Column: 11,
-								Line:   190,
+								Line:   200,
 							},
 						},
 					},
@@ -38373,13 +39140,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 18,
-									Line:   190,
+									Line:   200,
 								},
 								File:   "universe.flux",
 								Source: "columns",
 								Start: ast.Position{
 									Column: 11,
-									Line:   190,
+									Line:   200,
 								},
 							},
 						},
@@ -38391,13 +39158,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 29,
-									Line:   190,
+									Line:   200,
 								},
 								File:   "universe.flux",
 								Source: "[\"_value\"]",
 								Start: ast.Position{
 									Column: 19,
-									Line:   190,
+									Line:   200,
 								},
 							},
 						},
@@ -38407,13 +39174,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   190,
+										Line:   200,
 									},
 									File:   "universe.flux",
 									Source: "\"_value\"",
 									Start: ast.Position{
 										Column: 20,
-										Line:   190,
+										Line:   200,
 									},
 								},
 							},
@@ -38426,13 +39193,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 40,
-								Line:   190,
+								Line:   200,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 31,
-								Line:   190,
+								Line:   200,
 							},
 						},
 					},
@@ -38442,13 +39209,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 37,
-									Line:   190,
+									Line:   200,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 31,
-									Line:   190,
+									Line:   200,
 								},
 							},
 						},
@@ -38459,13 +39226,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 40,
-								Line:   190,
+								Line:   200,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 38,
-								Line:   190,
+								Line:   200,
 							},
 						},
 					}},
@@ -38477,13 +39244,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 56,
-						Line:   197,
+						Line:   207,
 					},
 					File:   "universe.flux",
 					Source: "bottom = (n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:false)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   195,
+						Line:   205,
 					},
 				},
 			},
@@ -38493,13 +39260,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 7,
-							Line:   195,
+							Line:   205,
 						},
 						File:   "universe.flux",
 						Source: "bottom",
 						Start: ast.Position{
 							Column: 1,
-							Line:   195,
+							Line:   205,
 						},
 					},
 				},
@@ -38511,13 +39278,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 56,
-							Line:   197,
+							Line:   207,
 						},
 						File:   "universe.flux",
 						Source: "(n, columns=[\"_value\"], tables=<-) =>\n    tables\n        |> _sortLimit(n:n, columns:columns, desc:false)",
 						Start: ast.Position{
 							Column: 10,
-							Line:   195,
+							Line:   205,
 						},
 					},
 				},
@@ -38528,13 +39295,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   196,
+									Line:   206,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   196,
+									Line:   206,
 								},
 							},
 						},
@@ -38545,13 +39312,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 56,
-								Line:   197,
+								Line:   207,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _sortLimit(n:n, columns:columns, desc:false)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   196,
+								Line:   206,
 							},
 						},
 					},
@@ -38562,13 +39329,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 55,
-										Line:   197,
+										Line:   207,
 									},
 									File:   "universe.flux",
 									Source: "n:n, columns:columns, desc:false",
 									Start: ast.Position{
 										Column: 23,
-										Line:   197,
+										Line:   207,
 									},
 								},
 							},
@@ -38578,13 +39345,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   197,
+											Line:   207,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 23,
-											Line:   197,
+											Line:   207,
 										},
 									},
 								},
@@ -38594,13 +39361,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 23,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38612,13 +39379,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 25,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38630,13 +39397,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 43,
-											Line:   197,
+											Line:   207,
 										},
 										File:   "universe.flux",
 										Source: "columns:columns",
 										Start: ast.Position{
 											Column: 28,
-											Line:   197,
+											Line:   207,
 										},
 									},
 								},
@@ -38646,13 +39413,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 28,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38664,13 +39431,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 43,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 36,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38682,13 +39449,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 55,
-											Line:   197,
+											Line:   207,
 										},
 										File:   "universe.flux",
 										Source: "desc:false",
 										Start: ast.Position{
 											Column: 45,
-											Line:   197,
+											Line:   207,
 										},
 									},
 								},
@@ -38698,13 +39465,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 49,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "desc",
 											Start: ast.Position{
 												Column: 45,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38716,13 +39483,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 55,
-												Line:   197,
+												Line:   207,
 											},
 											File:   "universe.flux",
 											Source: "false",
 											Start: ast.Position{
 												Column: 50,
-												Line:   197,
+												Line:   207,
 											},
 										},
 									},
@@ -38736,13 +39503,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 56,
-									Line:   197,
+									Line:   207,
 								},
 								File:   "universe.flux",
 								Source: "_sortLimit(n:n, columns:columns, desc:false)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   197,
+									Line:   207,
 								},
 							},
 						},
@@ -38752,13 +39519,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   197,
+										Line:   207,
 									},
 									File:   "universe.flux",
 									Source: "_sortLimit",
 									Start: ast.Position{
 										Column: 12,
-										Line:   197,
+										Line:   207,
 									},
 								},
 							},
@@ -38772,13 +39539,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 12,
-								Line:   195,
+								Line:   205,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 11,
-								Line:   195,
+								Line:   205,
 							},
 						},
 					},
@@ -38788,13 +39555,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 12,
-									Line:   195,
+									Line:   205,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 11,
-									Line:   195,
+									Line:   205,
 								},
 							},
 						},
@@ -38807,13 +39574,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 32,
-								Line:   195,
+								Line:   205,
 							},
 							File:   "universe.flux",
 							Source: "columns=[\"_value\"]",
 							Start: ast.Position{
 								Column: 14,
-								Line:   195,
+								Line:   205,
 							},
 						},
 					},
@@ -38823,13 +39590,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   195,
+									Line:   205,
 								},
 								File:   "universe.flux",
 								Source: "columns",
 								Start: ast.Position{
 									Column: 14,
-									Line:   195,
+									Line:   205,
 								},
 							},
 						},
@@ -38841,13 +39608,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 32,
-									Line:   195,
+									Line:   205,
 								},
 								File:   "universe.flux",
 								Source: "[\"_value\"]",
 								Start: ast.Position{
 									Column: 22,
-									Line:   195,
+									Line:   205,
 								},
 							},
 						},
@@ -38857,13 +39624,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   195,
+										Line:   205,
 									},
 									File:   "universe.flux",
 									Source: "\"_value\"",
 									Start: ast.Position{
 										Column: 23,
-										Line:   195,
+										Line:   205,
 									},
 								},
 							},
@@ -38876,13 +39643,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 43,
-								Line:   195,
+								Line:   205,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 34,
-								Line:   195,
+								Line:   205,
 							},
 						},
 					},
@@ -38892,13 +39659,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 40,
-									Line:   195,
+									Line:   205,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 34,
-									Line:   195,
+									Line:   205,
 								},
 							},
 						},
@@ -38909,13 +39676,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 43,
-								Line:   195,
+								Line:   205,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 41,
-								Line:   195,
+								Line:   205,
 							},
 						},
 					}},
@@ -38927,13 +39694,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 45,
-						Line:   207,
+						Line:   217,
 					},
 					File:   "universe.flux",
 					Source: "_highestOrLowest = (n, _sortLimit, reducer, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])\n        |> _sortLimit(n:n, columns:[column])",
 					Start: ast.Position{
 						Column: 1,
-						Line:   202,
+						Line:   212,
 					},
 				},
 			},
@@ -38943,13 +39710,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 17,
-							Line:   202,
+							Line:   212,
 						},
 						File:   "universe.flux",
 						Source: "_highestOrLowest",
 						Start: ast.Position{
 							Column: 1,
-							Line:   202,
+							Line:   212,
 						},
 					},
 				},
@@ -38961,13 +39728,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 45,
-							Line:   207,
+							Line:   217,
 						},
 						File:   "universe.flux",
 						Source: "(n, _sortLimit, reducer, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])\n        |> _sortLimit(n:n, columns:[column])",
 						Start: ast.Position{
 							Column: 20,
-							Line:   202,
+							Line:   212,
 						},
 					},
 				},
@@ -38981,13 +39748,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 11,
-												Line:   203,
+												Line:   213,
 											},
 											File:   "universe.flux",
 											Source: "tables",
 											Start: ast.Position{
 												Column: 5,
-												Line:   203,
+												Line:   213,
 											},
 										},
 									},
@@ -38998,13 +39765,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 39,
-											Line:   204,
+											Line:   214,
 										},
 										File:   "universe.flux",
 										Source: "tables\n        |> group(columns:groupColumns)",
 										Start: ast.Position{
 											Column: 5,
-											Line:   203,
+											Line:   213,
 										},
 									},
 								},
@@ -39015,13 +39782,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 38,
-													Line:   204,
+													Line:   214,
 												},
 												File:   "universe.flux",
 												Source: "columns:groupColumns",
 												Start: ast.Position{
 													Column: 18,
-													Line:   204,
+													Line:   214,
 												},
 											},
 										},
@@ -39031,13 +39798,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 38,
-														Line:   204,
+														Line:   214,
 													},
 													File:   "universe.flux",
 													Source: "columns:groupColumns",
 													Start: ast.Position{
 														Column: 18,
-														Line:   204,
+														Line:   214,
 													},
 												},
 											},
@@ -39047,13 +39814,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 25,
-															Line:   204,
+															Line:   214,
 														},
 														File:   "universe.flux",
 														Source: "columns",
 														Start: ast.Position{
 															Column: 18,
-															Line:   204,
+															Line:   214,
 														},
 													},
 												},
@@ -39065,13 +39832,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 38,
-															Line:   204,
+															Line:   214,
 														},
 														File:   "universe.flux",
 														Source: "groupColumns",
 														Start: ast.Position{
 															Column: 26,
-															Line:   204,
+															Line:   214,
 														},
 													},
 												},
@@ -39085,13 +39852,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 39,
-												Line:   204,
+												Line:   214,
 											},
 											File:   "universe.flux",
 											Source: "group(columns:groupColumns)",
 											Start: ast.Position{
 												Column: 12,
-												Line:   204,
+												Line:   214,
 											},
 										},
 									},
@@ -39101,13 +39868,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 17,
-													Line:   204,
+													Line:   214,
 												},
 												File:   "universe.flux",
 												Source: "group",
 												Start: ast.Position{
 													Column: 12,
-													Line:   204,
+													Line:   214,
 												},
 											},
 										},
@@ -39120,13 +39887,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 21,
-										Line:   205,
+										Line:   215,
 									},
 									File:   "universe.flux",
 									Source: "tables\n        |> group(columns:groupColumns)\n        |> reducer()",
 									Start: ast.Position{
 										Column: 5,
-										Line:   203,
+										Line:   213,
 									},
 								},
 							},
@@ -39137,13 +39904,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   205,
+											Line:   215,
 										},
 										File:   "universe.flux",
 										Source: "reducer()",
 										Start: ast.Position{
 											Column: 12,
-											Line:   205,
+											Line:   215,
 										},
 									},
 								},
@@ -39153,13 +39920,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 19,
-												Line:   205,
+												Line:   215,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 12,
-												Line:   205,
+												Line:   215,
 											},
 										},
 									},
@@ -39172,13 +39939,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 29,
-									Line:   206,
+									Line:   216,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])",
 								Start: ast.Position{
 									Column: 5,
-									Line:   203,
+									Line:   213,
 								},
 							},
 						},
@@ -39189,13 +39956,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 28,
-											Line:   206,
+											Line:   216,
 										},
 										File:   "universe.flux",
 										Source: "columns:[]",
 										Start: ast.Position{
 											Column: 18,
-											Line:   206,
+											Line:   216,
 										},
 									},
 								},
@@ -39205,13 +39972,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 28,
-												Line:   206,
+												Line:   216,
 											},
 											File:   "universe.flux",
 											Source: "columns:[]",
 											Start: ast.Position{
 												Column: 18,
-												Line:   206,
+												Line:   216,
 											},
 										},
 									},
@@ -39221,13 +39988,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 25,
-													Line:   206,
+													Line:   216,
 												},
 												File:   "universe.flux",
 												Source: "columns",
 												Start: ast.Position{
 													Column: 18,
-													Line:   206,
+													Line:   216,
 												},
 											},
 										},
@@ -39239,13 +40006,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 28,
-													Line:   206,
+													Line:   216,
 												},
 												File:   "universe.flux",
 												Source: "[]",
 												Start: ast.Position{
 													Column: 26,
-													Line:   206,
+													Line:   216,
 												},
 											},
 										},
@@ -39259,13 +40026,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   206,
+										Line:   216,
 									},
 									File:   "universe.flux",
 									Source: "group(columns:[])",
 									Start: ast.Position{
 										Column: 12,
-										Line:   206,
+										Line:   216,
 									},
 								},
 							},
@@ -39275,13 +40042,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 17,
-											Line:   206,
+											Line:   216,
 										},
 										File:   "universe.flux",
 										Source: "group",
 										Start: ast.Position{
 											Column: 12,
-											Line:   206,
+											Line:   216,
 										},
 									},
 								},
@@ -39294,13 +40061,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 45,
-								Line:   207,
+								Line:   217,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> group(columns:groupColumns)\n        |> reducer()\n        |> group(columns:[])\n        |> _sortLimit(n:n, columns:[column])",
 							Start: ast.Position{
 								Column: 5,
-								Line:   203,
+								Line:   213,
 							},
 						},
 					},
@@ -39311,13 +40078,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 44,
-										Line:   207,
+										Line:   217,
 									},
 									File:   "universe.flux",
 									Source: "n:n, columns:[column]",
 									Start: ast.Position{
 										Column: 23,
-										Line:   207,
+										Line:   217,
 									},
 								},
 							},
@@ -39327,13 +40094,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 26,
-											Line:   207,
+											Line:   217,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 23,
-											Line:   207,
+											Line:   217,
 										},
 									},
 								},
@@ -39343,13 +40110,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   207,
+												Line:   217,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 23,
-												Line:   207,
+												Line:   217,
 											},
 										},
 									},
@@ -39361,13 +40128,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   207,
+												Line:   217,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 25,
-												Line:   207,
+												Line:   217,
 											},
 										},
 									},
@@ -39379,13 +40146,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 44,
-											Line:   207,
+											Line:   217,
 										},
 										File:   "universe.flux",
 										Source: "columns:[column]",
 										Start: ast.Position{
 											Column: 28,
-											Line:   207,
+											Line:   217,
 										},
 									},
 								},
@@ -39395,13 +40162,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   207,
+												Line:   217,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 28,
-												Line:   207,
+												Line:   217,
 											},
 										},
 									},
@@ -39413,13 +40180,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 44,
-												Line:   207,
+												Line:   217,
 											},
 											File:   "universe.flux",
 											Source: "[column]",
 											Start: ast.Position{
 												Column: 36,
-												Line:   207,
+												Line:   217,
 											},
 										},
 									},
@@ -39429,13 +40196,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 43,
-													Line:   207,
+													Line:   217,
 												},
 												File:   "universe.flux",
 												Source: "column",
 												Start: ast.Position{
 													Column: 37,
-													Line:   207,
+													Line:   217,
 												},
 											},
 										},
@@ -39450,13 +40217,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 45,
-									Line:   207,
+									Line:   217,
 								},
 								File:   "universe.flux",
 								Source: "_sortLimit(n:n, columns:[column])",
 								Start: ast.Position{
 									Column: 12,
-									Line:   207,
+									Line:   217,
 								},
 							},
 						},
@@ -39466,13 +40233,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 22,
-										Line:   207,
+										Line:   217,
 									},
 									File:   "universe.flux",
 									Source: "_sortLimit",
 									Start: ast.Position{
 										Column: 12,
-										Line:   207,
+										Line:   217,
 									},
 								},
 							},
@@ -39486,13 +40253,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 22,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 21,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39502,13 +40269,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 22,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 21,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39521,13 +40288,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 34,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "_sortLimit",
 							Start: ast.Position{
 								Column: 24,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39537,13 +40304,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 34,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "_sortLimit",
 								Start: ast.Position{
 									Column: 24,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39556,13 +40323,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 43,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "reducer",
 							Start: ast.Position{
 								Column: 36,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39572,13 +40339,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 43,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "reducer",
 								Start: ast.Position{
 									Column: 36,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39591,13 +40358,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 60,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 45,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39607,13 +40374,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 51,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 45,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39625,13 +40392,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 60,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 52,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39643,13 +40410,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 77,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 62,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39659,13 +40426,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 74,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 62,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39677,13 +40444,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 77,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 75,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39695,13 +40462,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 88,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 79,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					},
@@ -39711,13 +40478,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 85,
-									Line:   202,
+									Line:   212,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 79,
-									Line:   202,
+									Line:   212,
 								},
 							},
 						},
@@ -39728,13 +40495,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 88,
-								Line:   202,
+								Line:   212,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 86,
-								Line:   202,
+								Line:   212,
 							},
 						},
 					}},
@@ -39746,13 +40513,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   219,
+						Line:   229,
 					},
 					File:   "universe.flux",
 					Source: "highestMax = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   210,
+						Line:   220,
 					},
 				},
 			},
@@ -39762,13 +40529,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 11,
-							Line:   210,
+							Line:   220,
 						},
 						File:   "universe.flux",
 						Source: "highestMax",
 						Start: ast.Position{
 							Column: 1,
-							Line:   210,
+							Line:   220,
 						},
 					},
 				},
@@ -39780,13 +40547,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   219,
+							Line:   229,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )",
 						Start: ast.Position{
 							Column: 14,
-							Line:   210,
+							Line:   220,
 						},
 					},
 				},
@@ -39797,13 +40564,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   211,
+									Line:   221,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   211,
+									Line:   221,
 								},
 							},
 						},
@@ -39814,13 +40581,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   219,
+								Line:   229,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   211,
+								Line:   221,
 							},
 						},
 					},
@@ -39831,13 +40598,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 32,
-										Line:   218,
+										Line:   228,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top",
 									Start: ast.Position{
 										Column: 17,
-										Line:   213,
+										Line:   223,
 									},
 								},
 							},
@@ -39847,13 +40614,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   213,
+											Line:   223,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   213,
+											Line:   223,
 										},
 									},
 								},
@@ -39863,13 +40630,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   213,
+												Line:   223,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   213,
+												Line:   223,
 											},
 										},
 									},
@@ -39881,13 +40648,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   213,
+												Line:   223,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   213,
+												Line:   223,
 											},
 										},
 									},
@@ -39899,13 +40666,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   214,
+											Line:   224,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   214,
+											Line:   224,
 										},
 									},
 								},
@@ -39915,13 +40682,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   214,
+												Line:   224,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   214,
+												Line:   224,
 											},
 										},
 									},
@@ -39933,13 +40700,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   214,
+												Line:   224,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   214,
+												Line:   224,
 											},
 										},
 									},
@@ -39951,13 +40718,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   215,
+											Line:   225,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   215,
+											Line:   225,
 										},
 									},
 								},
@@ -39967,13 +40734,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   215,
+												Line:   225,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   215,
+												Line:   225,
 											},
 										},
 									},
@@ -39985,13 +40752,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   215,
+												Line:   225,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   215,
+												Line:   225,
 											},
 										},
 									},
@@ -40003,13 +40770,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 69,
-											Line:   217,
+											Line:   227,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> max(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   217,
+											Line:   227,
 										},
 									},
 								},
@@ -40019,13 +40786,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   217,
+												Line:   227,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   217,
+												Line:   227,
 											},
 										},
 									},
@@ -40037,13 +40804,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 69,
-												Line:   217,
+												Line:   227,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> max(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   217,
+												Line:   227,
 											},
 										},
 									},
@@ -40054,13 +40821,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   217,
+														Line:   227,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   217,
+														Line:   227,
 													},
 												},
 											},
@@ -40071,13 +40838,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 69,
-													Line:   217,
+													Line:   227,
 												},
 												File:   "universe.flux",
 												Source: "tables |> max(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   217,
+													Line:   227,
 												},
 											},
 										},
@@ -40088,13 +40855,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 68,
-															Line:   217,
+															Line:   227,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 55,
-															Line:   217,
+															Line:   227,
 														},
 													},
 												},
@@ -40104,13 +40871,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   217,
+																Line:   227,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 55,
-																Line:   217,
+																Line:   227,
 															},
 														},
 													},
@@ -40120,13 +40887,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 61,
-																	Line:   217,
+																	Line:   227,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 55,
-																	Line:   217,
+																	Line:   227,
 																},
 															},
 														},
@@ -40138,13 +40905,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 68,
-																	Line:   217,
+																	Line:   227,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 62,
-																	Line:   217,
+																	Line:   227,
 																},
 															},
 														},
@@ -40158,13 +40925,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 69,
-														Line:   217,
+														Line:   227,
 													},
 													File:   "universe.flux",
 													Source: "max(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   217,
+														Line:   227,
 													},
 												},
 											},
@@ -40174,13 +40941,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 54,
-															Line:   217,
+															Line:   227,
 														},
 														File:   "universe.flux",
 														Source: "max",
 														Start: ast.Position{
 															Column: 51,
-															Line:   217,
+															Line:   227,
 														},
 													},
 												},
@@ -40194,13 +40961,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   217,
+													Line:   227,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   217,
+													Line:   227,
 												},
 											},
 										},
@@ -40210,13 +40977,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   217,
+														Line:   227,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   217,
+														Line:   227,
 													},
 												},
 											},
@@ -40227,13 +40994,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   217,
+													Line:   227,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   217,
+													Line:   227,
 												},
 											},
 										}},
@@ -40245,13 +41012,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 32,
-											Line:   218,
+											Line:   228,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: top",
 										Start: ast.Position{
 											Column: 17,
-											Line:   218,
+											Line:   228,
 										},
 									},
 								},
@@ -40261,13 +41028,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   218,
+												Line:   228,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   218,
+												Line:   228,
 											},
 										},
 									},
@@ -40279,13 +41046,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 32,
-												Line:   218,
+												Line:   228,
 											},
 											File:   "universe.flux",
 											Source: "top",
 											Start: ast.Position{
 												Column: 29,
-												Line:   218,
+												Line:   228,
 											},
 										},
 									},
@@ -40299,13 +41066,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   219,
+									Line:   229,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> max(column:column),\n                _sortLimit: top,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   212,
+									Line:   222,
 								},
 							},
 						},
@@ -40315,13 +41082,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   212,
+										Line:   222,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   212,
+										Line:   222,
 									},
 								},
 							},
@@ -40335,13 +41102,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 16,
-								Line:   210,
+								Line:   220,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 15,
-								Line:   210,
+								Line:   220,
 							},
 						},
 					},
@@ -40351,13 +41118,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 16,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 15,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40370,13 +41137,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 33,
-								Line:   210,
+								Line:   220,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 18,
-								Line:   210,
+								Line:   220,
 							},
 						},
 					},
@@ -40386,13 +41153,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 24,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 18,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40404,13 +41171,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 33,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 25,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40422,13 +41189,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 50,
-								Line:   210,
+								Line:   220,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 35,
-								Line:   210,
+								Line:   220,
 							},
 						},
 					},
@@ -40438,13 +41205,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 47,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 35,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40456,13 +41223,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 48,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40474,13 +41241,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 61,
-								Line:   210,
+								Line:   220,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 52,
-								Line:   210,
+								Line:   220,
 							},
 						},
 					},
@@ -40490,13 +41257,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 58,
-									Line:   210,
+									Line:   220,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 52,
-									Line:   210,
+									Line:   220,
 								},
 							},
 						},
@@ -40507,13 +41274,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 61,
-								Line:   210,
+								Line:   220,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 59,
-								Line:   210,
+								Line:   220,
 							},
 						},
 					}},
@@ -40525,13 +41292,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   230,
+						Line:   240,
 					},
 					File:   "universe.flux",
 					Source: "highestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   222,
+						Line:   232,
 					},
 				},
 			},
@@ -40541,13 +41308,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 15,
-							Line:   222,
+							Line:   232,
 						},
 						File:   "universe.flux",
 						Source: "highestAverage",
 						Start: ast.Position{
 							Column: 1,
-							Line:   222,
+							Line:   232,
 						},
 					},
 				},
@@ -40559,13 +41326,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   230,
+							Line:   240,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )",
 						Start: ast.Position{
 							Column: 18,
-							Line:   222,
+							Line:   232,
 						},
 					},
 				},
@@ -40576,13 +41343,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   223,
+									Line:   233,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   223,
+									Line:   233,
 								},
 							},
 						},
@@ -40593,13 +41360,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   230,
+								Line:   240,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   223,
+								Line:   233,
 							},
 						},
 					},
@@ -40610,13 +41377,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 32,
-										Line:   229,
+										Line:   239,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top",
 									Start: ast.Position{
 										Column: 17,
-										Line:   225,
+										Line:   235,
 									},
 								},
 							},
@@ -40626,13 +41393,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   225,
+											Line:   235,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   225,
+											Line:   235,
 										},
 									},
 								},
@@ -40642,13 +41409,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   225,
+												Line:   235,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   225,
+												Line:   235,
 											},
 										},
 									},
@@ -40660,13 +41427,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   225,
+												Line:   235,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   225,
+												Line:   235,
 											},
 										},
 									},
@@ -40678,13 +41445,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   226,
+											Line:   236,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   226,
+											Line:   236,
 										},
 									},
 								},
@@ -40694,13 +41461,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   226,
+												Line:   236,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   226,
+												Line:   236,
 											},
 										},
 									},
@@ -40712,13 +41479,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   226,
+												Line:   236,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   226,
+												Line:   236,
 											},
 										},
 									},
@@ -40730,13 +41497,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   227,
+											Line:   237,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   227,
+											Line:   237,
 										},
 									},
 								},
@@ -40746,13 +41513,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   227,
+												Line:   237,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   227,
+												Line:   237,
 											},
 										},
 									},
@@ -40764,13 +41531,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   227,
+												Line:   237,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   227,
+												Line:   237,
 											},
 										},
 									},
@@ -40782,13 +41549,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   228,
+											Line:   238,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> mean(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   228,
+											Line:   238,
 										},
 									},
 								},
@@ -40798,13 +41565,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   228,
+												Line:   238,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   228,
+												Line:   238,
 											},
 										},
 									},
@@ -40816,13 +41583,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   228,
+												Line:   238,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> mean(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   228,
+												Line:   238,
 											},
 										},
 									},
@@ -40833,13 +41600,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   228,
+														Line:   238,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   228,
+														Line:   238,
 													},
 												},
 											},
@@ -40850,13 +41617,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 70,
-													Line:   228,
+													Line:   238,
 												},
 												File:   "universe.flux",
 												Source: "tables |> mean(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   228,
+													Line:   238,
 												},
 											},
 										},
@@ -40867,13 +41634,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 69,
-															Line:   228,
+															Line:   238,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 56,
-															Line:   228,
+															Line:   238,
 														},
 													},
 												},
@@ -40883,13 +41650,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 69,
-																Line:   228,
+																Line:   238,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 56,
-																Line:   228,
+																Line:   238,
 															},
 														},
 													},
@@ -40899,13 +41666,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 62,
-																	Line:   228,
+																	Line:   238,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 56,
-																	Line:   228,
+																	Line:   238,
 																},
 															},
 														},
@@ -40917,13 +41684,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 69,
-																	Line:   228,
+																	Line:   238,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 63,
-																	Line:   228,
+																	Line:   238,
 																},
 															},
 														},
@@ -40937,13 +41704,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 70,
-														Line:   228,
+														Line:   238,
 													},
 													File:   "universe.flux",
 													Source: "mean(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   228,
+														Line:   238,
 													},
 												},
 											},
@@ -40953,13 +41720,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 55,
-															Line:   228,
+															Line:   238,
 														},
 														File:   "universe.flux",
 														Source: "mean",
 														Start: ast.Position{
 															Column: 51,
-															Line:   228,
+															Line:   238,
 														},
 													},
 												},
@@ -40973,13 +41740,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   228,
+													Line:   238,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   228,
+													Line:   238,
 												},
 											},
 										},
@@ -40989,13 +41756,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   228,
+														Line:   238,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   228,
+														Line:   238,
 													},
 												},
 											},
@@ -41006,13 +41773,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   228,
+													Line:   238,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   228,
+													Line:   238,
 												},
 											},
 										}},
@@ -41024,13 +41791,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 32,
-											Line:   229,
+											Line:   239,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: top",
 										Start: ast.Position{
 											Column: 17,
-											Line:   229,
+											Line:   239,
 										},
 									},
 								},
@@ -41040,13 +41807,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   229,
+												Line:   239,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   229,
+												Line:   239,
 											},
 										},
 									},
@@ -41058,13 +41825,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 32,
-												Line:   229,
+												Line:   239,
 											},
 											File:   "universe.flux",
 											Source: "top",
 											Start: ast.Position{
 												Column: 29,
-												Line:   229,
+												Line:   239,
 											},
 										},
 									},
@@ -41078,13 +41845,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   230,
+									Line:   240,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: top,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   224,
+									Line:   234,
 								},
 							},
 						},
@@ -41094,13 +41861,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   224,
+										Line:   234,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   224,
+										Line:   234,
 									},
 								},
 							},
@@ -41114,13 +41881,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 20,
-								Line:   222,
+								Line:   232,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 19,
-								Line:   222,
+								Line:   232,
 							},
 						},
 					},
@@ -41130,13 +41897,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 20,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 19,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41149,13 +41916,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 37,
-								Line:   222,
+								Line:   232,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 22,
-								Line:   222,
+								Line:   232,
 							},
 						},
 					},
@@ -41165,13 +41932,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 28,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 22,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41183,13 +41950,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 37,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 29,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41201,13 +41968,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 54,
-								Line:   222,
+								Line:   232,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 39,
-								Line:   222,
+								Line:   232,
 							},
 						},
 					},
@@ -41217,13 +41984,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 51,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 39,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41235,13 +42002,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 54,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 52,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41253,13 +42020,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 65,
-								Line:   222,
+								Line:   232,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 56,
-								Line:   222,
+								Line:   232,
 							},
 						},
 					},
@@ -41269,13 +42036,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 62,
-									Line:   222,
+									Line:   232,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 56,
-									Line:   222,
+									Line:   232,
 								},
 							},
 						},
@@ -41286,13 +42053,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 65,
-								Line:   222,
+								Line:   232,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 63,
-								Line:   222,
+								Line:   232,
 							},
 						},
 					}},
@@ -41304,13 +42071,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   241,
+						Line:   251,
 					},
 					File:   "universe.flux",
 					Source: "highestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   233,
+						Line:   243,
 					},
 				},
 			},
@@ -41320,13 +42087,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 15,
-							Line:   233,
+							Line:   243,
 						},
 						File:   "universe.flux",
 						Source: "highestCurrent",
 						Start: ast.Position{
 							Column: 1,
-							Line:   233,
+							Line:   243,
 						},
 					},
 				},
@@ -41338,13 +42105,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   241,
+							Line:   251,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )",
 						Start: ast.Position{
 							Column: 18,
-							Line:   233,
+							Line:   243,
 						},
 					},
 				},
@@ -41355,13 +42122,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   234,
+									Line:   244,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   234,
+									Line:   244,
 								},
 							},
 						},
@@ -41372,13 +42139,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   241,
+								Line:   251,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   234,
+								Line:   244,
 							},
 						},
 					},
@@ -41389,13 +42156,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 32,
-										Line:   240,
+										Line:   250,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top",
 									Start: ast.Position{
 										Column: 17,
-										Line:   236,
+										Line:   246,
 									},
 								},
 							},
@@ -41405,13 +42172,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   236,
+											Line:   246,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   236,
+											Line:   246,
 										},
 									},
 								},
@@ -41421,13 +42188,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   236,
+												Line:   246,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   236,
+												Line:   246,
 											},
 										},
 									},
@@ -41439,13 +42206,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   236,
+												Line:   246,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   236,
+												Line:   246,
 											},
 										},
 									},
@@ -41457,13 +42224,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   237,
+											Line:   247,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   237,
+											Line:   247,
 										},
 									},
 								},
@@ -41473,13 +42240,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   237,
+												Line:   247,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   237,
+												Line:   247,
 											},
 										},
 									},
@@ -41491,13 +42258,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   237,
+												Line:   247,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   237,
+												Line:   247,
 											},
 										},
 									},
@@ -41509,13 +42276,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   238,
+											Line:   248,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   238,
+											Line:   248,
 										},
 									},
 								},
@@ -41525,13 +42292,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   238,
+												Line:   248,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   238,
+												Line:   248,
 											},
 										},
 									},
@@ -41543,13 +42310,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   238,
+												Line:   248,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   238,
+												Line:   248,
 											},
 										},
 									},
@@ -41561,13 +42328,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   239,
+											Line:   249,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> last(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   239,
+											Line:   249,
 										},
 									},
 								},
@@ -41577,13 +42344,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   239,
+												Line:   249,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   239,
+												Line:   249,
 											},
 										},
 									},
@@ -41595,13 +42362,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   239,
+												Line:   249,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> last(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   239,
+												Line:   249,
 											},
 										},
 									},
@@ -41612,13 +42379,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   239,
+														Line:   249,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   239,
+														Line:   249,
 													},
 												},
 											},
@@ -41629,13 +42396,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 70,
-													Line:   239,
+													Line:   249,
 												},
 												File:   "universe.flux",
 												Source: "tables |> last(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   239,
+													Line:   249,
 												},
 											},
 										},
@@ -41646,13 +42413,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 69,
-															Line:   239,
+															Line:   249,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 56,
-															Line:   239,
+															Line:   249,
 														},
 													},
 												},
@@ -41662,13 +42429,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 69,
-																Line:   239,
+																Line:   249,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 56,
-																Line:   239,
+																Line:   249,
 															},
 														},
 													},
@@ -41678,13 +42445,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 62,
-																	Line:   239,
+																	Line:   249,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 56,
-																	Line:   239,
+																	Line:   249,
 																},
 															},
 														},
@@ -41696,13 +42463,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 69,
-																	Line:   239,
+																	Line:   249,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 63,
-																	Line:   239,
+																	Line:   249,
 																},
 															},
 														},
@@ -41716,13 +42483,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 70,
-														Line:   239,
+														Line:   249,
 													},
 													File:   "universe.flux",
 													Source: "last(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   239,
+														Line:   249,
 													},
 												},
 											},
@@ -41732,13 +42499,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 55,
-															Line:   239,
+															Line:   249,
 														},
 														File:   "universe.flux",
 														Source: "last",
 														Start: ast.Position{
 															Column: 51,
-															Line:   239,
+															Line:   249,
 														},
 													},
 												},
@@ -41752,13 +42519,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   239,
+													Line:   249,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   239,
+													Line:   249,
 												},
 											},
 										},
@@ -41768,13 +42535,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   239,
+														Line:   249,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   239,
+														Line:   249,
 													},
 												},
 											},
@@ -41785,13 +42552,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   239,
+													Line:   249,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   239,
+													Line:   249,
 												},
 											},
 										}},
@@ -41803,13 +42570,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 32,
-											Line:   240,
+											Line:   250,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: top",
 										Start: ast.Position{
 											Column: 17,
-											Line:   240,
+											Line:   250,
 										},
 									},
 								},
@@ -41819,13 +42586,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   240,
+												Line:   250,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   240,
+												Line:   250,
 											},
 										},
 									},
@@ -41837,13 +42604,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 32,
-												Line:   240,
+												Line:   250,
 											},
 											File:   "universe.flux",
 											Source: "top",
 											Start: ast.Position{
 												Column: 29,
-												Line:   240,
+												Line:   250,
 											},
 										},
 									},
@@ -41857,13 +42624,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   241,
+									Line:   251,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: top,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   235,
+									Line:   245,
 								},
 							},
 						},
@@ -41873,13 +42640,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   235,
+										Line:   245,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   235,
+										Line:   245,
 									},
 								},
 							},
@@ -41893,13 +42660,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 20,
-								Line:   233,
+								Line:   243,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 19,
-								Line:   233,
+								Line:   243,
 							},
 						},
 					},
@@ -41909,13 +42676,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 20,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 19,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -41928,13 +42695,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 37,
-								Line:   233,
+								Line:   243,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 22,
-								Line:   233,
+								Line:   243,
 							},
 						},
 					},
@@ -41944,13 +42711,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 28,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 22,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -41962,13 +42729,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 37,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 29,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -41980,13 +42747,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 54,
-								Line:   233,
+								Line:   243,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 39,
-								Line:   233,
+								Line:   243,
 							},
 						},
 					},
@@ -41996,13 +42763,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 51,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 39,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -42014,13 +42781,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 54,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 52,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -42032,13 +42799,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 65,
-								Line:   233,
+								Line:   243,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 56,
-								Line:   233,
+								Line:   243,
 							},
 						},
 					},
@@ -42048,13 +42815,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 62,
-									Line:   233,
+									Line:   243,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 56,
-									Line:   233,
+									Line:   243,
 								},
 							},
 						},
@@ -42065,13 +42832,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 65,
-								Line:   233,
+								Line:   243,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 63,
-								Line:   233,
+								Line:   243,
 							},
 						},
 					}},
@@ -42083,13 +42850,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   253,
+						Line:   263,
 					},
 					File:   "universe.flux",
 					Source: "lowestMin = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   244,
+						Line:   254,
 					},
 				},
 			},
@@ -42099,13 +42866,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 10,
-							Line:   244,
+							Line:   254,
 						},
 						File:   "universe.flux",
 						Source: "lowestMin",
 						Start: ast.Position{
 							Column: 1,
-							Line:   244,
+							Line:   254,
 						},
 					},
 				},
@@ -42117,13 +42884,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   253,
+							Line:   263,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )",
 						Start: ast.Position{
 							Column: 13,
-							Line:   244,
+							Line:   254,
 						},
 					},
 				},
@@ -42134,13 +42901,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   245,
+									Line:   255,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   245,
+									Line:   255,
 								},
 							},
 						},
@@ -42151,13 +42918,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   253,
+								Line:   263,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   245,
+								Line:   255,
 							},
 						},
 					},
@@ -42168,13 +42935,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   252,
+										Line:   262,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom",
 									Start: ast.Position{
 										Column: 17,
-										Line:   247,
+										Line:   257,
 									},
 								},
 							},
@@ -42184,13 +42951,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   247,
+											Line:   257,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   247,
+											Line:   257,
 										},
 									},
 								},
@@ -42200,13 +42967,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   247,
+												Line:   257,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   247,
+												Line:   257,
 											},
 										},
 									},
@@ -42218,13 +42985,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   247,
+												Line:   257,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   247,
+												Line:   257,
 											},
 										},
 									},
@@ -42236,13 +43003,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   248,
+											Line:   258,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   248,
+											Line:   258,
 										},
 									},
 								},
@@ -42252,13 +43019,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   248,
+												Line:   258,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   248,
+												Line:   258,
 											},
 										},
 									},
@@ -42270,13 +43037,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   248,
+												Line:   258,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   248,
+												Line:   258,
 											},
 										},
 									},
@@ -42288,13 +43055,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   249,
+											Line:   259,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   249,
+											Line:   259,
 										},
 									},
 								},
@@ -42304,13 +43071,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   249,
+												Line:   259,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   249,
+												Line:   259,
 											},
 										},
 									},
@@ -42322,13 +43089,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   249,
+												Line:   259,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   249,
+												Line:   259,
 											},
 										},
 									},
@@ -42340,13 +43107,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 69,
-											Line:   251,
+											Line:   261,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> min(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   251,
+											Line:   261,
 										},
 									},
 								},
@@ -42356,13 +43123,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   251,
+												Line:   261,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   251,
+												Line:   261,
 											},
 										},
 									},
@@ -42374,13 +43141,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 69,
-												Line:   251,
+												Line:   261,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> min(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   251,
+												Line:   261,
 											},
 										},
 									},
@@ -42391,13 +43158,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   251,
+														Line:   261,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   251,
+														Line:   261,
 													},
 												},
 											},
@@ -42408,13 +43175,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 69,
-													Line:   251,
+													Line:   261,
 												},
 												File:   "universe.flux",
 												Source: "tables |> min(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   251,
+													Line:   261,
 												},
 											},
 										},
@@ -42425,13 +43192,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 68,
-															Line:   251,
+															Line:   261,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 55,
-															Line:   251,
+															Line:   261,
 														},
 													},
 												},
@@ -42441,13 +43208,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   251,
+																Line:   261,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 55,
-																Line:   251,
+																Line:   261,
 															},
 														},
 													},
@@ -42457,13 +43224,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 61,
-																	Line:   251,
+																	Line:   261,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 55,
-																	Line:   251,
+																	Line:   261,
 																},
 															},
 														},
@@ -42475,13 +43242,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 68,
-																	Line:   251,
+																	Line:   261,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 62,
-																	Line:   251,
+																	Line:   261,
 																},
 															},
 														},
@@ -42495,13 +43262,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 69,
-														Line:   251,
+														Line:   261,
 													},
 													File:   "universe.flux",
 													Source: "min(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   251,
+														Line:   261,
 													},
 												},
 											},
@@ -42511,13 +43278,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 54,
-															Line:   251,
+															Line:   261,
 														},
 														File:   "universe.flux",
 														Source: "min",
 														Start: ast.Position{
 															Column: 51,
-															Line:   251,
+															Line:   261,
 														},
 													},
 												},
@@ -42531,13 +43298,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   251,
+													Line:   261,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   251,
+													Line:   261,
 												},
 											},
 										},
@@ -42547,13 +43314,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   251,
+														Line:   261,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   251,
+														Line:   261,
 													},
 												},
 											},
@@ -42564,13 +43331,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   251,
+													Line:   261,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   251,
+													Line:   261,
 												},
 											},
 										}},
@@ -42582,13 +43349,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   252,
+											Line:   262,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: bottom",
 										Start: ast.Position{
 											Column: 17,
-											Line:   252,
+											Line:   262,
 										},
 									},
 								},
@@ -42598,13 +43365,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   252,
+												Line:   262,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   252,
+												Line:   262,
 											},
 										},
 									},
@@ -42616,13 +43383,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   252,
+												Line:   262,
 											},
 											File:   "universe.flux",
 											Source: "bottom",
 											Start: ast.Position{
 												Column: 29,
-												Line:   252,
+												Line:   262,
 											},
 										},
 									},
@@ -42636,13 +43403,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   253,
+									Line:   263,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                // TODO(nathanielc): Once max/min support selecting based on multiple columns change this to pass all columns.\n                reducer: (tables=<-) => tables |> min(column:column),\n                _sortLimit: bottom,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   246,
+									Line:   256,
 								},
 							},
 						},
@@ -42652,13 +43419,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   246,
+										Line:   256,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   246,
+										Line:   256,
 									},
 								},
 							},
@@ -42672,13 +43439,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 15,
-								Line:   244,
+								Line:   254,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 14,
-								Line:   244,
+								Line:   254,
 							},
 						},
 					},
@@ -42688,13 +43455,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 15,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 14,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42707,13 +43474,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 32,
-								Line:   244,
+								Line:   254,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 17,
-								Line:   244,
+								Line:   254,
 							},
 						},
 					},
@@ -42723,13 +43490,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 17,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42741,13 +43508,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 32,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 24,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42759,13 +43526,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 49,
-								Line:   244,
+								Line:   254,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 34,
-								Line:   244,
+								Line:   254,
 							},
 						},
 					},
@@ -42775,13 +43542,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 46,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 34,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42793,13 +43560,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 49,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 47,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42811,13 +43578,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 60,
-								Line:   244,
+								Line:   254,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 51,
-								Line:   244,
+								Line:   254,
 							},
 						},
 					},
@@ -42827,13 +43594,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 57,
-									Line:   244,
+									Line:   254,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 51,
-									Line:   244,
+									Line:   254,
 								},
 							},
 						},
@@ -42844,13 +43611,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 60,
-								Line:   244,
+								Line:   254,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 58,
-								Line:   244,
+								Line:   254,
 							},
 						},
 					}},
@@ -42862,13 +43629,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   264,
+						Line:   274,
 					},
 					File:   "universe.flux",
 					Source: "lowestAverage = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   256,
+						Line:   266,
 					},
 				},
 			},
@@ -42878,13 +43645,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   256,
+							Line:   266,
 						},
 						File:   "universe.flux",
 						Source: "lowestAverage",
 						Start: ast.Position{
 							Column: 1,
-							Line:   256,
+							Line:   266,
 						},
 					},
 				},
@@ -42896,13 +43663,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   264,
+							Line:   274,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )",
 						Start: ast.Position{
 							Column: 17,
-							Line:   256,
+							Line:   266,
 						},
 					},
 				},
@@ -42913,13 +43680,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   257,
+									Line:   267,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   257,
+									Line:   267,
 								},
 							},
 						},
@@ -42930,13 +43697,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   264,
+								Line:   274,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   257,
+								Line:   267,
 							},
 						},
 					},
@@ -42947,13 +43714,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   263,
+										Line:   273,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom",
 									Start: ast.Position{
 										Column: 17,
-										Line:   259,
+										Line:   269,
 									},
 								},
 							},
@@ -42963,13 +43730,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   259,
+											Line:   269,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   259,
+											Line:   269,
 										},
 									},
 								},
@@ -42979,13 +43746,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   259,
+												Line:   269,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   259,
+												Line:   269,
 											},
 										},
 									},
@@ -42997,13 +43764,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   259,
+												Line:   269,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   259,
+												Line:   269,
 											},
 										},
 									},
@@ -43015,13 +43782,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   260,
+											Line:   270,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   260,
+											Line:   270,
 										},
 									},
 								},
@@ -43031,13 +43798,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   260,
+												Line:   270,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   260,
+												Line:   270,
 											},
 										},
 									},
@@ -43049,13 +43816,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   260,
+												Line:   270,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   260,
+												Line:   270,
 											},
 										},
 									},
@@ -43067,13 +43834,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   261,
+											Line:   271,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   261,
+											Line:   271,
 										},
 									},
 								},
@@ -43083,13 +43850,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   261,
+												Line:   271,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   261,
+												Line:   271,
 											},
 										},
 									},
@@ -43101,13 +43868,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   261,
+												Line:   271,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   261,
+												Line:   271,
 											},
 										},
 									},
@@ -43119,13 +43886,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   262,
+											Line:   272,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> mean(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   262,
+											Line:   272,
 										},
 									},
 								},
@@ -43135,13 +43902,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   262,
+												Line:   272,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   262,
+												Line:   272,
 											},
 										},
 									},
@@ -43153,13 +43920,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   262,
+												Line:   272,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> mean(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   262,
+												Line:   272,
 											},
 										},
 									},
@@ -43170,13 +43937,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   262,
+														Line:   272,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   262,
+														Line:   272,
 													},
 												},
 											},
@@ -43187,13 +43954,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 70,
-													Line:   262,
+													Line:   272,
 												},
 												File:   "universe.flux",
 												Source: "tables |> mean(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   262,
+													Line:   272,
 												},
 											},
 										},
@@ -43204,13 +43971,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 69,
-															Line:   262,
+															Line:   272,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 56,
-															Line:   262,
+															Line:   272,
 														},
 													},
 												},
@@ -43220,13 +43987,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 69,
-																Line:   262,
+																Line:   272,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 56,
-																Line:   262,
+																Line:   272,
 															},
 														},
 													},
@@ -43236,13 +44003,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 62,
-																	Line:   262,
+																	Line:   272,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 56,
-																	Line:   262,
+																	Line:   272,
 																},
 															},
 														},
@@ -43254,13 +44021,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 69,
-																	Line:   262,
+																	Line:   272,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 63,
-																	Line:   262,
+																	Line:   272,
 																},
 															},
 														},
@@ -43274,13 +44041,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 70,
-														Line:   262,
+														Line:   272,
 													},
 													File:   "universe.flux",
 													Source: "mean(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   262,
+														Line:   272,
 													},
 												},
 											},
@@ -43290,13 +44057,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 55,
-															Line:   262,
+															Line:   272,
 														},
 														File:   "universe.flux",
 														Source: "mean",
 														Start: ast.Position{
 															Column: 51,
-															Line:   262,
+															Line:   272,
 														},
 													},
 												},
@@ -43310,13 +44077,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   262,
+													Line:   272,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   262,
+													Line:   272,
 												},
 											},
 										},
@@ -43326,13 +44093,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   262,
+														Line:   272,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   262,
+														Line:   272,
 													},
 												},
 											},
@@ -43343,13 +44110,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   262,
+													Line:   272,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   262,
+													Line:   272,
 												},
 											},
 										}},
@@ -43361,13 +44128,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   263,
+											Line:   273,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: bottom",
 										Start: ast.Position{
 											Column: 17,
-											Line:   263,
+											Line:   273,
 										},
 									},
 								},
@@ -43377,13 +44144,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   263,
+												Line:   273,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   263,
+												Line:   273,
 											},
 										},
 									},
@@ -43395,13 +44162,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   263,
+												Line:   273,
 											},
 											File:   "universe.flux",
 											Source: "bottom",
 											Start: ast.Position{
 												Column: 29,
-												Line:   263,
+												Line:   273,
 											},
 										},
 									},
@@ -43415,13 +44182,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   264,
+									Line:   274,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> mean(column:column),\n                _sortLimit: bottom,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   258,
+									Line:   268,
 								},
 							},
 						},
@@ -43431,13 +44198,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   258,
+										Line:   268,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   258,
+										Line:   268,
 									},
 								},
 							},
@@ -43451,13 +44218,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 19,
-								Line:   256,
+								Line:   266,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 18,
-								Line:   256,
+								Line:   266,
 							},
 						},
 					},
@@ -43467,13 +44234,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 19,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 18,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43486,13 +44253,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 36,
-								Line:   256,
+								Line:   266,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 21,
-								Line:   256,
+								Line:   266,
 							},
 						},
 					},
@@ -43502,13 +44269,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 27,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 21,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43520,13 +44287,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 28,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43538,13 +44305,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   256,
+								Line:   266,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 38,
-								Line:   256,
+								Line:   266,
 							},
 						},
 					},
@@ -43554,13 +44321,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 38,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43572,13 +44339,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 53,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 51,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43590,13 +44357,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   256,
+								Line:   266,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 55,
-								Line:   256,
+								Line:   266,
 							},
 						},
 					},
@@ -43606,13 +44373,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 61,
-									Line:   256,
+									Line:   266,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 55,
-									Line:   256,
+									Line:   266,
 								},
 							},
 						},
@@ -43623,13 +44390,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   256,
+								Line:   266,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 62,
-								Line:   256,
+								Line:   266,
 							},
 						},
 					}},
@@ -43641,13 +44408,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 14,
-						Line:   275,
+						Line:   285,
 					},
 					File:   "universe.flux",
 					Source: "lowestCurrent = (n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )",
 					Start: ast.Position{
 						Column: 1,
-						Line:   267,
+						Line:   277,
 					},
 				},
 			},
@@ -43657,13 +44424,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   267,
+							Line:   277,
 						},
 						File:   "universe.flux",
 						Source: "lowestCurrent",
 						Start: ast.Position{
 							Column: 1,
-							Line:   267,
+							Line:   277,
 						},
 					},
 				},
@@ -43675,13 +44442,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 14,
-							Line:   275,
+							Line:   285,
 						},
 						File:   "universe.flux",
 						Source: "(n, column=\"_value\", groupColumns=[], tables=<-) =>\n    tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )",
 						Start: ast.Position{
 							Column: 17,
-							Line:   267,
+							Line:   277,
 						},
 					},
 				},
@@ -43692,13 +44459,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   268,
+									Line:   278,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   268,
+									Line:   278,
 								},
 							},
 						},
@@ -43709,13 +44476,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 14,
-								Line:   275,
+								Line:   285,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> _highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )",
 							Start: ast.Position{
 								Column: 5,
-								Line:   268,
+								Line:   278,
 							},
 						},
 					},
@@ -43726,13 +44493,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   274,
+										Line:   284,
 									},
 									File:   "universe.flux",
 									Source: "n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom",
 									Start: ast.Position{
 										Column: 17,
-										Line:   270,
+										Line:   280,
 									},
 								},
 							},
@@ -43742,13 +44509,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 20,
-											Line:   270,
+											Line:   280,
 										},
 										File:   "universe.flux",
 										Source: "n:n",
 										Start: ast.Position{
 											Column: 17,
-											Line:   270,
+											Line:   280,
 										},
 									},
 								},
@@ -43758,13 +44525,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   270,
+												Line:   280,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 17,
-												Line:   270,
+												Line:   280,
 											},
 										},
 									},
@@ -43776,13 +44543,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 20,
-												Line:   270,
+												Line:   280,
 											},
 											File:   "universe.flux",
 											Source: "n",
 											Start: ast.Position{
 												Column: 19,
-												Line:   270,
+												Line:   280,
 											},
 										},
 									},
@@ -43794,13 +44561,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 30,
-											Line:   271,
+											Line:   281,
 										},
 										File:   "universe.flux",
 										Source: "column:column",
 										Start: ast.Position{
 											Column: 17,
-											Line:   271,
+											Line:   281,
 										},
 									},
 								},
@@ -43810,13 +44577,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 23,
-												Line:   271,
+												Line:   281,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   271,
+												Line:   281,
 											},
 										},
 									},
@@ -43828,13 +44595,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   271,
+												Line:   281,
 											},
 											File:   "universe.flux",
 											Source: "column",
 											Start: ast.Position{
 												Column: 24,
-												Line:   271,
+												Line:   281,
 											},
 										},
 									},
@@ -43846,13 +44613,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 42,
-											Line:   272,
+											Line:   282,
 										},
 										File:   "universe.flux",
 										Source: "groupColumns:groupColumns",
 										Start: ast.Position{
 											Column: 17,
-											Line:   272,
+											Line:   282,
 										},
 									},
 								},
@@ -43862,13 +44629,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   272,
+												Line:   282,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 17,
-												Line:   272,
+												Line:   282,
 											},
 										},
 									},
@@ -43880,13 +44647,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   272,
+												Line:   282,
 											},
 											File:   "universe.flux",
 											Source: "groupColumns",
 											Start: ast.Position{
 												Column: 30,
-												Line:   272,
+												Line:   282,
 											},
 										},
 									},
@@ -43898,13 +44665,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   273,
+											Line:   283,
 										},
 										File:   "universe.flux",
 										Source: "reducer: (tables=<-) => tables |> last(column:column)",
 										Start: ast.Position{
 											Column: 17,
-											Line:   273,
+											Line:   283,
 										},
 									},
 								},
@@ -43914,13 +44681,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   273,
+												Line:   283,
 											},
 											File:   "universe.flux",
 											Source: "reducer",
 											Start: ast.Position{
 												Column: 17,
-												Line:   273,
+												Line:   283,
 											},
 										},
 									},
@@ -43932,13 +44699,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   273,
+												Line:   283,
 											},
 											File:   "universe.flux",
 											Source: "(tables=<-) => tables |> last(column:column)",
 											Start: ast.Position{
 												Column: 26,
-												Line:   273,
+												Line:   283,
 											},
 										},
 									},
@@ -43949,13 +44716,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   273,
+														Line:   283,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 41,
-														Line:   273,
+														Line:   283,
 													},
 												},
 											},
@@ -43966,13 +44733,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 70,
-													Line:   273,
+													Line:   283,
 												},
 												File:   "universe.flux",
 												Source: "tables |> last(column:column)",
 												Start: ast.Position{
 													Column: 41,
-													Line:   273,
+													Line:   283,
 												},
 											},
 										},
@@ -43983,13 +44750,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 69,
-															Line:   273,
+															Line:   283,
 														},
 														File:   "universe.flux",
 														Source: "column:column",
 														Start: ast.Position{
 															Column: 56,
-															Line:   273,
+															Line:   283,
 														},
 													},
 												},
@@ -43999,13 +44766,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 69,
-																Line:   273,
+																Line:   283,
 															},
 															File:   "universe.flux",
 															Source: "column:column",
 															Start: ast.Position{
 																Column: 56,
-																Line:   273,
+																Line:   283,
 															},
 														},
 													},
@@ -44015,13 +44782,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 62,
-																	Line:   273,
+																	Line:   283,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 56,
-																	Line:   273,
+																	Line:   283,
 																},
 															},
 														},
@@ -44033,13 +44800,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 69,
-																	Line:   273,
+																	Line:   283,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 63,
-																	Line:   273,
+																	Line:   283,
 																},
 															},
 														},
@@ -44053,13 +44820,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 70,
-														Line:   273,
+														Line:   283,
 													},
 													File:   "universe.flux",
 													Source: "last(column:column)",
 													Start: ast.Position{
 														Column: 51,
-														Line:   273,
+														Line:   283,
 													},
 												},
 											},
@@ -44069,13 +44836,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 55,
-															Line:   273,
+															Line:   283,
 														},
 														File:   "universe.flux",
 														Source: "last",
 														Start: ast.Position{
 															Column: 51,
-															Line:   273,
+															Line:   283,
 														},
 													},
 												},
@@ -44089,13 +44856,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   273,
+													Line:   283,
 												},
 												File:   "universe.flux",
 												Source: "tables=<-",
 												Start: ast.Position{
 													Column: 27,
-													Line:   273,
+													Line:   283,
 												},
 											},
 										},
@@ -44105,13 +44872,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 33,
-														Line:   273,
+														Line:   283,
 													},
 													File:   "universe.flux",
 													Source: "tables",
 													Start: ast.Position{
 														Column: 27,
-														Line:   273,
+														Line:   283,
 													},
 												},
 											},
@@ -44122,13 +44889,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   273,
+													Line:   283,
 												},
 												File:   "universe.flux",
 												Source: "<-",
 												Start: ast.Position{
 													Column: 34,
-													Line:   273,
+													Line:   283,
 												},
 											},
 										}},
@@ -44140,13 +44907,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   274,
+											Line:   284,
 										},
 										File:   "universe.flux",
 										Source: "_sortLimit: bottom",
 										Start: ast.Position{
 											Column: 17,
-											Line:   274,
+											Line:   284,
 										},
 									},
 								},
@@ -44156,13 +44923,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 27,
-												Line:   274,
+												Line:   284,
 											},
 											File:   "universe.flux",
 											Source: "_sortLimit",
 											Start: ast.Position{
 												Column: 17,
-												Line:   274,
+												Line:   284,
 											},
 										},
 									},
@@ -44174,13 +44941,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   274,
+												Line:   284,
 											},
 											File:   "universe.flux",
 											Source: "bottom",
 											Start: ast.Position{
 												Column: 29,
-												Line:   274,
+												Line:   284,
 											},
 										},
 									},
@@ -44194,13 +44961,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 14,
-									Line:   275,
+									Line:   285,
 								},
 								File:   "universe.flux",
 								Source: "_highestOrLowest(\n                n:n,\n                column:column,\n                groupColumns:groupColumns,\n                reducer: (tables=<-) => tables |> last(column:column),\n                _sortLimit: bottom,\n            )",
 								Start: ast.Position{
 									Column: 12,
-									Line:   269,
+									Line:   279,
 								},
 							},
 						},
@@ -44210,13 +44977,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 28,
-										Line:   269,
+										Line:   279,
 									},
 									File:   "universe.flux",
 									Source: "_highestOrLowest",
 									Start: ast.Position{
 										Column: 12,
-										Line:   269,
+										Line:   279,
 									},
 								},
 							},
@@ -44230,13 +44997,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 19,
-								Line:   267,
+								Line:   277,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 18,
-								Line:   267,
+								Line:   277,
 							},
 						},
 					},
@@ -44246,13 +45013,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 19,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 18,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44265,13 +45032,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 36,
-								Line:   267,
+								Line:   277,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 21,
-								Line:   267,
+								Line:   277,
 							},
 						},
 					},
@@ -44281,13 +45048,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 27,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 21,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44299,13 +45066,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 28,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44317,13 +45084,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   267,
+								Line:   277,
 							},
 							File:   "universe.flux",
 							Source: "groupColumns=[]",
 							Start: ast.Position{
 								Column: 38,
-								Line:   267,
+								Line:   277,
 							},
 						},
 					},
@@ -44333,13 +45100,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 50,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "groupColumns",
 								Start: ast.Position{
 									Column: 38,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44351,13 +45118,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 53,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "[]",
 								Start: ast.Position{
 									Column: 51,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44369,13 +45136,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   267,
+								Line:   277,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 55,
-								Line:   267,
+								Line:   277,
 							},
 						},
 					},
@@ -44385,13 +45152,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 61,
-									Line:   267,
+									Line:   277,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 55,
-									Line:   267,
+									Line:   277,
 								},
 							},
 						},
@@ -44402,13 +45169,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   267,
+								Line:   277,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 62,
-								Line:   267,
+								Line:   277,
 							},
 						},
 					}},
@@ -44420,13 +45187,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 30,
-						Line:   285,
+						Line:   295,
 					},
 					File:   "universe.flux",
 					Source: "timedMovingAverage = (every, period, column=\"_value\", tables=<-) =>\n    tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")\n        |> window(every: inf)",
 					Start: ast.Position{
 						Column: 1,
-						Line:   280,
+						Line:   290,
 					},
 				},
 			},
@@ -44436,13 +45203,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 19,
-							Line:   280,
+							Line:   290,
 						},
 						File:   "universe.flux",
 						Source: "timedMovingAverage",
 						Start: ast.Position{
 							Column: 1,
-							Line:   280,
+							Line:   290,
 						},
 					},
 				},
@@ -44454,13 +45221,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 30,
-							Line:   285,
+							Line:   295,
 						},
 						File:   "universe.flux",
 						Source: "(every, period, column=\"_value\", tables=<-) =>\n    tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")\n        |> window(every: inf)",
 						Start: ast.Position{
 							Column: 22,
-							Line:   280,
+							Line:   290,
 						},
 					},
 				},
@@ -44474,13 +45241,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 11,
-												Line:   281,
+												Line:   291,
 											},
 											File:   "universe.flux",
 											Source: "tables",
 											Start: ast.Position{
 												Column: 5,
-												Line:   281,
+												Line:   291,
 											},
 										},
 									},
@@ -44491,13 +45258,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 48,
-											Line:   282,
+											Line:   292,
 										},
 										File:   "universe.flux",
 										Source: "tables\n        |> window(every: every, period: period)",
 										Start: ast.Position{
 											Column: 5,
-											Line:   281,
+											Line:   291,
 										},
 									},
 								},
@@ -44508,13 +45275,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 47,
-													Line:   282,
+													Line:   292,
 												},
 												File:   "universe.flux",
 												Source: "every: every, period: period",
 												Start: ast.Position{
 													Column: 19,
-													Line:   282,
+													Line:   292,
 												},
 											},
 										},
@@ -44524,13 +45291,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 31,
-														Line:   282,
+														Line:   292,
 													},
 													File:   "universe.flux",
 													Source: "every: every",
 													Start: ast.Position{
 														Column: 19,
-														Line:   282,
+														Line:   292,
 													},
 												},
 											},
@@ -44540,13 +45307,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 24,
-															Line:   282,
+															Line:   292,
 														},
 														File:   "universe.flux",
 														Source: "every",
 														Start: ast.Position{
 															Column: 19,
-															Line:   282,
+															Line:   292,
 														},
 													},
 												},
@@ -44558,13 +45325,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 31,
-															Line:   282,
+															Line:   292,
 														},
 														File:   "universe.flux",
 														Source: "every",
 														Start: ast.Position{
 															Column: 26,
-															Line:   282,
+															Line:   292,
 														},
 													},
 												},
@@ -44576,13 +45343,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 47,
-														Line:   282,
+														Line:   292,
 													},
 													File:   "universe.flux",
 													Source: "period: period",
 													Start: ast.Position{
 														Column: 33,
-														Line:   282,
+														Line:   292,
 													},
 												},
 											},
@@ -44592,13 +45359,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 39,
-															Line:   282,
+															Line:   292,
 														},
 														File:   "universe.flux",
 														Source: "period",
 														Start: ast.Position{
 															Column: 33,
-															Line:   282,
+															Line:   292,
 														},
 													},
 												},
@@ -44610,13 +45377,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 47,
-															Line:   282,
+															Line:   292,
 														},
 														File:   "universe.flux",
 														Source: "period",
 														Start: ast.Position{
 															Column: 41,
-															Line:   282,
+															Line:   292,
 														},
 													},
 												},
@@ -44630,13 +45397,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 48,
-												Line:   282,
+												Line:   292,
 											},
 											File:   "universe.flux",
 											Source: "window(every: every, period: period)",
 											Start: ast.Position{
 												Column: 12,
-												Line:   282,
+												Line:   292,
 											},
 										},
 									},
@@ -44646,13 +45413,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 18,
-													Line:   282,
+													Line:   292,
 												},
 												File:   "universe.flux",
 												Source: "window",
 												Start: ast.Position{
 													Column: 12,
-													Line:   282,
+													Line:   292,
 												},
 											},
 										},
@@ -44665,13 +45432,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 31,
-										Line:   283,
+										Line:   293,
 									},
 									File:   "universe.flux",
 									Source: "tables\n        |> window(every: every, period: period)\n        |> mean(column:column)",
 									Start: ast.Position{
 										Column: 5,
-										Line:   281,
+										Line:   291,
 									},
 								},
 							},
@@ -44682,13 +45449,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   283,
+												Line:   293,
 											},
 											File:   "universe.flux",
 											Source: "column:column",
 											Start: ast.Position{
 												Column: 17,
-												Line:   283,
+												Line:   293,
 											},
 										},
 									},
@@ -44698,13 +45465,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 30,
-													Line:   283,
+													Line:   293,
 												},
 												File:   "universe.flux",
 												Source: "column:column",
 												Start: ast.Position{
 													Column: 17,
-													Line:   283,
+													Line:   293,
 												},
 											},
 										},
@@ -44714,13 +45481,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 23,
-														Line:   283,
+														Line:   293,
 													},
 													File:   "universe.flux",
 													Source: "column",
 													Start: ast.Position{
 														Column: 17,
-														Line:   283,
+														Line:   293,
 													},
 												},
 											},
@@ -44732,13 +45499,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 30,
-														Line:   283,
+														Line:   293,
 													},
 													File:   "universe.flux",
 													Source: "column",
 													Start: ast.Position{
 														Column: 24,
-														Line:   283,
+														Line:   293,
 													},
 												},
 											},
@@ -44752,13 +45519,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 31,
-											Line:   283,
+											Line:   293,
 										},
 										File:   "universe.flux",
 										Source: "mean(column:column)",
 										Start: ast.Position{
 											Column: 12,
-											Line:   283,
+											Line:   293,
 										},
 									},
 								},
@@ -44768,13 +45535,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 16,
-												Line:   283,
+												Line:   293,
 											},
 											File:   "universe.flux",
 											Source: "mean",
 											Start: ast.Position{
 												Column: 12,
-												Line:   283,
+												Line:   293,
 											},
 										},
 									},
@@ -44787,13 +45554,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 51,
-									Line:   284,
+									Line:   294,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")",
 								Start: ast.Position{
 									Column: 5,
-									Line:   281,
+									Line:   291,
 								},
 							},
 						},
@@ -44804,13 +45571,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 50,
-											Line:   284,
+											Line:   294,
 										},
 										File:   "universe.flux",
 										Source: "column: \"_stop\", as: \"_time\"",
 										Start: ast.Position{
 											Column: 22,
-											Line:   284,
+											Line:   294,
 										},
 									},
 								},
@@ -44820,13 +45587,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 37,
-												Line:   284,
+												Line:   294,
 											},
 											File:   "universe.flux",
 											Source: "column: \"_stop\"",
 											Start: ast.Position{
 												Column: 22,
-												Line:   284,
+												Line:   294,
 											},
 										},
 									},
@@ -44836,13 +45603,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 28,
-													Line:   284,
+													Line:   294,
 												},
 												File:   "universe.flux",
 												Source: "column",
 												Start: ast.Position{
 													Column: 22,
-													Line:   284,
+													Line:   294,
 												},
 											},
 										},
@@ -44854,13 +45621,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 37,
-													Line:   284,
+													Line:   294,
 												},
 												File:   "universe.flux",
 												Source: "\"_stop\"",
 												Start: ast.Position{
 													Column: 30,
-													Line:   284,
+													Line:   294,
 												},
 											},
 										},
@@ -44872,13 +45639,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 50,
-												Line:   284,
+												Line:   294,
 											},
 											File:   "universe.flux",
 											Source: "as: \"_time\"",
 											Start: ast.Position{
 												Column: 39,
-												Line:   284,
+												Line:   294,
 											},
 										},
 									},
@@ -44888,13 +45655,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 41,
-													Line:   284,
+													Line:   294,
 												},
 												File:   "universe.flux",
 												Source: "as",
 												Start: ast.Position{
 													Column: 39,
-													Line:   284,
+													Line:   294,
 												},
 											},
 										},
@@ -44906,13 +45673,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 50,
-													Line:   284,
+													Line:   294,
 												},
 												File:   "universe.flux",
 												Source: "\"_time\"",
 												Start: ast.Position{
 													Column: 43,
-													Line:   284,
+													Line:   294,
 												},
 											},
 										},
@@ -44926,13 +45693,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 51,
-										Line:   284,
+										Line:   294,
 									},
 									File:   "universe.flux",
 									Source: "duplicate(column: \"_stop\", as: \"_time\")",
 									Start: ast.Position{
 										Column: 12,
-										Line:   284,
+										Line:   294,
 									},
 								},
 							},
@@ -44942,13 +45709,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 21,
-											Line:   284,
+											Line:   294,
 										},
 										File:   "universe.flux",
 										Source: "duplicate",
 										Start: ast.Position{
 											Column: 12,
-											Line:   284,
+											Line:   294,
 										},
 									},
 								},
@@ -44961,13 +45728,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 30,
-								Line:   285,
+								Line:   295,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> window(every: every, period: period)\n        |> mean(column:column)\n        |> duplicate(column: \"_stop\", as: \"_time\")\n        |> window(every: inf)",
 							Start: ast.Position{
 								Column: 5,
-								Line:   281,
+								Line:   291,
 							},
 						},
 					},
@@ -44978,13 +45745,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 29,
-										Line:   285,
+										Line:   295,
 									},
 									File:   "universe.flux",
 									Source: "every: inf",
 									Start: ast.Position{
 										Column: 19,
-										Line:   285,
+										Line:   295,
 									},
 								},
 							},
@@ -44994,13 +45761,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 29,
-											Line:   285,
+											Line:   295,
 										},
 										File:   "universe.flux",
 										Source: "every: inf",
 										Start: ast.Position{
 											Column: 19,
-											Line:   285,
+											Line:   295,
 										},
 									},
 								},
@@ -45010,13 +45777,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 24,
-												Line:   285,
+												Line:   295,
 											},
 											File:   "universe.flux",
 											Source: "every",
 											Start: ast.Position{
 												Column: 19,
-												Line:   285,
+												Line:   295,
 											},
 										},
 									},
@@ -45028,13 +45795,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 29,
-												Line:   285,
+												Line:   295,
 											},
 											File:   "universe.flux",
 											Source: "inf",
 											Start: ast.Position{
 												Column: 26,
-												Line:   285,
+												Line:   295,
 											},
 										},
 									},
@@ -45048,13 +45815,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 30,
-									Line:   285,
+									Line:   295,
 								},
 								File:   "universe.flux",
 								Source: "window(every: inf)",
 								Start: ast.Position{
 									Column: 12,
-									Line:   285,
+									Line:   295,
 								},
 							},
 						},
@@ -45064,13 +45831,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   285,
+										Line:   295,
 									},
 									File:   "universe.flux",
 									Source: "window",
 									Start: ast.Position{
 										Column: 12,
-										Line:   285,
+										Line:   295,
 									},
 								},
 							},
@@ -45084,13 +45851,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 28,
-								Line:   280,
+								Line:   290,
 							},
 							File:   "universe.flux",
 							Source: "every",
 							Start: ast.Position{
 								Column: 23,
-								Line:   280,
+								Line:   290,
 							},
 						},
 					},
@@ -45100,13 +45867,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 28,
-									Line:   280,
+									Line:   290,
 								},
 								File:   "universe.flux",
 								Source: "every",
 								Start: ast.Position{
 									Column: 23,
-									Line:   280,
+									Line:   290,
 								},
 							},
 						},
@@ -45119,13 +45886,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 36,
-								Line:   280,
+								Line:   290,
 							},
 							File:   "universe.flux",
 							Source: "period",
 							Start: ast.Position{
 								Column: 30,
-								Line:   280,
+								Line:   290,
 							},
 						},
 					},
@@ -45135,13 +45902,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 36,
-									Line:   280,
+									Line:   290,
 								},
 								File:   "universe.flux",
 								Source: "period",
 								Start: ast.Position{
 									Column: 30,
-									Line:   280,
+									Line:   290,
 								},
 							},
 						},
@@ -45154,13 +45921,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 53,
-								Line:   280,
+								Line:   290,
 							},
 							File:   "universe.flux",
 							Source: "column=\"_value\"",
 							Start: ast.Position{
 								Column: 38,
-								Line:   280,
+								Line:   290,
 							},
 						},
 					},
@@ -45170,13 +45937,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 44,
-									Line:   280,
+									Line:   290,
 								},
 								File:   "universe.flux",
 								Source: "column",
 								Start: ast.Position{
 									Column: 38,
-									Line:   280,
+									Line:   290,
 								},
 							},
 						},
@@ -45188,13 +45955,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 53,
-									Line:   280,
+									Line:   290,
 								},
 								File:   "universe.flux",
 								Source: "\"_value\"",
 								Start: ast.Position{
 									Column: 45,
-									Line:   280,
+									Line:   290,
 								},
 							},
 						},
@@ -45206,13 +45973,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   280,
+								Line:   290,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 55,
-								Line:   280,
+								Line:   290,
 							},
 						},
 					},
@@ -45222,13 +45989,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 61,
-									Line:   280,
+									Line:   290,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 55,
-									Line:   280,
+									Line:   290,
 								},
 							},
 						},
@@ -45239,13 +46006,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 64,
-								Line:   280,
+								Line:   290,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 62,
-								Line:   280,
+								Line:   290,
 							},
 						},
 					}},
@@ -45257,13 +46024,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 38,
-						Line:   298,
+						Line:   308,
 					},
 					File:   "universe.flux",
 					Source: "doubleEMA = (n, tables=<-) =>\n    tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))\n          |> drop(columns: [\"__ema\"])",
 					Start: ast.Position{
 						Column: 1,
-						Line:   292,
+						Line:   302,
 					},
 				},
 			},
@@ -45273,13 +46040,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 10,
-							Line:   292,
+							Line:   302,
 						},
 						File:   "universe.flux",
 						Source: "doubleEMA",
 						Start: ast.Position{
 							Column: 1,
-							Line:   292,
+							Line:   302,
 						},
 					},
 				},
@@ -45291,13 +46058,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 38,
-							Line:   298,
+							Line:   308,
 						},
 						File:   "universe.flux",
 						Source: "(n, tables=<-) =>\n    tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))\n          |> drop(columns: [\"__ema\"])",
 						Start: ast.Position{
 							Column: 13,
-							Line:   292,
+							Line:   302,
 						},
 					},
 				},
@@ -45312,13 +46079,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 11,
-													Line:   293,
+													Line:   303,
 												},
 												File:   "universe.flux",
 												Source: "tables",
 												Start: ast.Position{
 													Column: 5,
-													Line:   293,
+													Line:   303,
 												},
 											},
 										},
@@ -45329,13 +46096,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 43,
-												Line:   294,
+												Line:   304,
 											},
 											File:   "universe.flux",
 											Source: "tables\n          |> exponentialMovingAverage(n:n)",
 											Start: ast.Position{
 												Column: 5,
-												Line:   293,
+												Line:   303,
 											},
 										},
 									},
@@ -45346,13 +46113,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 42,
-														Line:   294,
+														Line:   304,
 													},
 													File:   "universe.flux",
 													Source: "n:n",
 													Start: ast.Position{
 														Column: 39,
-														Line:   294,
+														Line:   304,
 													},
 												},
 											},
@@ -45362,13 +46129,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 42,
-															Line:   294,
+															Line:   304,
 														},
 														File:   "universe.flux",
 														Source: "n:n",
 														Start: ast.Position{
 															Column: 39,
-															Line:   294,
+															Line:   304,
 														},
 													},
 												},
@@ -45378,13 +46145,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 40,
-																Line:   294,
+																Line:   304,
 															},
 															File:   "universe.flux",
 															Source: "n",
 															Start: ast.Position{
 																Column: 39,
-																Line:   294,
+																Line:   304,
 															},
 														},
 													},
@@ -45396,13 +46163,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 42,
-																Line:   294,
+																Line:   304,
 															},
 															File:   "universe.flux",
 															Source: "n",
 															Start: ast.Position{
 																Column: 41,
-																Line:   294,
+																Line:   304,
 															},
 														},
 													},
@@ -45416,13 +46183,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 43,
-													Line:   294,
+													Line:   304,
 												},
 												File:   "universe.flux",
 												Source: "exponentialMovingAverage(n:n)",
 												Start: ast.Position{
 													Column: 14,
-													Line:   294,
+													Line:   304,
 												},
 											},
 										},
@@ -45432,13 +46199,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 38,
-														Line:   294,
+														Line:   304,
 													},
 													File:   "universe.flux",
 													Source: "exponentialMovingAverage",
 													Start: ast.Position{
 														Column: 14,
-														Line:   294,
+														Line:   304,
 													},
 												},
 											},
@@ -45451,13 +46218,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 52,
-											Line:   295,
+											Line:   305,
 										},
 										File:   "universe.flux",
 										Source: "tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")",
 										Start: ast.Position{
 											Column: 5,
-											Line:   293,
+											Line:   303,
 										},
 									},
 								},
@@ -45468,13 +46235,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 51,
-													Line:   295,
+													Line:   305,
 												},
 												File:   "universe.flux",
 												Source: "column:\"_value\", as:\"__ema\"",
 												Start: ast.Position{
 													Column: 24,
-													Line:   295,
+													Line:   305,
 												},
 											},
 										},
@@ -45484,13 +46251,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 39,
-														Line:   295,
+														Line:   305,
 													},
 													File:   "universe.flux",
 													Source: "column:\"_value\"",
 													Start: ast.Position{
 														Column: 24,
-														Line:   295,
+														Line:   305,
 													},
 												},
 											},
@@ -45500,13 +46267,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 30,
-															Line:   295,
+															Line:   305,
 														},
 														File:   "universe.flux",
 														Source: "column",
 														Start: ast.Position{
 															Column: 24,
-															Line:   295,
+															Line:   305,
 														},
 													},
 												},
@@ -45518,13 +46285,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 39,
-															Line:   295,
+															Line:   305,
 														},
 														File:   "universe.flux",
 														Source: "\"_value\"",
 														Start: ast.Position{
 															Column: 31,
-															Line:   295,
+															Line:   305,
 														},
 													},
 												},
@@ -45536,13 +46303,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 51,
-														Line:   295,
+														Line:   305,
 													},
 													File:   "universe.flux",
 													Source: "as:\"__ema\"",
 													Start: ast.Position{
 														Column: 41,
-														Line:   295,
+														Line:   305,
 													},
 												},
 											},
@@ -45552,13 +46319,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 43,
-															Line:   295,
+															Line:   305,
 														},
 														File:   "universe.flux",
 														Source: "as",
 														Start: ast.Position{
 															Column: 41,
-															Line:   295,
+															Line:   305,
 														},
 													},
 												},
@@ -45570,13 +46337,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 51,
-															Line:   295,
+															Line:   305,
 														},
 														File:   "universe.flux",
 														Source: "\"__ema\"",
 														Start: ast.Position{
 															Column: 44,
-															Line:   295,
+															Line:   305,
 														},
 													},
 												},
@@ -45590,13 +46357,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 52,
-												Line:   295,
+												Line:   305,
 											},
 											File:   "universe.flux",
 											Source: "duplicate(column:\"_value\", as:\"__ema\")",
 											Start: ast.Position{
 												Column: 14,
-												Line:   295,
+												Line:   305,
 											},
 										},
 									},
@@ -45606,13 +46373,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 23,
-													Line:   295,
+													Line:   305,
 												},
 												File:   "universe.flux",
 												Source: "duplicate",
 												Start: ast.Position{
 													Column: 14,
-													Line:   295,
+													Line:   305,
 												},
 											},
 										},
@@ -45625,13 +46392,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 43,
-										Line:   296,
+										Line:   306,
 									},
 									File:   "universe.flux",
 									Source: "tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)",
 									Start: ast.Position{
 										Column: 5,
-										Line:   293,
+										Line:   303,
 									},
 								},
 							},
@@ -45642,13 +46409,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 42,
-												Line:   296,
+												Line:   306,
 											},
 											File:   "universe.flux",
 											Source: "n:n",
 											Start: ast.Position{
 												Column: 39,
-												Line:   296,
+												Line:   306,
 											},
 										},
 									},
@@ -45658,13 +46425,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 42,
-													Line:   296,
+													Line:   306,
 												},
 												File:   "universe.flux",
 												Source: "n:n",
 												Start: ast.Position{
 													Column: 39,
-													Line:   296,
+													Line:   306,
 												},
 											},
 										},
@@ -45674,13 +46441,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 40,
-														Line:   296,
+														Line:   306,
 													},
 													File:   "universe.flux",
 													Source: "n",
 													Start: ast.Position{
 														Column: 39,
-														Line:   296,
+														Line:   306,
 													},
 												},
 											},
@@ -45692,13 +46459,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 42,
-														Line:   296,
+														Line:   306,
 													},
 													File:   "universe.flux",
 													Source: "n",
 													Start: ast.Position{
 														Column: 41,
-														Line:   296,
+														Line:   306,
 													},
 												},
 											},
@@ -45712,13 +46479,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 43,
-											Line:   296,
+											Line:   306,
 										},
 										File:   "universe.flux",
 										Source: "exponentialMovingAverage(n:n)",
 										Start: ast.Position{
 											Column: 14,
-											Line:   296,
+											Line:   306,
 										},
 									},
 								},
@@ -45728,13 +46495,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 38,
-												Line:   296,
+												Line:   306,
 											},
 											File:   "universe.flux",
 											Source: "exponentialMovingAverage",
 											Start: ast.Position{
 												Column: 14,
-												Line:   296,
+												Line:   306,
 											},
 										},
 									},
@@ -45747,13 +46514,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 71,
-									Line:   297,
+									Line:   307,
 								},
 								File:   "universe.flux",
 								Source: "tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))",
 								Start: ast.Position{
 									Column: 5,
-									Line:   293,
+									Line:   303,
 								},
 							},
 						},
@@ -45764,13 +46531,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 70,
-											Line:   297,
+											Line:   307,
 										},
 										File:   "universe.flux",
 										Source: "fn: (r) => ({r with _value: 2.0*r.__ema - r._value})",
 										Start: ast.Position{
 											Column: 18,
-											Line:   297,
+											Line:   307,
 										},
 									},
 								},
@@ -45780,13 +46547,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 70,
-												Line:   297,
+												Line:   307,
 											},
 											File:   "universe.flux",
 											Source: "fn: (r) => ({r with _value: 2.0*r.__ema - r._value})",
 											Start: ast.Position{
 												Column: 18,
-												Line:   297,
+												Line:   307,
 											},
 										},
 									},
@@ -45796,13 +46563,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 20,
-													Line:   297,
+													Line:   307,
 												},
 												File:   "universe.flux",
 												Source: "fn",
 												Start: ast.Position{
 													Column: 18,
-													Line:   297,
+													Line:   307,
 												},
 											},
 										},
@@ -45814,13 +46581,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 70,
-													Line:   297,
+													Line:   307,
 												},
 												File:   "universe.flux",
 												Source: "(r) => ({r with _value: 2.0*r.__ema - r._value})",
 												Start: ast.Position{
 													Column: 22,
-													Line:   297,
+													Line:   307,
 												},
 											},
 										},
@@ -45830,13 +46597,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 70,
-														Line:   297,
+														Line:   307,
 													},
 													File:   "universe.flux",
 													Source: "({r with _value: 2.0*r.__ema - r._value})",
 													Start: ast.Position{
 														Column: 29,
-														Line:   297,
+														Line:   307,
 													},
 												},
 											},
@@ -45846,13 +46613,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 69,
-															Line:   297,
+															Line:   307,
 														},
 														File:   "universe.flux",
 														Source: "{r with _value: 2.0*r.__ema - r._value}",
 														Start: ast.Position{
 															Column: 30,
-															Line:   297,
+															Line:   307,
 														},
 													},
 												},
@@ -45862,13 +46629,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   297,
+																Line:   307,
 															},
 															File:   "universe.flux",
 															Source: "_value: 2.0*r.__ema - r._value",
 															Start: ast.Position{
 																Column: 38,
-																Line:   297,
+																Line:   307,
 															},
 														},
 													},
@@ -45878,13 +46645,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 44,
-																	Line:   297,
+																	Line:   307,
 																},
 																File:   "universe.flux",
 																Source: "_value",
 																Start: ast.Position{
 																	Column: 38,
-																	Line:   297,
+																	Line:   307,
 																},
 															},
 														},
@@ -45896,13 +46663,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 68,
-																	Line:   297,
+																	Line:   307,
 																},
 																File:   "universe.flux",
 																Source: "2.0*r.__ema - r._value",
 																Start: ast.Position{
 																	Column: 46,
-																	Line:   297,
+																	Line:   307,
 																},
 															},
 														},
@@ -45912,13 +46679,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 57,
-																		Line:   297,
+																		Line:   307,
 																	},
 																	File:   "universe.flux",
 																	Source: "2.0*r.__ema",
 																	Start: ast.Position{
 																		Column: 46,
-																		Line:   297,
+																		Line:   307,
 																	},
 																},
 															},
@@ -45928,13 +46695,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 49,
-																			Line:   297,
+																			Line:   307,
 																		},
 																		File:   "universe.flux",
 																		Source: "2.0",
 																		Start: ast.Position{
 																			Column: 46,
-																			Line:   297,
+																			Line:   307,
 																		},
 																	},
 																},
@@ -45947,13 +46714,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 57,
-																			Line:   297,
+																			Line:   307,
 																		},
 																		File:   "universe.flux",
 																		Source: "r.__ema",
 																		Start: ast.Position{
 																			Column: 50,
-																			Line:   297,
+																			Line:   307,
 																		},
 																	},
 																},
@@ -45963,13 +46730,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 51,
-																				Line:   297,
+																				Line:   307,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 50,
-																				Line:   297,
+																				Line:   307,
 																			},
 																		},
 																	},
@@ -45981,13 +46748,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 57,
-																				Line:   297,
+																				Line:   307,
 																			},
 																			File:   "universe.flux",
 																			Source: "__ema",
 																			Start: ast.Position{
 																				Column: 52,
-																				Line:   297,
+																				Line:   307,
 																			},
 																		},
 																	},
@@ -46002,13 +46769,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 68,
-																		Line:   297,
+																		Line:   307,
 																	},
 																	File:   "universe.flux",
 																	Source: "r._value",
 																	Start: ast.Position{
 																		Column: 60,
-																		Line:   297,
+																		Line:   307,
 																	},
 																},
 															},
@@ -46018,13 +46785,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 61,
-																			Line:   297,
+																			Line:   307,
 																		},
 																		File:   "universe.flux",
 																		Source: "r",
 																		Start: ast.Position{
 																			Column: 60,
-																			Line:   297,
+																			Line:   307,
 																		},
 																	},
 																},
@@ -46036,13 +46803,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 68,
-																			Line:   297,
+																			Line:   307,
 																		},
 																		File:   "universe.flux",
 																		Source: "_value",
 																		Start: ast.Position{
 																			Column: 62,
-																			Line:   297,
+																			Line:   307,
 																		},
 																	},
 																},
@@ -46057,13 +46824,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 32,
-																Line:   297,
+																Line:   307,
 															},
 															File:   "universe.flux",
 															Source: "r",
 															Start: ast.Position{
 																Column: 31,
-																Line:   297,
+																Line:   307,
 															},
 														},
 													},
@@ -46077,13 +46844,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 24,
-														Line:   297,
+														Line:   307,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 23,
-														Line:   297,
+														Line:   307,
 													},
 												},
 											},
@@ -46093,13 +46860,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 24,
-															Line:   297,
+															Line:   307,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 23,
-															Line:   297,
+															Line:   307,
 														},
 													},
 												},
@@ -46116,13 +46883,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 71,
-										Line:   297,
+										Line:   307,
 									},
 									File:   "universe.flux",
 									Source: "map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))",
 									Start: ast.Position{
 										Column: 14,
-										Line:   297,
+										Line:   307,
 									},
 								},
 							},
@@ -46132,13 +46899,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 17,
-											Line:   297,
+											Line:   307,
 										},
 										File:   "universe.flux",
 										Source: "map",
 										Start: ast.Position{
 											Column: 14,
-											Line:   297,
+											Line:   307,
 										},
 									},
 								},
@@ -46151,13 +46918,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 38,
-								Line:   298,
+								Line:   308,
 							},
 							File:   "universe.flux",
 							Source: "tables\n          |> exponentialMovingAverage(n:n)\n          |> duplicate(column:\"_value\", as:\"__ema\")\n          |> exponentialMovingAverage(n:n)\n          |> map(fn: (r) => ({r with _value: 2.0*r.__ema - r._value}))\n          |> drop(columns: [\"__ema\"])",
 							Start: ast.Position{
 								Column: 5,
-								Line:   293,
+								Line:   303,
 							},
 						},
 					},
@@ -46168,13 +46935,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 37,
-										Line:   298,
+										Line:   308,
 									},
 									File:   "universe.flux",
 									Source: "columns: [\"__ema\"]",
 									Start: ast.Position{
 										Column: 19,
-										Line:   298,
+										Line:   308,
 									},
 								},
 							},
@@ -46184,13 +46951,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 37,
-											Line:   298,
+											Line:   308,
 										},
 										File:   "universe.flux",
 										Source: "columns: [\"__ema\"]",
 										Start: ast.Position{
 											Column: 19,
-											Line:   298,
+											Line:   308,
 										},
 									},
 								},
@@ -46200,13 +46967,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 26,
-												Line:   298,
+												Line:   308,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 19,
-												Line:   298,
+												Line:   308,
 											},
 										},
 									},
@@ -46218,13 +46985,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 37,
-												Line:   298,
+												Line:   308,
 											},
 											File:   "universe.flux",
 											Source: "[\"__ema\"]",
 											Start: ast.Position{
 												Column: 28,
-												Line:   298,
+												Line:   308,
 											},
 										},
 									},
@@ -46234,13 +47001,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 36,
-													Line:   298,
+													Line:   308,
 												},
 												File:   "universe.flux",
 												Source: "\"__ema\"",
 												Start: ast.Position{
 													Column: 29,
-													Line:   298,
+													Line:   308,
 												},
 											},
 										},
@@ -46255,13 +47022,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 38,
-									Line:   298,
+									Line:   308,
 								},
 								File:   "universe.flux",
 								Source: "drop(columns: [\"__ema\"])",
 								Start: ast.Position{
 									Column: 14,
-									Line:   298,
+									Line:   308,
 								},
 							},
 						},
@@ -46271,13 +47038,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 18,
-										Line:   298,
+										Line:   308,
 									},
 									File:   "universe.flux",
 									Source: "drop",
 									Start: ast.Position{
 										Column: 14,
-										Line:   298,
+										Line:   308,
 									},
 								},
 							},
@@ -46291,13 +47058,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 15,
-								Line:   292,
+								Line:   302,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 14,
-								Line:   292,
+								Line:   302,
 							},
 						},
 					},
@@ -46307,13 +47074,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 15,
-									Line:   292,
+									Line:   302,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 14,
-									Line:   292,
+									Line:   302,
 								},
 							},
 						},
@@ -46326,13 +47093,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 26,
-								Line:   292,
+								Line:   302,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 17,
-								Line:   292,
+								Line:   302,
 							},
 						},
 					},
@@ -46342,13 +47109,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   292,
+									Line:   302,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 17,
-									Line:   292,
+									Line:   302,
 								},
 							},
 						},
@@ -46359,13 +47126,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 26,
-								Line:   292,
+								Line:   302,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 24,
-								Line:   292,
+								Line:   302,
 							},
 						},
 					}},
@@ -46377,13 +47144,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 41,
-						Line:   314,
+						Line:   324,
 					},
 					File:   "universe.flux",
 					Source: "tripleEMA = (n, tables=<-) =>\n\ttables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))\n\t\t|> drop(columns: [\"__ema1\", \"__ema2\"])",
 					Start: ast.Position{
 						Column: 1,
-						Line:   306,
+						Line:   316,
 					},
 				},
 			},
@@ -46393,13 +47160,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 10,
-							Line:   306,
+							Line:   316,
 						},
 						File:   "universe.flux",
 						Source: "tripleEMA",
 						Start: ast.Position{
 							Column: 1,
-							Line:   306,
+							Line:   316,
 						},
 					},
 				},
@@ -46411,13 +47178,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 41,
-							Line:   314,
+							Line:   324,
 						},
 						File:   "universe.flux",
 						Source: "(n, tables=<-) =>\n\ttables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))\n\t\t|> drop(columns: [\"__ema1\", \"__ema2\"])",
 						Start: ast.Position{
 							Column: 13,
-							Line:   306,
+							Line:   316,
 						},
 					},
 				},
@@ -46434,13 +47201,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 8,
-															Line:   307,
+															Line:   317,
 														},
 														File:   "universe.flux",
 														Source: "tables",
 														Start: ast.Position{
 															Column: 2,
-															Line:   307,
+															Line:   317,
 														},
 													},
 												},
@@ -46451,13 +47218,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 35,
-														Line:   308,
+														Line:   318,
 													},
 													File:   "universe.flux",
 													Source: "tables\n\t\t|> exponentialMovingAverage(n:n)",
 													Start: ast.Position{
 														Column: 2,
-														Line:   307,
+														Line:   317,
 													},
 												},
 											},
@@ -46468,13 +47235,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 34,
-																Line:   308,
+																Line:   318,
 															},
 															File:   "universe.flux",
 															Source: "n:n",
 															Start: ast.Position{
 																Column: 31,
-																Line:   308,
+																Line:   318,
 															},
 														},
 													},
@@ -46484,13 +47251,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 34,
-																	Line:   308,
+																	Line:   318,
 																},
 																File:   "universe.flux",
 																Source: "n:n",
 																Start: ast.Position{
 																	Column: 31,
-																	Line:   308,
+																	Line:   318,
 																},
 															},
 														},
@@ -46500,13 +47267,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 32,
-																		Line:   308,
+																		Line:   318,
 																	},
 																	File:   "universe.flux",
 																	Source: "n",
 																	Start: ast.Position{
 																		Column: 31,
-																		Line:   308,
+																		Line:   318,
 																	},
 																},
 															},
@@ -46518,13 +47285,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 34,
-																		Line:   308,
+																		Line:   318,
 																	},
 																	File:   "universe.flux",
 																	Source: "n",
 																	Start: ast.Position{
 																		Column: 33,
-																		Line:   308,
+																		Line:   318,
 																	},
 																},
 															},
@@ -46538,13 +47305,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 35,
-															Line:   308,
+															Line:   318,
 														},
 														File:   "universe.flux",
 														Source: "exponentialMovingAverage(n:n)",
 														Start: ast.Position{
 															Column: 6,
-															Line:   308,
+															Line:   318,
 														},
 													},
 												},
@@ -46554,13 +47321,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 30,
-																Line:   308,
+																Line:   318,
 															},
 															File:   "universe.flux",
 															Source: "exponentialMovingAverage",
 															Start: ast.Position{
 																Column: 6,
-																Line:   308,
+																Line:   318,
 															},
 														},
 													},
@@ -46573,13 +47340,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 45,
-													Line:   309,
+													Line:   319,
 												},
 												File:   "universe.flux",
 												Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")",
 												Start: ast.Position{
 													Column: 2,
-													Line:   307,
+													Line:   317,
 												},
 											},
 										},
@@ -46590,13 +47357,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 44,
-															Line:   309,
+															Line:   319,
 														},
 														File:   "universe.flux",
 														Source: "column:\"_value\", as:\"__ema1\"",
 														Start: ast.Position{
 															Column: 16,
-															Line:   309,
+															Line:   319,
 														},
 													},
 												},
@@ -46606,13 +47373,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 31,
-																Line:   309,
+																Line:   319,
 															},
 															File:   "universe.flux",
 															Source: "column:\"_value\"",
 															Start: ast.Position{
 																Column: 16,
-																Line:   309,
+																Line:   319,
 															},
 														},
 													},
@@ -46622,13 +47389,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 22,
-																	Line:   309,
+																	Line:   319,
 																},
 																File:   "universe.flux",
 																Source: "column",
 																Start: ast.Position{
 																	Column: 16,
-																	Line:   309,
+																	Line:   319,
 																},
 															},
 														},
@@ -46640,13 +47407,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 31,
-																	Line:   309,
+																	Line:   319,
 																},
 																File:   "universe.flux",
 																Source: "\"_value\"",
 																Start: ast.Position{
 																	Column: 23,
-																	Line:   309,
+																	Line:   319,
 																},
 															},
 														},
@@ -46658,13 +47425,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 44,
-																Line:   309,
+																Line:   319,
 															},
 															File:   "universe.flux",
 															Source: "as:\"__ema1\"",
 															Start: ast.Position{
 																Column: 33,
-																Line:   309,
+																Line:   319,
 															},
 														},
 													},
@@ -46674,13 +47441,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 35,
-																	Line:   309,
+																	Line:   319,
 																},
 																File:   "universe.flux",
 																Source: "as",
 																Start: ast.Position{
 																	Column: 33,
-																	Line:   309,
+																	Line:   319,
 																},
 															},
 														},
@@ -46692,13 +47459,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 44,
-																	Line:   309,
+																	Line:   319,
 																},
 																File:   "universe.flux",
 																Source: "\"__ema1\"",
 																Start: ast.Position{
 																	Column: 36,
-																	Line:   309,
+																	Line:   319,
 																},
 															},
 														},
@@ -46712,13 +47479,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 45,
-														Line:   309,
+														Line:   319,
 													},
 													File:   "universe.flux",
 													Source: "duplicate(column:\"_value\", as:\"__ema1\")",
 													Start: ast.Position{
 														Column: 6,
-														Line:   309,
+														Line:   319,
 													},
 												},
 											},
@@ -46728,13 +47495,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 15,
-															Line:   309,
+															Line:   319,
 														},
 														File:   "universe.flux",
 														Source: "duplicate",
 														Start: ast.Position{
 															Column: 6,
-															Line:   309,
+															Line:   319,
 														},
 													},
 												},
@@ -46747,13 +47514,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 35,
-												Line:   310,
+												Line:   320,
 											},
 											File:   "universe.flux",
 											Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)",
 											Start: ast.Position{
 												Column: 2,
-												Line:   307,
+												Line:   317,
 											},
 										},
 									},
@@ -46764,13 +47531,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 34,
-														Line:   310,
+														Line:   320,
 													},
 													File:   "universe.flux",
 													Source: "n:n",
 													Start: ast.Position{
 														Column: 31,
-														Line:   310,
+														Line:   320,
 													},
 												},
 											},
@@ -46780,13 +47547,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 34,
-															Line:   310,
+															Line:   320,
 														},
 														File:   "universe.flux",
 														Source: "n:n",
 														Start: ast.Position{
 															Column: 31,
-															Line:   310,
+															Line:   320,
 														},
 													},
 												},
@@ -46796,13 +47563,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 32,
-																Line:   310,
+																Line:   320,
 															},
 															File:   "universe.flux",
 															Source: "n",
 															Start: ast.Position{
 																Column: 31,
-																Line:   310,
+																Line:   320,
 															},
 														},
 													},
@@ -46814,13 +47581,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 34,
-																Line:   310,
+																Line:   320,
 															},
 															File:   "universe.flux",
 															Source: "n",
 															Start: ast.Position{
 																Column: 33,
-																Line:   310,
+																Line:   320,
 															},
 														},
 													},
@@ -46834,13 +47601,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 35,
-													Line:   310,
+													Line:   320,
 												},
 												File:   "universe.flux",
 												Source: "exponentialMovingAverage(n:n)",
 												Start: ast.Position{
 													Column: 6,
-													Line:   310,
+													Line:   320,
 												},
 											},
 										},
@@ -46850,13 +47617,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 30,
-														Line:   310,
+														Line:   320,
 													},
 													File:   "universe.flux",
 													Source: "exponentialMovingAverage",
 													Start: ast.Position{
 														Column: 6,
-														Line:   310,
+														Line:   320,
 													},
 												},
 											},
@@ -46869,13 +47636,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 45,
-											Line:   311,
+											Line:   321,
 										},
 										File:   "universe.flux",
 										Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")",
 										Start: ast.Position{
 											Column: 2,
-											Line:   307,
+											Line:   317,
 										},
 									},
 								},
@@ -46886,13 +47653,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 44,
-													Line:   311,
+													Line:   321,
 												},
 												File:   "universe.flux",
 												Source: "column:\"_value\", as:\"__ema2\"",
 												Start: ast.Position{
 													Column: 16,
-													Line:   311,
+													Line:   321,
 												},
 											},
 										},
@@ -46902,13 +47669,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 31,
-														Line:   311,
+														Line:   321,
 													},
 													File:   "universe.flux",
 													Source: "column:\"_value\"",
 													Start: ast.Position{
 														Column: 16,
-														Line:   311,
+														Line:   321,
 													},
 												},
 											},
@@ -46918,13 +47685,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 22,
-															Line:   311,
+															Line:   321,
 														},
 														File:   "universe.flux",
 														Source: "column",
 														Start: ast.Position{
 															Column: 16,
-															Line:   311,
+															Line:   321,
 														},
 													},
 												},
@@ -46936,13 +47703,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 31,
-															Line:   311,
+															Line:   321,
 														},
 														File:   "universe.flux",
 														Source: "\"_value\"",
 														Start: ast.Position{
 															Column: 23,
-															Line:   311,
+															Line:   321,
 														},
 													},
 												},
@@ -46954,13 +47721,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 44,
-														Line:   311,
+														Line:   321,
 													},
 													File:   "universe.flux",
 													Source: "as:\"__ema2\"",
 													Start: ast.Position{
 														Column: 33,
-														Line:   311,
+														Line:   321,
 													},
 												},
 											},
@@ -46970,13 +47737,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 35,
-															Line:   311,
+															Line:   321,
 														},
 														File:   "universe.flux",
 														Source: "as",
 														Start: ast.Position{
 															Column: 33,
-															Line:   311,
+															Line:   321,
 														},
 													},
 												},
@@ -46988,13 +47755,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 44,
-															Line:   311,
+															Line:   321,
 														},
 														File:   "universe.flux",
 														Source: "\"__ema2\"",
 														Start: ast.Position{
 															Column: 36,
-															Line:   311,
+															Line:   321,
 														},
 													},
 												},
@@ -47008,13 +47775,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   311,
+												Line:   321,
 											},
 											File:   "universe.flux",
 											Source: "duplicate(column:\"_value\", as:\"__ema2\")",
 											Start: ast.Position{
 												Column: 6,
-												Line:   311,
+												Line:   321,
 											},
 										},
 									},
@@ -47024,13 +47791,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 15,
-													Line:   311,
+													Line:   321,
 												},
 												File:   "universe.flux",
 												Source: "duplicate",
 												Start: ast.Position{
 													Column: 6,
-													Line:   311,
+													Line:   321,
 												},
 											},
 										},
@@ -47043,13 +47810,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 35,
-										Line:   312,
+										Line:   322,
 									},
 									File:   "universe.flux",
 									Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)",
 									Start: ast.Position{
 										Column: 2,
-										Line:   307,
+										Line:   317,
 									},
 								},
 							},
@@ -47060,13 +47827,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 34,
-												Line:   312,
+												Line:   322,
 											},
 											File:   "universe.flux",
 											Source: "n:n",
 											Start: ast.Position{
 												Column: 31,
-												Line:   312,
+												Line:   322,
 											},
 										},
 									},
@@ -47076,13 +47843,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 34,
-													Line:   312,
+													Line:   322,
 												},
 												File:   "universe.flux",
 												Source: "n:n",
 												Start: ast.Position{
 													Column: 31,
-													Line:   312,
+													Line:   322,
 												},
 											},
 										},
@@ -47092,13 +47859,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 32,
-														Line:   312,
+														Line:   322,
 													},
 													File:   "universe.flux",
 													Source: "n",
 													Start: ast.Position{
 														Column: 31,
-														Line:   312,
+														Line:   322,
 													},
 												},
 											},
@@ -47110,13 +47877,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 34,
-														Line:   312,
+														Line:   322,
 													},
 													File:   "universe.flux",
 													Source: "n",
 													Start: ast.Position{
 														Column: 33,
-														Line:   312,
+														Line:   322,
 													},
 												},
 											},
@@ -47130,13 +47897,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 35,
-											Line:   312,
+											Line:   322,
 										},
 										File:   "universe.flux",
 										Source: "exponentialMovingAverage(n:n)",
 										Start: ast.Position{
 											Column: 6,
-											Line:   312,
+											Line:   322,
 										},
 									},
 								},
@@ -47146,13 +47913,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 30,
-												Line:   312,
+												Line:   322,
 											},
 											File:   "universe.flux",
 											Source: "exponentialMovingAverage",
 											Start: ast.Position{
 												Column: 6,
-												Line:   312,
+												Line:   322,
 											},
 										},
 									},
@@ -47165,13 +47932,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 79,
-									Line:   313,
+									Line:   323,
 								},
 								File:   "universe.flux",
 								Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))",
 								Start: ast.Position{
 									Column: 2,
-									Line:   307,
+									Line:   317,
 								},
 							},
 						},
@@ -47182,13 +47949,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 78,
-											Line:   313,
+											Line:   323,
 										},
 										File:   "universe.flux",
 										Source: "fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value})",
 										Start: ast.Position{
 											Column: 10,
-											Line:   313,
+											Line:   323,
 										},
 									},
 								},
@@ -47198,13 +47965,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 78,
-												Line:   313,
+												Line:   323,
 											},
 											File:   "universe.flux",
 											Source: "fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value})",
 											Start: ast.Position{
 												Column: 10,
-												Line:   313,
+												Line:   323,
 											},
 										},
 									},
@@ -47214,13 +47981,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 12,
-													Line:   313,
+													Line:   323,
 												},
 												File:   "universe.flux",
 												Source: "fn",
 												Start: ast.Position{
 													Column: 10,
-													Line:   313,
+													Line:   323,
 												},
 											},
 										},
@@ -47232,13 +47999,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 78,
-													Line:   313,
+													Line:   323,
 												},
 												File:   "universe.flux",
 												Source: "(r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value})",
 												Start: ast.Position{
 													Column: 14,
-													Line:   313,
+													Line:   323,
 												},
 											},
 										},
@@ -47248,13 +48015,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 78,
-														Line:   313,
+														Line:   323,
 													},
 													File:   "universe.flux",
 													Source: "({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value})",
 													Start: ast.Position{
 														Column: 21,
-														Line:   313,
+														Line:   323,
 													},
 												},
 											},
@@ -47264,13 +48031,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 77,
-															Line:   313,
+															Line:   323,
 														},
 														File:   "universe.flux",
 														Source: "{r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}",
 														Start: ast.Position{
 															Column: 22,
-															Line:   313,
+															Line:   323,
 														},
 													},
 												},
@@ -47280,13 +48047,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 76,
-																Line:   313,
+																Line:   323,
 															},
 															File:   "universe.flux",
 															Source: "_value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value",
 															Start: ast.Position{
 																Column: 30,
-																Line:   313,
+																Line:   323,
 															},
 														},
 													},
@@ -47296,13 +48063,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 36,
-																	Line:   313,
+																	Line:   323,
 																},
 																File:   "universe.flux",
 																Source: "_value",
 																Start: ast.Position{
 																	Column: 30,
-																	Line:   313,
+																	Line:   323,
 																},
 															},
 														},
@@ -47314,13 +48081,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 76,
-																	Line:   313,
+																	Line:   323,
 																},
 																File:   "universe.flux",
 																Source: "3.0*r.__ema1 - 3.0*r.__ema2 + r._value",
 																Start: ast.Position{
 																	Column: 38,
-																	Line:   313,
+																	Line:   323,
 																},
 															},
 														},
@@ -47330,13 +48097,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 65,
-																		Line:   313,
+																		Line:   323,
 																	},
 																	File:   "universe.flux",
 																	Source: "3.0*r.__ema1 - 3.0*r.__ema2",
 																	Start: ast.Position{
 																		Column: 38,
-																		Line:   313,
+																		Line:   323,
 																	},
 																},
 															},
@@ -47346,13 +48113,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 50,
-																			Line:   313,
+																			Line:   323,
 																		},
 																		File:   "universe.flux",
 																		Source: "3.0*r.__ema1",
 																		Start: ast.Position{
 																			Column: 38,
-																			Line:   313,
+																			Line:   323,
 																		},
 																	},
 																},
@@ -47362,13 +48129,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 41,
-																				Line:   313,
+																				Line:   323,
 																			},
 																			File:   "universe.flux",
 																			Source: "3.0",
 																			Start: ast.Position{
 																				Column: 38,
-																				Line:   313,
+																				Line:   323,
 																			},
 																		},
 																	},
@@ -47381,13 +48148,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 50,
-																				Line:   313,
+																				Line:   323,
 																			},
 																			File:   "universe.flux",
 																			Source: "r.__ema1",
 																			Start: ast.Position{
 																				Column: 42,
-																				Line:   313,
+																				Line:   323,
 																			},
 																		},
 																	},
@@ -47397,13 +48164,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 43,
-																					Line:   313,
+																					Line:   323,
 																				},
 																				File:   "universe.flux",
 																				Source: "r",
 																				Start: ast.Position{
 																					Column: 42,
-																					Line:   313,
+																					Line:   323,
 																				},
 																			},
 																		},
@@ -47415,13 +48182,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 50,
-																					Line:   313,
+																					Line:   323,
 																				},
 																				File:   "universe.flux",
 																				Source: "__ema1",
 																				Start: ast.Position{
 																					Column: 44,
-																					Line:   313,
+																					Line:   323,
 																				},
 																			},
 																		},
@@ -47436,13 +48203,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 65,
-																			Line:   313,
+																			Line:   323,
 																		},
 																		File:   "universe.flux",
 																		Source: "3.0*r.__ema2",
 																		Start: ast.Position{
 																			Column: 53,
-																			Line:   313,
+																			Line:   323,
 																		},
 																	},
 																},
@@ -47452,13 +48219,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 56,
-																				Line:   313,
+																				Line:   323,
 																			},
 																			File:   "universe.flux",
 																			Source: "3.0",
 																			Start: ast.Position{
 																				Column: 53,
-																				Line:   313,
+																				Line:   323,
 																			},
 																		},
 																	},
@@ -47471,13 +48238,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 65,
-																				Line:   313,
+																				Line:   323,
 																			},
 																			File:   "universe.flux",
 																			Source: "r.__ema2",
 																			Start: ast.Position{
 																				Column: 57,
-																				Line:   313,
+																				Line:   323,
 																			},
 																		},
 																	},
@@ -47487,13 +48254,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 58,
-																					Line:   313,
+																					Line:   323,
 																				},
 																				File:   "universe.flux",
 																				Source: "r",
 																				Start: ast.Position{
 																					Column: 57,
-																					Line:   313,
+																					Line:   323,
 																				},
 																			},
 																		},
@@ -47505,13 +48272,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 65,
-																					Line:   313,
+																					Line:   323,
 																				},
 																				File:   "universe.flux",
 																				Source: "__ema2",
 																				Start: ast.Position{
 																					Column: 59,
-																					Line:   313,
+																					Line:   323,
 																				},
 																			},
 																		},
@@ -47527,13 +48294,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 76,
-																		Line:   313,
+																		Line:   323,
 																	},
 																	File:   "universe.flux",
 																	Source: "r._value",
 																	Start: ast.Position{
 																		Column: 68,
-																		Line:   313,
+																		Line:   323,
 																	},
 																},
 															},
@@ -47543,13 +48310,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 69,
-																			Line:   313,
+																			Line:   323,
 																		},
 																		File:   "universe.flux",
 																		Source: "r",
 																		Start: ast.Position{
 																			Column: 68,
-																			Line:   313,
+																			Line:   323,
 																		},
 																	},
 																},
@@ -47561,13 +48328,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 76,
-																			Line:   313,
+																			Line:   323,
 																		},
 																		File:   "universe.flux",
 																		Source: "_value",
 																		Start: ast.Position{
 																			Column: 70,
-																			Line:   313,
+																			Line:   323,
 																		},
 																	},
 																},
@@ -47582,13 +48349,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 24,
-																Line:   313,
+																Line:   323,
 															},
 															File:   "universe.flux",
 															Source: "r",
 															Start: ast.Position{
 																Column: 23,
-																Line:   313,
+																Line:   323,
 															},
 														},
 													},
@@ -47602,13 +48369,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 16,
-														Line:   313,
+														Line:   323,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 15,
-														Line:   313,
+														Line:   323,
 													},
 												},
 											},
@@ -47618,13 +48385,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 16,
-															Line:   313,
+															Line:   323,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 15,
-															Line:   313,
+															Line:   323,
 														},
 													},
 												},
@@ -47641,13 +48408,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 79,
-										Line:   313,
+										Line:   323,
 									},
 									File:   "universe.flux",
 									Source: "map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))",
 									Start: ast.Position{
 										Column: 6,
-										Line:   313,
+										Line:   323,
 									},
 								},
 							},
@@ -47657,13 +48424,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 9,
-											Line:   313,
+											Line:   323,
 										},
 										File:   "universe.flux",
 										Source: "map",
 										Start: ast.Position{
 											Column: 6,
-											Line:   313,
+											Line:   323,
 										},
 									},
 								},
@@ -47676,13 +48443,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 41,
-								Line:   314,
+								Line:   324,
 							},
 							File:   "universe.flux",
 							Source: "tables\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema1\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> duplicate(column:\"_value\", as:\"__ema2\")\n\t\t|> exponentialMovingAverage(n:n)\n\t\t|> map(fn: (r) => ({r with _value: 3.0*r.__ema1 - 3.0*r.__ema2 + r._value}))\n\t\t|> drop(columns: [\"__ema1\", \"__ema2\"])",
 							Start: ast.Position{
 								Column: 2,
-								Line:   307,
+								Line:   317,
 							},
 						},
 					},
@@ -47693,13 +48460,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 40,
-										Line:   314,
+										Line:   324,
 									},
 									File:   "universe.flux",
 									Source: "columns: [\"__ema1\", \"__ema2\"]",
 									Start: ast.Position{
 										Column: 11,
-										Line:   314,
+										Line:   324,
 									},
 								},
 							},
@@ -47709,13 +48476,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 40,
-											Line:   314,
+											Line:   324,
 										},
 										File:   "universe.flux",
 										Source: "columns: [\"__ema1\", \"__ema2\"]",
 										Start: ast.Position{
 											Column: 11,
-											Line:   314,
+											Line:   324,
 										},
 									},
 								},
@@ -47725,13 +48492,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   314,
+												Line:   324,
 											},
 											File:   "universe.flux",
 											Source: "columns",
 											Start: ast.Position{
 												Column: 11,
-												Line:   314,
+												Line:   324,
 											},
 										},
 									},
@@ -47743,13 +48510,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 40,
-												Line:   314,
+												Line:   324,
 											},
 											File:   "universe.flux",
 											Source: "[\"__ema1\", \"__ema2\"]",
 											Start: ast.Position{
 												Column: 20,
-												Line:   314,
+												Line:   324,
 											},
 										},
 									},
@@ -47759,13 +48526,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 29,
-													Line:   314,
+													Line:   324,
 												},
 												File:   "universe.flux",
 												Source: "\"__ema1\"",
 												Start: ast.Position{
 													Column: 21,
-													Line:   314,
+													Line:   324,
 												},
 											},
 										},
@@ -47776,13 +48543,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 39,
-													Line:   314,
+													Line:   324,
 												},
 												File:   "universe.flux",
 												Source: "\"__ema2\"",
 												Start: ast.Position{
 													Column: 31,
-													Line:   314,
+													Line:   324,
 												},
 											},
 										},
@@ -47797,13 +48564,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 41,
-									Line:   314,
+									Line:   324,
 								},
 								File:   "universe.flux",
 								Source: "drop(columns: [\"__ema1\", \"__ema2\"])",
 								Start: ast.Position{
 									Column: 6,
-									Line:   314,
+									Line:   324,
 								},
 							},
 						},
@@ -47813,13 +48580,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 10,
-										Line:   314,
+										Line:   324,
 									},
 									File:   "universe.flux",
 									Source: "drop",
 									Start: ast.Position{
 										Column: 6,
-										Line:   314,
+										Line:   324,
 									},
 								},
 							},
@@ -47833,13 +48600,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 15,
-								Line:   306,
+								Line:   316,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 14,
-								Line:   306,
+								Line:   316,
 							},
 						},
 					},
@@ -47849,13 +48616,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 15,
-									Line:   306,
+									Line:   316,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 14,
-									Line:   306,
+									Line:   316,
 								},
 							},
 						},
@@ -47868,13 +48635,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 26,
-								Line:   306,
+								Line:   316,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 17,
-								Line:   306,
+								Line:   316,
 							},
 						},
 					},
@@ -47884,13 +48651,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 23,
-									Line:   306,
+									Line:   316,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 17,
-									Line:   306,
+									Line:   316,
 								},
 							},
 						},
@@ -47901,13 +48668,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 26,
-								Line:   306,
+								Line:   316,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 24,
-								Line:   306,
+								Line:   316,
 							},
 						},
 					}},
@@ -47919,13 +48686,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 82,
-						Line:   320,
+						Line:   330,
 					},
 					File:   "universe.flux",
 					Source: "truncateTimeColumn = (timeColumn=\"_time\", unit, tables=<-) =>\n    tables\n        |> map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   318,
+						Line:   328,
 					},
 				},
 			},
@@ -47935,13 +48702,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 19,
-							Line:   318,
+							Line:   328,
 						},
 						File:   "universe.flux",
 						Source: "truncateTimeColumn",
 						Start: ast.Position{
 							Column: 1,
-							Line:   318,
+							Line:   328,
 						},
 					},
 				},
@@ -47953,13 +48720,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 82,
-							Line:   320,
+							Line:   330,
 						},
 						File:   "universe.flux",
 						Source: "(timeColumn=\"_time\", unit, tables=<-) =>\n    tables\n        |> map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))",
 						Start: ast.Position{
 							Column: 22,
-							Line:   318,
+							Line:   328,
 						},
 					},
 				},
@@ -47970,13 +48737,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 11,
-									Line:   319,
+									Line:   329,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 5,
-									Line:   319,
+									Line:   329,
 								},
 							},
 						},
@@ -47987,13 +48754,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 82,
-								Line:   320,
+								Line:   330,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))",
 							Start: ast.Position{
 								Column: 5,
-								Line:   319,
+								Line:   329,
 							},
 						},
 					},
@@ -48004,13 +48771,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 81,
-										Line:   320,
+										Line:   330,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)})",
 									Start: ast.Position{
 										Column: 16,
-										Line:   320,
+										Line:   330,
 									},
 								},
 							},
@@ -48020,13 +48787,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 81,
-											Line:   320,
+											Line:   330,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)})",
 										Start: ast.Position{
 											Column: 16,
-											Line:   320,
+											Line:   330,
 										},
 									},
 								},
@@ -48036,13 +48803,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   320,
+												Line:   330,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 16,
-												Line:   320,
+												Line:   330,
 											},
 										},
 									},
@@ -48054,13 +48821,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 81,
-												Line:   320,
+												Line:   330,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _time: date.truncate(t: r._time, unit: unit)})",
 											Start: ast.Position{
 												Column: 19,
-												Line:   320,
+												Line:   330,
 											},
 										},
 									},
@@ -48070,13 +48837,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 81,
-													Line:   320,
+													Line:   330,
 												},
 												File:   "universe.flux",
 												Source: "({r with _time: date.truncate(t: r._time, unit: unit)})",
 												Start: ast.Position{
 													Column: 26,
-													Line:   320,
+													Line:   330,
 												},
 											},
 										},
@@ -48086,13 +48853,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 80,
-														Line:   320,
+														Line:   330,
 													},
 													File:   "universe.flux",
 													Source: "{r with _time: date.truncate(t: r._time, unit: unit)}",
 													Start: ast.Position{
 														Column: 27,
-														Line:   320,
+														Line:   330,
 													},
 												},
 											},
@@ -48102,13 +48869,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 79,
-															Line:   320,
+															Line:   330,
 														},
 														File:   "universe.flux",
 														Source: "_time: date.truncate(t: r._time, unit: unit)",
 														Start: ast.Position{
 															Column: 35,
-															Line:   320,
+															Line:   330,
 														},
 													},
 												},
@@ -48118,13 +48885,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 40,
-																Line:   320,
+																Line:   330,
 															},
 															File:   "universe.flux",
 															Source: "_time",
 															Start: ast.Position{
 																Column: 35,
-																Line:   320,
+																Line:   330,
 															},
 														},
 													},
@@ -48137,13 +48904,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 78,
-																	Line:   320,
+																	Line:   330,
 																},
 																File:   "universe.flux",
 																Source: "t: r._time, unit: unit",
 																Start: ast.Position{
 																	Column: 56,
-																	Line:   320,
+																	Line:   330,
 																},
 															},
 														},
@@ -48153,13 +48920,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 66,
-																		Line:   320,
+																		Line:   330,
 																	},
 																	File:   "universe.flux",
 																	Source: "t: r._time",
 																	Start: ast.Position{
 																		Column: 56,
-																		Line:   320,
+																		Line:   330,
 																	},
 																},
 															},
@@ -48169,13 +48936,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 57,
-																			Line:   320,
+																			Line:   330,
 																		},
 																		File:   "universe.flux",
 																		Source: "t",
 																		Start: ast.Position{
 																			Column: 56,
-																			Line:   320,
+																			Line:   330,
 																		},
 																	},
 																},
@@ -48187,13 +48954,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 66,
-																			Line:   320,
+																			Line:   330,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._time",
 																		Start: ast.Position{
 																			Column: 59,
-																			Line:   320,
+																			Line:   330,
 																		},
 																	},
 																},
@@ -48203,13 +48970,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 60,
-																				Line:   320,
+																				Line:   330,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 59,
-																				Line:   320,
+																				Line:   330,
 																			},
 																		},
 																	},
@@ -48221,13 +48988,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 66,
-																				Line:   320,
+																				Line:   330,
 																			},
 																			File:   "universe.flux",
 																			Source: "_time",
 																			Start: ast.Position{
 																				Column: 61,
-																				Line:   320,
+																				Line:   330,
 																			},
 																		},
 																	},
@@ -48240,13 +49007,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 78,
-																		Line:   320,
+																		Line:   330,
 																	},
 																	File:   "universe.flux",
 																	Source: "unit: unit",
 																	Start: ast.Position{
 																		Column: 68,
-																		Line:   320,
+																		Line:   330,
 																	},
 																},
 															},
@@ -48256,13 +49023,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 72,
-																			Line:   320,
+																			Line:   330,
 																		},
 																		File:   "universe.flux",
 																		Source: "unit",
 																		Start: ast.Position{
 																			Column: 68,
-																			Line:   320,
+																			Line:   330,
 																		},
 																	},
 																},
@@ -48274,13 +49041,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 78,
-																			Line:   320,
+																			Line:   330,
 																		},
 																		File:   "universe.flux",
 																		Source: "unit",
 																		Start: ast.Position{
 																			Column: 74,
-																			Line:   320,
+																			Line:   330,
 																		},
 																	},
 																},
@@ -48294,13 +49061,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 79,
-																Line:   320,
+																Line:   330,
 															},
 															File:   "universe.flux",
 															Source: "date.truncate(t: r._time, unit: unit)",
 															Start: ast.Position{
 																Column: 42,
-																Line:   320,
+																Line:   330,
 															},
 														},
 													},
@@ -48310,13 +49077,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 55,
-																	Line:   320,
+																	Line:   330,
 																},
 																File:   "universe.flux",
 																Source: "date.truncate",
 																Start: ast.Position{
 																	Column: 42,
-																	Line:   320,
+																	Line:   330,
 																},
 															},
 														},
@@ -48326,13 +49093,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 46,
-																		Line:   320,
+																		Line:   330,
 																	},
 																	File:   "universe.flux",
 																	Source: "date",
 																	Start: ast.Position{
 																		Column: 42,
-																		Line:   320,
+																		Line:   330,
 																	},
 																},
 															},
@@ -48344,13 +49111,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 55,
-																		Line:   320,
+																		Line:   330,
 																	},
 																	File:   "universe.flux",
 																	Source: "truncate",
 																	Start: ast.Position{
 																		Column: 47,
-																		Line:   320,
+																		Line:   330,
 																	},
 																},
 															},
@@ -48365,13 +49132,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 29,
-															Line:   320,
+															Line:   330,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 28,
-															Line:   320,
+															Line:   330,
 														},
 													},
 												},
@@ -48385,13 +49152,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 21,
-													Line:   320,
+													Line:   330,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 20,
-													Line:   320,
+													Line:   330,
 												},
 											},
 										},
@@ -48401,13 +49168,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 21,
-														Line:   320,
+														Line:   330,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 20,
-														Line:   320,
+														Line:   330,
 													},
 												},
 											},
@@ -48424,13 +49191,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 82,
-									Line:   320,
+									Line:   330,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _time: date.truncate(t: r._time, unit: unit)}))",
 								Start: ast.Position{
 									Column: 12,
-									Line:   320,
+									Line:   330,
 								},
 							},
 						},
@@ -48440,13 +49207,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 15,
-										Line:   320,
+										Line:   330,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 12,
-										Line:   320,
+										Line:   330,
 									},
 								},
 							},
@@ -48460,13 +49227,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 41,
-								Line:   318,
+								Line:   328,
 							},
 							File:   "universe.flux",
 							Source: "timeColumn=\"_time\"",
 							Start: ast.Position{
 								Column: 23,
-								Line:   318,
+								Line:   328,
 							},
 						},
 					},
@@ -48476,13 +49243,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 33,
-									Line:   318,
+									Line:   328,
 								},
 								File:   "universe.flux",
 								Source: "timeColumn",
 								Start: ast.Position{
 									Column: 23,
-									Line:   318,
+									Line:   328,
 								},
 							},
 						},
@@ -48494,13 +49261,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 41,
-									Line:   318,
+									Line:   328,
 								},
 								File:   "universe.flux",
 								Source: "\"_time\"",
 								Start: ast.Position{
 									Column: 34,
-									Line:   318,
+									Line:   328,
 								},
 							},
 						},
@@ -48512,13 +49279,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 47,
-								Line:   318,
+								Line:   328,
 							},
 							File:   "universe.flux",
 							Source: "unit",
 							Start: ast.Position{
 								Column: 43,
-								Line:   318,
+								Line:   328,
 							},
 						},
 					},
@@ -48528,13 +49295,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 47,
-									Line:   318,
+									Line:   328,
 								},
 								File:   "universe.flux",
 								Source: "unit",
 								Start: ast.Position{
 									Column: 43,
-									Line:   318,
+									Line:   328,
 								},
 							},
 						},
@@ -48547,13 +49314,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 58,
-								Line:   318,
+								Line:   328,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 49,
-								Line:   318,
+								Line:   328,
 							},
 						},
 					},
@@ -48563,13 +49330,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 55,
-									Line:   318,
+									Line:   328,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 49,
-									Line:   318,
+									Line:   328,
 								},
 							},
 						},
@@ -48580,13 +49347,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 58,
-								Line:   318,
+								Line:   328,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 56,
-								Line:   318,
+								Line:   328,
 							},
 						},
 					}},
@@ -48598,13 +49365,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 75,
-						Line:   326,
+						Line:   336,
 					},
 					File:   "universe.flux",
 					Source: "kaufmansER = (n, tables=<-) =>\n    tables\n        |> chandeMomentumOscillator(n: n)\n        |> map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   323,
+						Line:   333,
 					},
 				},
 			},
@@ -48614,13 +49381,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 11,
-							Line:   323,
+							Line:   333,
 						},
 						File:   "universe.flux",
 						Source: "kaufmansER",
 						Start: ast.Position{
 							Column: 1,
-							Line:   323,
+							Line:   333,
 						},
 					},
 				},
@@ -48632,13 +49399,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 75,
-							Line:   326,
+							Line:   336,
 						},
 						File:   "universe.flux",
 						Source: "(n, tables=<-) =>\n    tables\n        |> chandeMomentumOscillator(n: n)\n        |> map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   323,
+							Line:   333,
 						},
 					},
 				},
@@ -48650,13 +49417,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 11,
-										Line:   324,
+										Line:   334,
 									},
 									File:   "universe.flux",
 									Source: "tables",
 									Start: ast.Position{
 										Column: 5,
-										Line:   324,
+										Line:   334,
 									},
 								},
 							},
@@ -48667,13 +49434,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 42,
-									Line:   325,
+									Line:   335,
 								},
 								File:   "universe.flux",
 								Source: "tables\n        |> chandeMomentumOscillator(n: n)",
 								Start: ast.Position{
 									Column: 5,
-									Line:   324,
+									Line:   334,
 								},
 							},
 						},
@@ -48684,13 +49451,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 41,
-											Line:   325,
+											Line:   335,
 										},
 										File:   "universe.flux",
 										Source: "n: n",
 										Start: ast.Position{
 											Column: 37,
-											Line:   325,
+											Line:   335,
 										},
 									},
 								},
@@ -48700,13 +49467,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 41,
-												Line:   325,
+												Line:   335,
 											},
 											File:   "universe.flux",
 											Source: "n: n",
 											Start: ast.Position{
 												Column: 37,
-												Line:   325,
+												Line:   335,
 											},
 										},
 									},
@@ -48716,13 +49483,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 38,
-													Line:   325,
+													Line:   335,
 												},
 												File:   "universe.flux",
 												Source: "n",
 												Start: ast.Position{
 													Column: 37,
-													Line:   325,
+													Line:   335,
 												},
 											},
 										},
@@ -48734,13 +49501,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 41,
-													Line:   325,
+													Line:   335,
 												},
 												File:   "universe.flux",
 												Source: "n",
 												Start: ast.Position{
 													Column: 40,
-													Line:   325,
+													Line:   335,
 												},
 											},
 										},
@@ -48754,13 +49521,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   325,
+										Line:   335,
 									},
 									File:   "universe.flux",
 									Source: "chandeMomentumOscillator(n: n)",
 									Start: ast.Position{
 										Column: 12,
-										Line:   325,
+										Line:   335,
 									},
 								},
 							},
@@ -48770,13 +49537,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 36,
-											Line:   325,
+											Line:   335,
 										},
 										File:   "universe.flux",
 										Source: "chandeMomentumOscillator",
 										Start: ast.Position{
 											Column: 12,
-											Line:   325,
+											Line:   335,
 										},
 									},
 								},
@@ -48789,13 +49556,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 75,
-								Line:   326,
+								Line:   336,
 							},
 							File:   "universe.flux",
 							Source: "tables\n        |> chandeMomentumOscillator(n: n)\n        |> map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))",
 							Start: ast.Position{
 								Column: 5,
-								Line:   324,
+								Line:   334,
 							},
 						},
 					},
@@ -48806,13 +49573,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 74,
-										Line:   326,
+										Line:   336,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)})",
 									Start: ast.Position{
 										Column: 16,
-										Line:   326,
+										Line:   336,
 									},
 								},
 							},
@@ -48822,13 +49589,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 74,
-											Line:   326,
+											Line:   336,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)})",
 										Start: ast.Position{
 											Column: 16,
-											Line:   326,
+											Line:   336,
 										},
 									},
 								},
@@ -48838,13 +49605,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 18,
-												Line:   326,
+												Line:   336,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 16,
-												Line:   326,
+												Line:   336,
 											},
 										},
 									},
@@ -48856,13 +49623,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 74,
-												Line:   326,
+												Line:   336,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: (math.abs(x: r._value)/100.0)})",
 											Start: ast.Position{
 												Column: 19,
-												Line:   326,
+												Line:   336,
 											},
 										},
 									},
@@ -48872,13 +49639,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 74,
-													Line:   326,
+													Line:   336,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: (math.abs(x: r._value)/100.0)})",
 												Start: ast.Position{
 													Column: 26,
-													Line:   326,
+													Line:   336,
 												},
 											},
 										},
@@ -48888,13 +49655,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 73,
-														Line:   326,
+														Line:   336,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: (math.abs(x: r._value)/100.0)}",
 													Start: ast.Position{
 														Column: 27,
-														Line:   326,
+														Line:   336,
 													},
 												},
 											},
@@ -48904,13 +49671,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 72,
-															Line:   326,
+															Line:   336,
 														},
 														File:   "universe.flux",
 														Source: "_value: (math.abs(x: r._value)/100.0)",
 														Start: ast.Position{
 															Column: 35,
-															Line:   326,
+															Line:   336,
 														},
 													},
 												},
@@ -48920,13 +49687,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 41,
-																Line:   326,
+																Line:   336,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 35,
-																Line:   326,
+																Line:   336,
 															},
 														},
 													},
@@ -48938,13 +49705,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 72,
-																Line:   326,
+																Line:   336,
 															},
 															File:   "universe.flux",
 															Source: "(math.abs(x: r._value)/100.0)",
 															Start: ast.Position{
 																Column: 43,
-																Line:   326,
+																Line:   336,
 															},
 														},
 													},
@@ -48954,13 +49721,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 71,
-																	Line:   326,
+																	Line:   336,
 																},
 																File:   "universe.flux",
 																Source: "math.abs(x: r._value)/100.0",
 																Start: ast.Position{
 																	Column: 44,
-																	Line:   326,
+																	Line:   336,
 																},
 															},
 														},
@@ -48971,13 +49738,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 64,
-																			Line:   326,
+																			Line:   336,
 																		},
 																		File:   "universe.flux",
 																		Source: "x: r._value",
 																		Start: ast.Position{
 																			Column: 53,
-																			Line:   326,
+																			Line:   336,
 																		},
 																	},
 																},
@@ -48987,13 +49754,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 64,
-																				Line:   326,
+																				Line:   336,
 																			},
 																			File:   "universe.flux",
 																			Source: "x: r._value",
 																			Start: ast.Position{
 																				Column: 53,
-																				Line:   326,
+																				Line:   336,
 																			},
 																		},
 																	},
@@ -49003,13 +49770,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 54,
-																					Line:   326,
+																					Line:   336,
 																				},
 																				File:   "universe.flux",
 																				Source: "x",
 																				Start: ast.Position{
 																					Column: 53,
-																					Line:   326,
+																					Line:   336,
 																				},
 																			},
 																		},
@@ -49021,13 +49788,13 @@ var pkgAST = &ast.Package{
 																			Loc: &ast.SourceLocation{
 																				End: ast.Position{
 																					Column: 64,
-																					Line:   326,
+																					Line:   336,
 																				},
 																				File:   "universe.flux",
 																				Source: "r._value",
 																				Start: ast.Position{
 																					Column: 56,
-																					Line:   326,
+																					Line:   336,
 																				},
 																			},
 																		},
@@ -49037,13 +49804,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 57,
-																						Line:   326,
+																						Line:   336,
 																					},
 																					File:   "universe.flux",
 																					Source: "r",
 																					Start: ast.Position{
 																						Column: 56,
-																						Line:   326,
+																						Line:   336,
 																					},
 																				},
 																			},
@@ -49055,13 +49822,13 @@ var pkgAST = &ast.Package{
 																				Loc: &ast.SourceLocation{
 																					End: ast.Position{
 																						Column: 64,
-																						Line:   326,
+																						Line:   336,
 																					},
 																					File:   "universe.flux",
 																					Source: "_value",
 																					Start: ast.Position{
 																						Column: 58,
-																						Line:   326,
+																						Line:   336,
 																					},
 																				},
 																			},
@@ -49076,13 +49843,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 65,
-																		Line:   326,
+																		Line:   336,
 																	},
 																	File:   "universe.flux",
 																	Source: "math.abs(x: r._value)",
 																	Start: ast.Position{
 																		Column: 44,
-																		Line:   326,
+																		Line:   336,
 																	},
 																},
 															},
@@ -49092,13 +49859,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 52,
-																			Line:   326,
+																			Line:   336,
 																		},
 																		File:   "universe.flux",
 																		Source: "math.abs",
 																		Start: ast.Position{
 																			Column: 44,
-																			Line:   326,
+																			Line:   336,
 																		},
 																	},
 																},
@@ -49108,13 +49875,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 48,
-																				Line:   326,
+																				Line:   336,
 																			},
 																			File:   "universe.flux",
 																			Source: "math",
 																			Start: ast.Position{
 																				Column: 44,
-																				Line:   326,
+																				Line:   336,
 																			},
 																		},
 																	},
@@ -49126,13 +49893,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 52,
-																				Line:   326,
+																				Line:   336,
 																			},
 																			File:   "universe.flux",
 																			Source: "abs",
 																			Start: ast.Position{
 																				Column: 49,
-																				Line:   326,
+																				Line:   336,
 																			},
 																		},
 																	},
@@ -49147,13 +49914,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 71,
-																		Line:   326,
+																		Line:   336,
 																	},
 																	File:   "universe.flux",
 																	Source: "100.0",
 																	Start: ast.Position{
 																		Column: 66,
-																		Line:   326,
+																		Line:   336,
 																	},
 																},
 															},
@@ -49168,13 +49935,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 29,
-															Line:   326,
+															Line:   336,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 28,
-															Line:   326,
+															Line:   336,
 														},
 													},
 												},
@@ -49188,13 +49955,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 21,
-													Line:   326,
+													Line:   336,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 20,
-													Line:   326,
+													Line:   336,
 												},
 											},
 										},
@@ -49204,13 +49971,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 21,
-														Line:   326,
+														Line:   336,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 20,
-														Line:   326,
+														Line:   336,
 													},
 												},
 											},
@@ -49227,13 +49994,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 75,
-									Line:   326,
+									Line:   336,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: (math.abs(x: r._value)/100.0)}))",
 								Start: ast.Position{
 									Column: 12,
-									Line:   326,
+									Line:   336,
 								},
 							},
 						},
@@ -49243,13 +50010,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 15,
-										Line:   326,
+										Line:   336,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 12,
-										Line:   326,
+										Line:   336,
 									},
 								},
 							},
@@ -49263,13 +50030,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 16,
-								Line:   323,
+								Line:   333,
 							},
 							File:   "universe.flux",
 							Source: "n",
 							Start: ast.Position{
 								Column: 15,
-								Line:   323,
+								Line:   333,
 							},
 						},
 					},
@@ -49279,13 +50046,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 16,
-									Line:   323,
+									Line:   333,
 								},
 								File:   "universe.flux",
 								Source: "n",
 								Start: ast.Position{
 									Column: 15,
-									Line:   323,
+									Line:   333,
 								},
 							},
 						},
@@ -49298,13 +50065,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 27,
-								Line:   323,
+								Line:   333,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 18,
-								Line:   323,
+								Line:   333,
 							},
 						},
 					},
@@ -49314,13 +50081,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 24,
-									Line:   323,
+									Line:   333,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 18,
-									Line:   323,
+									Line:   333,
 								},
 							},
 						},
@@ -49331,13 +50098,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 27,
-								Line:   323,
+								Line:   333,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 25,
-								Line:   323,
+								Line:   333,
 							},
 						},
 					}},
@@ -49349,13 +50116,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 91,
-						Line:   328,
+						Line:   338,
 					},
 					File:   "universe.flux",
 					Source: "toString   = (tables=<-) => tables |> map(fn:(r) => ({r with _value: string(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   328,
+						Line:   338,
 					},
 				},
 			},
@@ -49365,13 +50132,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 9,
-							Line:   328,
+							Line:   338,
 						},
 						File:   "universe.flux",
 						Source: "toString",
 						Start: ast.Position{
 							Column: 1,
-							Line:   328,
+							Line:   338,
 						},
 					},
 				},
@@ -49383,13 +50150,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 91,
-							Line:   328,
+							Line:   338,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: string(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   328,
+							Line:   338,
 						},
 					},
 				},
@@ -49400,13 +50167,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   328,
+									Line:   338,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   328,
+									Line:   338,
 								},
 							},
 						},
@@ -49417,13 +50184,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 91,
-								Line:   328,
+								Line:   338,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: string(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   328,
+								Line:   338,
 							},
 						},
 					},
@@ -49434,13 +50201,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 90,
-										Line:   328,
+										Line:   338,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: string(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   328,
+										Line:   338,
 									},
 								},
 							},
@@ -49450,13 +50217,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 90,
-											Line:   328,
+											Line:   338,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: string(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   328,
+											Line:   338,
 										},
 									},
 								},
@@ -49466,13 +50233,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   328,
+												Line:   338,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   328,
+												Line:   338,
 											},
 										},
 									},
@@ -49484,13 +50251,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 90,
-												Line:   328,
+												Line:   338,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: string(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   328,
+												Line:   338,
 											},
 										},
 									},
@@ -49500,13 +50267,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 90,
-													Line:   328,
+													Line:   338,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: string(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   328,
+													Line:   338,
 												},
 											},
 										},
@@ -49516,13 +50283,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 89,
-														Line:   328,
+														Line:   338,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: string(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   328,
+														Line:   338,
 													},
 												},
 											},
@@ -49532,13 +50299,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 88,
-															Line:   328,
+															Line:   338,
 														},
 														File:   "universe.flux",
 														Source: "_value: string(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   328,
+															Line:   338,
 														},
 													},
 												},
@@ -49548,13 +50315,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   328,
+																Line:   338,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   328,
+																Line:   338,
 															},
 														},
 													},
@@ -49567,13 +50334,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 87,
-																	Line:   328,
+																	Line:   338,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 77,
-																	Line:   328,
+																	Line:   338,
 																},
 															},
 														},
@@ -49583,13 +50350,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 87,
-																		Line:   328,
+																		Line:   338,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 77,
-																		Line:   328,
+																		Line:   338,
 																	},
 																},
 															},
@@ -49599,13 +50366,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 78,
-																			Line:   328,
+																			Line:   338,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 77,
-																			Line:   328,
+																			Line:   338,
 																		},
 																	},
 																},
@@ -49617,13 +50384,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 87,
-																			Line:   328,
+																			Line:   338,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 79,
-																			Line:   328,
+																			Line:   338,
 																		},
 																	},
 																},
@@ -49633,13 +50400,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 80,
-																				Line:   328,
+																				Line:   338,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 79,
-																				Line:   328,
+																				Line:   338,
 																			},
 																		},
 																	},
@@ -49651,13 +50418,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 87,
-																				Line:   328,
+																				Line:   338,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 81,
-																				Line:   328,
+																				Line:   338,
 																			},
 																		},
 																	},
@@ -49672,13 +50439,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 88,
-																Line:   328,
+																Line:   338,
 															},
 															File:   "universe.flux",
 															Source: "string(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   328,
+																Line:   338,
 															},
 														},
 													},
@@ -49688,13 +50455,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 76,
-																	Line:   328,
+																	Line:   338,
 																},
 																File:   "universe.flux",
 																Source: "string",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   328,
+																	Line:   338,
 																},
 															},
 														},
@@ -49708,13 +50475,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   328,
+															Line:   338,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   328,
+															Line:   338,
 														},
 													},
 												},
@@ -49728,13 +50495,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   328,
+													Line:   338,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   328,
+													Line:   338,
 												},
 											},
 										},
@@ -49744,13 +50511,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   328,
+														Line:   338,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   328,
+														Line:   338,
 													},
 												},
 											},
@@ -49767,13 +50534,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 91,
-									Line:   328,
+									Line:   338,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: string(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   328,
+									Line:   338,
 								},
 							},
 						},
@@ -49783,13 +50550,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   328,
+										Line:   338,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   328,
+										Line:   338,
 									},
 								},
 							},
@@ -49803,13 +50570,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   328,
+								Line:   338,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   328,
+								Line:   338,
 							},
 						},
 					},
@@ -49819,13 +50586,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   328,
+									Line:   338,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   328,
+									Line:   338,
 								},
 							},
 						},
@@ -49836,13 +50603,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   328,
+								Line:   338,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   328,
+								Line:   338,
 							},
 						},
 					}},
@@ -49854,13 +50621,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 88,
-						Line:   329,
+						Line:   339,
 					},
 					File:   "universe.flux",
 					Source: "toInt      = (tables=<-) => tables |> map(fn:(r) => ({r with _value: int(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   329,
+						Line:   339,
 					},
 				},
 			},
@@ -49870,13 +50637,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 6,
-							Line:   329,
+							Line:   339,
 						},
 						File:   "universe.flux",
 						Source: "toInt",
 						Start: ast.Position{
 							Column: 1,
-							Line:   329,
+							Line:   339,
 						},
 					},
 				},
@@ -49888,13 +50655,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 88,
-							Line:   329,
+							Line:   339,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: int(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   329,
+							Line:   339,
 						},
 					},
 				},
@@ -49905,13 +50672,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   329,
+									Line:   339,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   329,
+									Line:   339,
 								},
 							},
 						},
@@ -49922,13 +50689,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 88,
-								Line:   329,
+								Line:   339,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: int(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   329,
+								Line:   339,
 							},
 						},
 					},
@@ -49939,13 +50706,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 87,
-										Line:   329,
+										Line:   339,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: int(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   329,
+										Line:   339,
 									},
 								},
 							},
@@ -49955,13 +50722,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 87,
-											Line:   329,
+											Line:   339,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: int(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   329,
+											Line:   339,
 										},
 									},
 								},
@@ -49971,13 +50738,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   329,
+												Line:   339,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   329,
+												Line:   339,
 											},
 										},
 									},
@@ -49989,13 +50756,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 87,
-												Line:   329,
+												Line:   339,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: int(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   329,
+												Line:   339,
 											},
 										},
 									},
@@ -50005,13 +50772,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 87,
-													Line:   329,
+													Line:   339,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: int(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   329,
+													Line:   339,
 												},
 											},
 										},
@@ -50021,13 +50788,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 86,
-														Line:   329,
+														Line:   339,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: int(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   329,
+														Line:   339,
 													},
 												},
 											},
@@ -50037,13 +50804,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 85,
-															Line:   329,
+															Line:   339,
 														},
 														File:   "universe.flux",
 														Source: "_value: int(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   329,
+															Line:   339,
 														},
 													},
 												},
@@ -50053,13 +50820,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   329,
+																Line:   339,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   329,
+																Line:   339,
 															},
 														},
 													},
@@ -50072,13 +50839,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 84,
-																	Line:   329,
+																	Line:   339,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 74,
-																	Line:   329,
+																	Line:   339,
 																},
 															},
 														},
@@ -50088,13 +50855,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 84,
-																		Line:   329,
+																		Line:   339,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 74,
-																		Line:   329,
+																		Line:   339,
 																	},
 																},
 															},
@@ -50104,13 +50871,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 75,
-																			Line:   329,
+																			Line:   339,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 74,
-																			Line:   329,
+																			Line:   339,
 																		},
 																	},
 																},
@@ -50122,13 +50889,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 84,
-																			Line:   329,
+																			Line:   339,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 76,
-																			Line:   329,
+																			Line:   339,
 																		},
 																	},
 																},
@@ -50138,13 +50905,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 77,
-																				Line:   329,
+																				Line:   339,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 76,
-																				Line:   329,
+																				Line:   339,
 																			},
 																		},
 																	},
@@ -50156,13 +50923,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 84,
-																				Line:   329,
+																				Line:   339,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 78,
-																				Line:   329,
+																				Line:   339,
 																			},
 																		},
 																	},
@@ -50177,13 +50944,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 85,
-																Line:   329,
+																Line:   339,
 															},
 															File:   "universe.flux",
 															Source: "int(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   329,
+																Line:   339,
 															},
 														},
 													},
@@ -50193,13 +50960,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 73,
-																	Line:   329,
+																	Line:   339,
 																},
 																File:   "universe.flux",
 																Source: "int",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   329,
+																	Line:   339,
 																},
 															},
 														},
@@ -50213,13 +50980,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   329,
+															Line:   339,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   329,
+															Line:   339,
 														},
 													},
 												},
@@ -50233,13 +51000,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   329,
+													Line:   339,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   329,
+													Line:   339,
 												},
 											},
 										},
@@ -50249,13 +51016,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   329,
+														Line:   339,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   329,
+														Line:   339,
 													},
 												},
 											},
@@ -50272,13 +51039,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 88,
-									Line:   329,
+									Line:   339,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: int(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   329,
+									Line:   339,
 								},
 							},
 						},
@@ -50288,13 +51055,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   329,
+										Line:   339,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   329,
+										Line:   339,
 									},
 								},
 							},
@@ -50308,13 +51075,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   329,
+								Line:   339,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   329,
+								Line:   339,
 							},
 						},
 					},
@@ -50324,13 +51091,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   329,
+									Line:   339,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   329,
+									Line:   339,
 								},
 							},
 						},
@@ -50341,13 +51108,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   329,
+								Line:   339,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   329,
+								Line:   339,
 							},
 						},
 					}},
@@ -50359,13 +51126,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 89,
-						Line:   330,
+						Line:   340,
 					},
 					File:   "universe.flux",
 					Source: "toUInt     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: uint(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   330,
+						Line:   340,
 					},
 				},
 			},
@@ -50375,13 +51142,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 7,
-							Line:   330,
+							Line:   340,
 						},
 						File:   "universe.flux",
 						Source: "toUInt",
 						Start: ast.Position{
 							Column: 1,
-							Line:   330,
+							Line:   340,
 						},
 					},
 				},
@@ -50393,13 +51160,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 89,
-							Line:   330,
+							Line:   340,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: uint(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   330,
+							Line:   340,
 						},
 					},
 				},
@@ -50410,13 +51177,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   330,
+									Line:   340,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   330,
+									Line:   340,
 								},
 							},
 						},
@@ -50427,13 +51194,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 89,
-								Line:   330,
+								Line:   340,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: uint(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   330,
+								Line:   340,
 							},
 						},
 					},
@@ -50444,13 +51211,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 88,
-										Line:   330,
+										Line:   340,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: uint(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   330,
+										Line:   340,
 									},
 								},
 							},
@@ -50460,13 +51227,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 88,
-											Line:   330,
+											Line:   340,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: uint(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   330,
+											Line:   340,
 										},
 									},
 								},
@@ -50476,13 +51243,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   330,
+												Line:   340,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   330,
+												Line:   340,
 											},
 										},
 									},
@@ -50494,13 +51261,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 88,
-												Line:   330,
+												Line:   340,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: uint(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   330,
+												Line:   340,
 											},
 										},
 									},
@@ -50510,13 +51277,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 88,
-													Line:   330,
+													Line:   340,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: uint(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   330,
+													Line:   340,
 												},
 											},
 										},
@@ -50526,13 +51293,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 87,
-														Line:   330,
+														Line:   340,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: uint(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   330,
+														Line:   340,
 													},
 												},
 											},
@@ -50542,13 +51309,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 86,
-															Line:   330,
+															Line:   340,
 														},
 														File:   "universe.flux",
 														Source: "_value: uint(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   330,
+															Line:   340,
 														},
 													},
 												},
@@ -50558,13 +51325,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   330,
+																Line:   340,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   330,
+																Line:   340,
 															},
 														},
 													},
@@ -50577,13 +51344,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 85,
-																	Line:   330,
+																	Line:   340,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 75,
-																	Line:   330,
+																	Line:   340,
 																},
 															},
 														},
@@ -50593,13 +51360,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 85,
-																		Line:   330,
+																		Line:   340,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 75,
-																		Line:   330,
+																		Line:   340,
 																	},
 																},
 															},
@@ -50609,13 +51376,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 76,
-																			Line:   330,
+																			Line:   340,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 75,
-																			Line:   330,
+																			Line:   340,
 																		},
 																	},
 																},
@@ -50627,13 +51394,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 85,
-																			Line:   330,
+																			Line:   340,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 77,
-																			Line:   330,
+																			Line:   340,
 																		},
 																	},
 																},
@@ -50643,13 +51410,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 78,
-																				Line:   330,
+																				Line:   340,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 77,
-																				Line:   330,
+																				Line:   340,
 																			},
 																		},
 																	},
@@ -50661,13 +51428,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 85,
-																				Line:   330,
+																				Line:   340,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 79,
-																				Line:   330,
+																				Line:   340,
 																			},
 																		},
 																	},
@@ -50682,13 +51449,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 86,
-																Line:   330,
+																Line:   340,
 															},
 															File:   "universe.flux",
 															Source: "uint(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   330,
+																Line:   340,
 															},
 														},
 													},
@@ -50698,13 +51465,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 74,
-																	Line:   330,
+																	Line:   340,
 																},
 																File:   "universe.flux",
 																Source: "uint",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   330,
+																	Line:   340,
 																},
 															},
 														},
@@ -50718,13 +51485,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   330,
+															Line:   340,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   330,
+															Line:   340,
 														},
 													},
 												},
@@ -50738,13 +51505,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   330,
+													Line:   340,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   330,
+													Line:   340,
 												},
 											},
 										},
@@ -50754,13 +51521,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   330,
+														Line:   340,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   330,
+														Line:   340,
 													},
 												},
 											},
@@ -50777,13 +51544,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 89,
-									Line:   330,
+									Line:   340,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: uint(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   330,
+									Line:   340,
 								},
 							},
 						},
@@ -50793,13 +51560,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   330,
+										Line:   340,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   330,
+										Line:   340,
 									},
 								},
 							},
@@ -50813,13 +51580,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   330,
+								Line:   340,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   330,
+								Line:   340,
 							},
 						},
 					},
@@ -50829,13 +51596,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   330,
+									Line:   340,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   330,
+									Line:   340,
 								},
 							},
 						},
@@ -50846,13 +51613,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   330,
+								Line:   340,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   330,
+								Line:   340,
 							},
 						},
 					}},
@@ -50864,13 +51631,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 90,
-						Line:   331,
+						Line:   341,
 					},
 					File:   "universe.flux",
 					Source: "toFloat    = (tables=<-) => tables |> map(fn:(r) => ({r with _value: float(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   331,
+						Line:   341,
 					},
 				},
 			},
@@ -50880,13 +51647,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 8,
-							Line:   331,
+							Line:   341,
 						},
 						File:   "universe.flux",
 						Source: "toFloat",
 						Start: ast.Position{
 							Column: 1,
-							Line:   331,
+							Line:   341,
 						},
 					},
 				},
@@ -50898,13 +51665,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 90,
-							Line:   331,
+							Line:   341,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: float(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   331,
+							Line:   341,
 						},
 					},
 				},
@@ -50915,13 +51682,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   331,
+									Line:   341,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   331,
+									Line:   341,
 								},
 							},
 						},
@@ -50932,13 +51699,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 90,
-								Line:   331,
+								Line:   341,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: float(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   331,
+								Line:   341,
 							},
 						},
 					},
@@ -50949,13 +51716,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 89,
-										Line:   331,
+										Line:   341,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: float(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   331,
+										Line:   341,
 									},
 								},
 							},
@@ -50965,13 +51732,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 89,
-											Line:   331,
+											Line:   341,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: float(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   331,
+											Line:   341,
 										},
 									},
 								},
@@ -50981,13 +51748,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   331,
+												Line:   341,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   331,
+												Line:   341,
 											},
 										},
 									},
@@ -50999,13 +51766,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 89,
-												Line:   331,
+												Line:   341,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: float(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   331,
+												Line:   341,
 											},
 										},
 									},
@@ -51015,13 +51782,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 89,
-													Line:   331,
+													Line:   341,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: float(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   331,
+													Line:   341,
 												},
 											},
 										},
@@ -51031,13 +51798,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 88,
-														Line:   331,
+														Line:   341,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: float(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   331,
+														Line:   341,
 													},
 												},
 											},
@@ -51047,13 +51814,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 87,
-															Line:   331,
+															Line:   341,
 														},
 														File:   "universe.flux",
 														Source: "_value: float(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   331,
+															Line:   341,
 														},
 													},
 												},
@@ -51063,13 +51830,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   331,
+																Line:   341,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   331,
+																Line:   341,
 															},
 														},
 													},
@@ -51082,13 +51849,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 86,
-																	Line:   331,
+																	Line:   341,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 76,
-																	Line:   331,
+																	Line:   341,
 																},
 															},
 														},
@@ -51098,13 +51865,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 86,
-																		Line:   331,
+																		Line:   341,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 76,
-																		Line:   331,
+																		Line:   341,
 																	},
 																},
 															},
@@ -51114,13 +51881,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 77,
-																			Line:   331,
+																			Line:   341,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 76,
-																			Line:   331,
+																			Line:   341,
 																		},
 																	},
 																},
@@ -51132,13 +51899,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 86,
-																			Line:   331,
+																			Line:   341,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 78,
-																			Line:   331,
+																			Line:   341,
 																		},
 																	},
 																},
@@ -51148,13 +51915,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 79,
-																				Line:   331,
+																				Line:   341,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 78,
-																				Line:   331,
+																				Line:   341,
 																			},
 																		},
 																	},
@@ -51166,13 +51933,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 86,
-																				Line:   331,
+																				Line:   341,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 80,
-																				Line:   331,
+																				Line:   341,
 																			},
 																		},
 																	},
@@ -51187,13 +51954,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 87,
-																Line:   331,
+																Line:   341,
 															},
 															File:   "universe.flux",
 															Source: "float(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   331,
+																Line:   341,
 															},
 														},
 													},
@@ -51203,13 +51970,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 75,
-																	Line:   331,
+																	Line:   341,
 																},
 																File:   "universe.flux",
 																Source: "float",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   331,
+																	Line:   341,
 																},
 															},
 														},
@@ -51223,13 +51990,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   331,
+															Line:   341,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   331,
+															Line:   341,
 														},
 													},
 												},
@@ -51243,13 +52010,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   331,
+													Line:   341,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   331,
+													Line:   341,
 												},
 											},
 										},
@@ -51259,13 +52026,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   331,
+														Line:   341,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   331,
+														Line:   341,
 													},
 												},
 											},
@@ -51282,13 +52049,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 90,
-									Line:   331,
+									Line:   341,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: float(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   331,
+									Line:   341,
 								},
 							},
 						},
@@ -51298,13 +52065,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   331,
+										Line:   341,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   331,
+										Line:   341,
 									},
 								},
 							},
@@ -51318,13 +52085,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   331,
+								Line:   341,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   331,
+								Line:   341,
 							},
 						},
 					},
@@ -51334,13 +52101,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   331,
+									Line:   341,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   331,
+									Line:   341,
 								},
 							},
 						},
@@ -51351,13 +52118,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   331,
+								Line:   341,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   331,
+								Line:   341,
 							},
 						},
 					}},
@@ -51369,13 +52136,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 89,
-						Line:   332,
+						Line:   342,
 					},
 					File:   "universe.flux",
 					Source: "toBool     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: bool(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   332,
+						Line:   342,
 					},
 				},
 			},
@@ -51385,13 +52152,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 7,
-							Line:   332,
+							Line:   342,
 						},
 						File:   "universe.flux",
 						Source: "toBool",
 						Start: ast.Position{
 							Column: 1,
-							Line:   332,
+							Line:   342,
 						},
 					},
 				},
@@ -51403,13 +52170,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 89,
-							Line:   332,
+							Line:   342,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: bool(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   332,
+							Line:   342,
 						},
 					},
 				},
@@ -51420,13 +52187,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   332,
+									Line:   342,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   332,
+									Line:   342,
 								},
 							},
 						},
@@ -51437,13 +52204,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 89,
-								Line:   332,
+								Line:   342,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: bool(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   332,
+								Line:   342,
 							},
 						},
 					},
@@ -51454,13 +52221,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 88,
-										Line:   332,
+										Line:   342,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: bool(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   332,
+										Line:   342,
 									},
 								},
 							},
@@ -51470,13 +52237,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 88,
-											Line:   332,
+											Line:   342,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: bool(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   332,
+											Line:   342,
 										},
 									},
 								},
@@ -51486,13 +52253,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   332,
+												Line:   342,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   332,
+												Line:   342,
 											},
 										},
 									},
@@ -51504,13 +52271,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 88,
-												Line:   332,
+												Line:   342,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: bool(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   332,
+												Line:   342,
 											},
 										},
 									},
@@ -51520,13 +52287,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 88,
-													Line:   332,
+													Line:   342,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: bool(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   332,
+													Line:   342,
 												},
 											},
 										},
@@ -51536,13 +52303,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 87,
-														Line:   332,
+														Line:   342,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: bool(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   332,
+														Line:   342,
 													},
 												},
 											},
@@ -51552,13 +52319,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 86,
-															Line:   332,
+															Line:   342,
 														},
 														File:   "universe.flux",
 														Source: "_value: bool(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   332,
+															Line:   342,
 														},
 													},
 												},
@@ -51568,13 +52335,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   332,
+																Line:   342,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   332,
+																Line:   342,
 															},
 														},
 													},
@@ -51587,13 +52354,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 85,
-																	Line:   332,
+																	Line:   342,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 75,
-																	Line:   332,
+																	Line:   342,
 																},
 															},
 														},
@@ -51603,13 +52370,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 85,
-																		Line:   332,
+																		Line:   342,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 75,
-																		Line:   332,
+																		Line:   342,
 																	},
 																},
 															},
@@ -51619,13 +52386,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 76,
-																			Line:   332,
+																			Line:   342,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 75,
-																			Line:   332,
+																			Line:   342,
 																		},
 																	},
 																},
@@ -51637,13 +52404,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 85,
-																			Line:   332,
+																			Line:   342,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 77,
-																			Line:   332,
+																			Line:   342,
 																		},
 																	},
 																},
@@ -51653,13 +52420,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 78,
-																				Line:   332,
+																				Line:   342,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 77,
-																				Line:   332,
+																				Line:   342,
 																			},
 																		},
 																	},
@@ -51671,13 +52438,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 85,
-																				Line:   332,
+																				Line:   342,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 79,
-																				Line:   332,
+																				Line:   342,
 																			},
 																		},
 																	},
@@ -51692,13 +52459,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 86,
-																Line:   332,
+																Line:   342,
 															},
 															File:   "universe.flux",
 															Source: "bool(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   332,
+																Line:   342,
 															},
 														},
 													},
@@ -51708,13 +52475,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 74,
-																	Line:   332,
+																	Line:   342,
 																},
 																File:   "universe.flux",
 																Source: "bool",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   332,
+																	Line:   342,
 																},
 															},
 														},
@@ -51728,13 +52495,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   332,
+															Line:   342,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   332,
+															Line:   342,
 														},
 													},
 												},
@@ -51748,13 +52515,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   332,
+													Line:   342,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   332,
+													Line:   342,
 												},
 											},
 										},
@@ -51764,13 +52531,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   332,
+														Line:   342,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   332,
+														Line:   342,
 													},
 												},
 											},
@@ -51787,13 +52554,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 89,
-									Line:   332,
+									Line:   342,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: bool(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   332,
+									Line:   342,
 								},
 							},
 						},
@@ -51803,13 +52570,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   332,
+										Line:   342,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   332,
+										Line:   342,
 									},
 								},
 							},
@@ -51823,13 +52590,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   332,
+								Line:   342,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   332,
+								Line:   342,
 							},
 						},
 					},
@@ -51839,13 +52606,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   332,
+									Line:   342,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   332,
+									Line:   342,
 								},
 							},
 						},
@@ -51856,13 +52623,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   332,
+								Line:   342,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   332,
+								Line:   342,
 							},
 						},
 					}},
@@ -51874,13 +52641,13 @@ var pkgAST = &ast.Package{
 				Loc: &ast.SourceLocation{
 					End: ast.Position{
 						Column: 89,
-						Line:   333,
+						Line:   343,
 					},
 					File:   "universe.flux",
 					Source: "toTime     = (tables=<-) => tables |> map(fn:(r) => ({r with _value: time(v:r._value)}))",
 					Start: ast.Position{
 						Column: 1,
-						Line:   333,
+						Line:   343,
 					},
 				},
 			},
@@ -51890,13 +52657,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 7,
-							Line:   333,
+							Line:   343,
 						},
 						File:   "universe.flux",
 						Source: "toTime",
 						Start: ast.Position{
 							Column: 1,
-							Line:   333,
+							Line:   343,
 						},
 					},
 				},
@@ -51908,13 +52675,13 @@ var pkgAST = &ast.Package{
 					Loc: &ast.SourceLocation{
 						End: ast.Position{
 							Column: 89,
-							Line:   333,
+							Line:   343,
 						},
 						File:   "universe.flux",
 						Source: "(tables=<-) => tables |> map(fn:(r) => ({r with _value: time(v:r._value)}))",
 						Start: ast.Position{
 							Column: 14,
-							Line:   333,
+							Line:   343,
 						},
 					},
 				},
@@ -51925,13 +52692,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 35,
-									Line:   333,
+									Line:   343,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 29,
-									Line:   333,
+									Line:   343,
 								},
 							},
 						},
@@ -51942,13 +52709,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 89,
-								Line:   333,
+								Line:   343,
 							},
 							File:   "universe.flux",
 							Source: "tables |> map(fn:(r) => ({r with _value: time(v:r._value)}))",
 							Start: ast.Position{
 								Column: 29,
-								Line:   333,
+								Line:   343,
 							},
 						},
 					},
@@ -51959,13 +52726,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 88,
-										Line:   333,
+										Line:   343,
 									},
 									File:   "universe.flux",
 									Source: "fn:(r) => ({r with _value: time(v:r._value)})",
 									Start: ast.Position{
 										Column: 43,
-										Line:   333,
+										Line:   343,
 									},
 								},
 							},
@@ -51975,13 +52742,13 @@ var pkgAST = &ast.Package{
 									Loc: &ast.SourceLocation{
 										End: ast.Position{
 											Column: 88,
-											Line:   333,
+											Line:   343,
 										},
 										File:   "universe.flux",
 										Source: "fn:(r) => ({r with _value: time(v:r._value)})",
 										Start: ast.Position{
 											Column: 43,
-											Line:   333,
+											Line:   343,
 										},
 									},
 								},
@@ -51991,13 +52758,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 45,
-												Line:   333,
+												Line:   343,
 											},
 											File:   "universe.flux",
 											Source: "fn",
 											Start: ast.Position{
 												Column: 43,
-												Line:   333,
+												Line:   343,
 											},
 										},
 									},
@@ -52009,13 +52776,13 @@ var pkgAST = &ast.Package{
 										Loc: &ast.SourceLocation{
 											End: ast.Position{
 												Column: 88,
-												Line:   333,
+												Line:   343,
 											},
 											File:   "universe.flux",
 											Source: "(r) => ({r with _value: time(v:r._value)})",
 											Start: ast.Position{
 												Column: 46,
-												Line:   333,
+												Line:   343,
 											},
 										},
 									},
@@ -52025,13 +52792,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 88,
-													Line:   333,
+													Line:   343,
 												},
 												File:   "universe.flux",
 												Source: "({r with _value: time(v:r._value)})",
 												Start: ast.Position{
 													Column: 53,
-													Line:   333,
+													Line:   343,
 												},
 											},
 										},
@@ -52041,13 +52808,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 87,
-														Line:   333,
+														Line:   343,
 													},
 													File:   "universe.flux",
 													Source: "{r with _value: time(v:r._value)}",
 													Start: ast.Position{
 														Column: 54,
-														Line:   333,
+														Line:   343,
 													},
 												},
 											},
@@ -52057,13 +52824,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 86,
-															Line:   333,
+															Line:   343,
 														},
 														File:   "universe.flux",
 														Source: "_value: time(v:r._value)",
 														Start: ast.Position{
 															Column: 62,
-															Line:   333,
+															Line:   343,
 														},
 													},
 												},
@@ -52073,13 +52840,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 68,
-																Line:   333,
+																Line:   343,
 															},
 															File:   "universe.flux",
 															Source: "_value",
 															Start: ast.Position{
 																Column: 62,
-																Line:   333,
+																Line:   343,
 															},
 														},
 													},
@@ -52092,13 +52859,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 85,
-																	Line:   333,
+																	Line:   343,
 																},
 																File:   "universe.flux",
 																Source: "v:r._value",
 																Start: ast.Position{
 																	Column: 75,
-																	Line:   333,
+																	Line:   343,
 																},
 															},
 														},
@@ -52108,13 +52875,13 @@ var pkgAST = &ast.Package{
 																Loc: &ast.SourceLocation{
 																	End: ast.Position{
 																		Column: 85,
-																		Line:   333,
+																		Line:   343,
 																	},
 																	File:   "universe.flux",
 																	Source: "v:r._value",
 																	Start: ast.Position{
 																		Column: 75,
-																		Line:   333,
+																		Line:   343,
 																	},
 																},
 															},
@@ -52124,13 +52891,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 76,
-																			Line:   333,
+																			Line:   343,
 																		},
 																		File:   "universe.flux",
 																		Source: "v",
 																		Start: ast.Position{
 																			Column: 75,
-																			Line:   333,
+																			Line:   343,
 																		},
 																	},
 																},
@@ -52142,13 +52909,13 @@ var pkgAST = &ast.Package{
 																	Loc: &ast.SourceLocation{
 																		End: ast.Position{
 																			Column: 85,
-																			Line:   333,
+																			Line:   343,
 																		},
 																		File:   "universe.flux",
 																		Source: "r._value",
 																		Start: ast.Position{
 																			Column: 77,
-																			Line:   333,
+																			Line:   343,
 																		},
 																	},
 																},
@@ -52158,13 +52925,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 78,
-																				Line:   333,
+																				Line:   343,
 																			},
 																			File:   "universe.flux",
 																			Source: "r",
 																			Start: ast.Position{
 																				Column: 77,
-																				Line:   333,
+																				Line:   343,
 																			},
 																		},
 																	},
@@ -52176,13 +52943,13 @@ var pkgAST = &ast.Package{
 																		Loc: &ast.SourceLocation{
 																			End: ast.Position{
 																				Column: 85,
-																				Line:   333,
+																				Line:   343,
 																			},
 																			File:   "universe.flux",
 																			Source: "_value",
 																			Start: ast.Position{
 																				Column: 79,
-																				Line:   333,
+																				Line:   343,
 																			},
 																		},
 																	},
@@ -52197,13 +52964,13 @@ var pkgAST = &ast.Package{
 														Loc: &ast.SourceLocation{
 															End: ast.Position{
 																Column: 86,
-																Line:   333,
+																Line:   343,
 															},
 															File:   "universe.flux",
 															Source: "time(v:r._value)",
 															Start: ast.Position{
 																Column: 70,
-																Line:   333,
+																Line:   343,
 															},
 														},
 													},
@@ -52213,13 +52980,13 @@ var pkgAST = &ast.Package{
 															Loc: &ast.SourceLocation{
 																End: ast.Position{
 																	Column: 74,
-																	Line:   333,
+																	Line:   343,
 																},
 																File:   "universe.flux",
 																Source: "time",
 																Start: ast.Position{
 																	Column: 70,
-																	Line:   333,
+																	Line:   343,
 																},
 															},
 														},
@@ -52233,13 +53000,13 @@ var pkgAST = &ast.Package{
 													Loc: &ast.SourceLocation{
 														End: ast.Position{
 															Column: 56,
-															Line:   333,
+															Line:   343,
 														},
 														File:   "universe.flux",
 														Source: "r",
 														Start: ast.Position{
 															Column: 55,
-															Line:   333,
+															Line:   343,
 														},
 													},
 												},
@@ -52253,13 +53020,13 @@ var pkgAST = &ast.Package{
 											Loc: &ast.SourceLocation{
 												End: ast.Position{
 													Column: 48,
-													Line:   333,
+													Line:   343,
 												},
 												File:   "universe.flux",
 												Source: "r",
 												Start: ast.Position{
 													Column: 47,
-													Line:   333,
+													Line:   343,
 												},
 											},
 										},
@@ -52269,13 +53036,13 @@ var pkgAST = &ast.Package{
 												Loc: &ast.SourceLocation{
 													End: ast.Position{
 														Column: 48,
-														Line:   333,
+														Line:   343,
 													},
 													File:   "universe.flux",
 													Source: "r",
 													Start: ast.Position{
 														Column: 47,
-														Line:   333,
+														Line:   343,
 													},
 												},
 											},
@@ -52292,13 +53059,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 89,
-									Line:   333,
+									Line:   343,
 								},
 								File:   "universe.flux",
 								Source: "map(fn:(r) => ({r with _value: time(v:r._value)}))",
 								Start: ast.Position{
 									Column: 39,
-									Line:   333,
+									Line:   343,
 								},
 							},
 						},
@@ -52308,13 +53075,13 @@ var pkgAST = &ast.Package{
 								Loc: &ast.SourceLocation{
 									End: ast.Position{
 										Column: 42,
-										Line:   333,
+										Line:   343,
 									},
 									File:   "universe.flux",
 									Source: "map",
 									Start: ast.Position{
 										Column: 39,
-										Line:   333,
+										Line:   343,
 									},
 								},
 							},
@@ -52328,13 +53095,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   333,
+								Line:   343,
 							},
 							File:   "universe.flux",
 							Source: "tables=<-",
 							Start: ast.Position{
 								Column: 15,
-								Line:   333,
+								Line:   343,
 							},
 						},
 					},
@@ -52344,13 +53111,13 @@ var pkgAST = &ast.Package{
 							Loc: &ast.SourceLocation{
 								End: ast.Position{
 									Column: 21,
-									Line:   333,
+									Line:   343,
 								},
 								File:   "universe.flux",
 								Source: "tables",
 								Start: ast.Position{
 									Column: 15,
-									Line:   333,
+									Line:   343,
 								},
 							},
 						},
@@ -52361,13 +53128,13 @@ var pkgAST = &ast.Package{
 						Loc: &ast.SourceLocation{
 							End: ast.Position{
 								Column: 24,
-								Line:   333,
+								Line:   343,
 							},
 							File:   "universe.flux",
 							Source: "<-",
 							Start: ast.Position{
 								Column: 22,
-								Line:   333,
+								Line:   343,
 							},
 						},
 					}},
